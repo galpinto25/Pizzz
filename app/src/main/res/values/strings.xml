@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pizzz</string>
+    <string name="pizza_details">Your Pizzz</string>
+    <string name="total_price">Your Pizzz</string>
+    <string name="price_button">Button</string>
 </resources>
