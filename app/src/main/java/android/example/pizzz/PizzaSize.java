@@ -1,5 +1,5 @@
 package android.example.pizzz;
 
-public enum Size{
+public enum PizzaSize {
     SMALL, MEDIUM, LARGE
 }
