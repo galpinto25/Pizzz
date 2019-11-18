@@ -4,83 +4,172 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ic_background"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/total_price_button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
+        android:layout_height="82dp"
+        android:background="@android:color/background_light"
+        android:fontFamily="@font/roboto"
+        android:onClick="ClickCheckout"
         android:text="@string/price_button"
+        android:textColor="@color/colorAccent"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <RelativeLayout
-        android:layout_width="402dp"
-        android:layout_height="150dp"
+        android:id="@+id/relativeLayout"
+        android:layout_width="162dp"
+        android:layout_height="62dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <ImageButton
             android:id="@+id/s_button"
-            android:layout_width="wrap_content"
+            android:layout_width="58dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="21dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="16dp"
             android:layout_toLeftOf="@+id/m_button"
-            android:layout_toStartOf="@+id/m_button"
             android:background="@null"
             android:contentDescription="TODO"
             android:onClick="ClickS"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@mipmap/small_not_clicked_foreground" />
+            app:srcCompat="@drawable/ic_small_w"
+            tools:ignore="VectorDrawableCompat" />
 
         <ImageButton
             android:id="@+id/m_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_toLeftOf="@+id/l_button"
-            android:layout_toStartOf="@+id/l_button"
             android:background="@null"
             android:contentDescription="TODO"
             android:onClick="ClickM"
             app:layout_constraintStart_toEndOf="@+id/s_button"
-            app:srcCompat="@mipmap/medium_not_clicked_foreground" />
+            app:srcCompat="@drawable/ic_medium_w"
+            tools:ignore="VectorDrawableCompat" />
 
         <ImageButton
             android:id="@+id/l_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:background="@null"
             android:contentDescription="TODO"
             android:onClick="ClickL"
             app:layout_constraintStart_toEndOf="@+id/m_button"
-            app:srcCompat="@mipmap/large_not_clicked_foreground" />
+            app:srcCompat="@drawable/ic_large_w"
+            tools:ignore="VectorDrawableCompat" />
+
     </RelativeLayout>
+
+
+    <ScrollView
+        android:layout_width="400dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="525dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            android:paddingBottom="16dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="16dp">
+
+            <ImageButton
+                android:id="@+id/button_mushrooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:contentDescription="TODO"
+                android:onClick="ClickMushrooms"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:srcCompat="@drawable/ic_mushrooms"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageButton
+                android:id="@+id/button_onion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:contentDescription="TODO"
+                android:onClick="ClickOlives"
+                app:layout_constraintEnd_toStartOf="@+id/button_mushrooms"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:srcCompat="@drawable/ic_onion"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageButton
+                android:id="@+id/button_cola"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:contentDescription="TODO"
+                android:onClick="ClickOlives"
+                app:layout_constraintEnd_toStartOf="@+id/button_onion"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:srcCompat="@drawable/ic_onion"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageButton
+                android:id="@+id/button_peperoni"
+                android:layout_width="139dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:contentDescription="TODO"
+                android:onClick="ClickOlives"
+                app:layout_constraintEnd_toStartOf="@+id/button_cola"
+                app:layout_constraintHorizontal_bias="0.888"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:srcCompat="@drawable/ic_mushrooms"
+                tools:ignore="VectorDrawableCompat" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <TextView
         android:id="@+id/textView"
@@ -88,14 +177,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="650dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="16dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto"
         android:text="@string/pizza_details"
         android:textColor="@color/colorPrimary"
-        android:textSize="45sp"
-        app:fontFamily="@font/pacifico"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
