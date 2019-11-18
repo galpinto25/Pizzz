@@ -3,6 +3,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -24,60 +26,69 @@ public class MainActivity extends AppCompatActivity {
     private static final int smallPrice = 20;
     private static final int mediumPrice = 40;
     private static final int largePrice = 60;
-    private static final String currency = " NIS\nProceed to checkout >";
+    private static final String currency = " NIS";
 
     @SuppressLint("SetTextI18n")
     protected void changePizzaSize(PizzaSize pizzaSize) {
         if (pizzaSize == PizzaSize.SMALL) {
-            mSbutton.setImageResource(R.mipmap.small_clicked_foreground);
+            mSbutton.setImageResource(R.drawable.ic_small);
             mPrice = smallPrice;
         } else {
-            mSbutton.setImageResource(R.mipmap.small_not_clicked_foreground);
+            mSbutton.setImageResource(R.drawable.ic_small_w);
         }
         if (pizzaSize == PizzaSize.MEDIUM) {
-            mMbutton.setImageResource(R.mipmap.medium_clicked_foreground);
+            mMbutton.setImageResource(R.drawable.ic_medium);
             mPrice = mediumPrice;
         } else {
-            mMbutton.setImageResource(R.mipmap.medium_not_clicked_foreground);
+            mMbutton.setImageResource(R.drawable.ic_medium_w);
         }
         if (pizzaSize == PizzaSize.LARGE) {
-            mLbutton.setImageResource(R.mipmap.large_clicked_foreground);
+            mLbutton.setImageResource(R.drawable.ic_large);
             mPrice = largePrice;
         } else {
-            mLbutton.setImageResource(R.mipmap.large_not_clicked_foreground);
+            mLbutton.setImageResource(R.drawable.ic_large_w);
         }
         mSize = pizzaSize;
-        mTotalPrice.setText(mPrice + mExtraPrice + currency);
+        SpannableString priceString=  new SpannableString(mPrice + mExtraPrice + currency);
+        int priceLen = Integer.toString(mPrice + mExtraPrice).length();
+        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
+        mTotalPrice.setText(priceString);
     }
 
     @SuppressLint("SetTextI18n")
     private void addExtras(PizzaExtra pizzaExtra) {
-        if (pizzaExtra == PizzaExtra.OLIVES) {
+        if (pizzaExtra == PizzaExtra.ONION) {
             isOlives = true;
-            mOlivesbutton.setImageResource(R.mipmap.olives_round);
+            mOlivesbutton.setImageResource(R.drawable.ic_onion_g);
             mExtraPrice += 4;
         }
         else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
             isMushrooms = true;
-            mMushroomsbutton.setImageResource(R.mipmap.mushrooms_round);
+            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
             mExtraPrice += 5;
         }
-        mTotalPrice.setText(mPrice + mExtraPrice + currency);
+        SpannableString priceString=  new SpannableString(mPrice + mExtraPrice + currency);
+        int priceLen = Integer.toString(mPrice + mExtraPrice).length();
+        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
+        mTotalPrice.setText(priceString);
     }
 
     @SuppressLint("SetTextI18n")
     private void removeExtras(PizzaExtra pizzaExtra) {
-        if (pizzaExtra == PizzaExtra.OLIVES) {
+        if (pizzaExtra == PizzaExtra.ONION) {
             isOlives = false;
-            mOlivesbutton.setImageResource(R.mipmap.olives_clicked_round);
+            mOlivesbutton.setImageResource(R.drawable.ic_onion);
             mExtraPrice -= 4;
         }
         else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
             isMushrooms = false;
-            mMushroomsbutton.setImageResource(R.mipmap.mushrooms_clicked_round);
+            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms);
             mExtraPrice -= 5;
         }
-        mTotalPrice.setText(mPrice + mExtraPrice + currency);
+        SpannableString priceString=  new SpannableString(mPrice + mExtraPrice + currency);
+        int priceLen = Integer.toString(mPrice + mExtraPrice).length();
+        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
+        mTotalPrice.setText(priceString);
     }
 
     @SuppressLint("SetTextI18n")
@@ -88,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         mSbutton = findViewById(R.id.s_button);
         mMbutton = findViewById(R.id.m_button);
         mLbutton = findViewById(R.id.l_button);
-        mOlivesbutton = findViewById(R.id.button_olives);
+        mOlivesbutton = findViewById(R.id.button_onion);
         mMushroomsbutton = findViewById(R.id.button_mushrooms);
         mTotalPrice = findViewById(R.id.total_price_button);
         // todo ask Efrat about the default size (or empty)
@@ -112,9 +123,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void ClickOlives(View view) {
         if (!isOlives) {
-            addExtras(PizzaExtra.OLIVES);
+            addExtras(PizzaExtra.ONION);
         } else {
-            removeExtras(PizzaExtra.OLIVES);
+            removeExtras(PizzaExtra.ONION);
         }
     }
 
