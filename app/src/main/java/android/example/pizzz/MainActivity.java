@@ -8,6 +8,7 @@ import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
 
@@ -22,15 +23,19 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mLbutton;
     private ImageButton mOlivesbutton;
     private ImageButton mMushroomsbutton;
-    private ImageButton mColabutton;
     private ImageButton mPepperoniButton;
+    private ImageButton mColabutton;
+    private ImageButton mBasilButton;
     private ImageView mMushroomsImage;
     private ImageView mOnionImage;
     private ImageView mPepperoniImage;
+    private ImageView mBasilImage;
+    private ImageView mColaImage;
     private boolean isOlives = false;
     private boolean isMushrooms = false;
     private boolean isCola = false;
     private boolean isPepperoni = false;
+    private boolean isBasil = false;
     private static final int smallPrice = 20;
     private static final int mediumPrice = 40;
     private static final int largePrice = 60;
@@ -75,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         else if (pizzaExtra == PizzaExtra.COLA) {
             isCola = true;
             mColabutton.setImageResource(R.drawable.ic_cola_b);
+            mColaImage.setVisibility(View.VISIBLE);
             mExtraPrice += 8;
         }
         else if (pizzaExtra == PizzaExtra.PEPPERONI) {
@@ -82,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_b);
             mPepperoniImage.setVisibility(View.VISIBLE);
             mExtraPrice += 11;
+        }
+        else if (pizzaExtra == PizzaExtra.BASIL) {
+            isBasil = true;
+            mBasilButton.setImageResource(R.drawable.ic_paproni_b);
+            mBasilImage.setVisibility(View.VISIBLE);
+            mExtraPrice += 3;
         }
         updatePriceTag();
     }
@@ -109,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
         else if (pizzaExtra == PizzaExtra.COLA) {
             isCola = false;
             mColabutton.setImageResource(R.drawable.ic_cola);
+            mColaImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 8;
         }
         else if (pizzaExtra == PizzaExtra.PEPPERONI) {
@@ -116,6 +129,12 @@ public class MainActivity extends AppCompatActivity {
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_w);
             mPepperoniImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 11;
+        }
+        else if (pizzaExtra == PizzaExtra.BASIL) {
+            isBasil = false;
+            mBasilButton.setImageResource(R.drawable.ic_paproni_w);
+            mBasilImage.setVisibility(View.INVISIBLE);
+            mExtraPrice -= 3;
         }
         updatePriceTag();
     }
@@ -131,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         mMushroomsbutton = findViewById(R.id.button_mushrooms);
         mColabutton = findViewById(R.id.button_cola);
         mPepperoniButton = findViewById(R.id.button_pepperoni);
+        mBasilButton = findViewById(R.id.button_basil);
         mTotalPrice = findViewById(R.id.total_price_button);
         mMushroomsImage = findViewById(R.id.mushrooms_image);
         mMushroomsImage.setVisibility(View.INVISIBLE);
@@ -138,6 +158,10 @@ public class MainActivity extends AppCompatActivity {
         mOnionImage.setVisibility(View.INVISIBLE);
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mPepperoniImage.setVisibility(View.INVISIBLE);
+        mBasilImage = findViewById(R.id.basil_image);
+        mBasilImage.setVisibility(View.INVISIBLE);
+        mColaImage = findViewById(R.id.cola_image);
+        mColaImage.setVisibility(View.INVISIBLE);
         // todo ask Efrat about the default size (or empty)
         changePizzaSize(PizzaSize.MEDIUM);
     }
@@ -186,8 +210,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void ClickBasil(View view) {
+        if (!isBasil) {
+            addExtras(PizzaExtra.BASIL);
+        } else {
+            removeExtras(PizzaExtra.BASIL);
+        }
+    }
+
     public void ClickCheckout(View view) {
         Intent intent = new Intent(this, CheckoutActivity.class);
         startActivity(intent);
     }
+
 }

@@ -76,26 +76,10 @@
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
-                android:id="@+id/button_cola"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="0dp"
-                android:layout_marginStart="16dp"
-                android:background="@null"
-                android:contentDescription="TODO"
-                android:onClick="ClickCola"
-                app:layout_constraintEnd_toStartOf="@+id/button_onion"
-                app:layout_constraintHorizontal_bias="0.888"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_cola"
-                tools:ignore="VectorDrawableCompat" />
-
-            <ImageButton
                 android:id="@+id/button_pepperoni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_marginBottom="0dp"
                 android:layout_marginStart="16dp"
                 android:background="@null"
@@ -106,6 +90,38 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
                 app:srcCompat="@drawable/ic_paproni_w"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageButton
+                android:id="@+id/button_basil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:contentDescription="TODO"
+                android:onClick="ClickBasil"
+                app:layout_constraintEnd_toStartOf="@+id/button_pepperoni"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:srcCompat="@drawable/ic_paproni_w"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageButton
+                android:id="@+id/button_cola"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="0dp"
+                android:layout_marginStart="16dp"
+                android:background="@null"
+                android:contentDescription="TODO"
+                android:onClick="ClickCola"
+                app:layout_constraintEnd_toStartOf="@+id/button_basil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:srcCompat="@drawable/ic_cola"
                 tools:ignore="VectorDrawableCompat" />
 
         </LinearLayout>
@@ -243,9 +259,23 @@
         tools:layout_editor_absoluteX="12dp" />
 
     <ImageView
+        android:id="@+id/cola_image"
+        android:layout_width="236dp"
+        android:layout_height="342dp"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginTop="190dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/total_price_button"
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        app:srcCompat="@mipmap/cola_img_foreground" />
+
+    <ImageView
         android:id="@+id/pizza_image"
-        android:layout_width="750dp"
-        android:layout_height="539dp"
+        android:layout_width="602dp"
+        android:layout_height="394dp"
         android:layout_marginTop="145dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -286,14 +316,31 @@
         android:id="@+id/pepperoni_image"
         android:layout_width="251dp"
         android:layout_height="117dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="410dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="200dp"
-        android:layout_marginEnd="410dp"
-        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/total_price_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toEndOf="@+id/total_price_button"
         app:layout_constraintTop_toBottomOf="@+id/divider6"
+        app:layout_constraintVertical_bias="0.634"
         app:srcCompat="@drawable/ic_pic_paparoni" />
+
+    <ImageView
+        android:id="@+id/basil_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="350dp"
+        android:layout_marginTop="141dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
+        app:layout_constraintEnd_toStartOf="@+id/pepperoni_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider6"
+        app:srcCompat="@drawable/ic_pic_basil" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 package android.example.pizzz;
 
 public enum  PizzaExtra {
-    ONION, COLA, PEPPERONI, MUSHROOMS
+    ONION, COLA, PEPPERONI, BASIL, MUSHROOMS
 }

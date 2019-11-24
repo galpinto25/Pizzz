@@ -3,6 +3,6 @@
     <string name="pizza_details">Pizza Details</string>
     <string name="total_price">Your Pizzz</string>
     <string name="price_button">Button</string>
-    <string name="app_intro">your pizzz is\none swipe away</string>
+    <string name="app_intro">your pizzz is\njust a swipe away</string>
     <string name="checkout_title">Your Pizzz</string>
 </resources>
