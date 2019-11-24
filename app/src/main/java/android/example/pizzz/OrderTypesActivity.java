@@ -1,12 +1,12 @@
 package android.example.pizzz;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
-
-public class EntryActivity extends AppCompatActivity {
+public class OrderTypesActivity extends AppCompatActivity {
 
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_MAX_OFF_PATH = 250;
@@ -16,16 +16,16 @@ public class EntryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entry);
+        setContentView(R.layout.activity_order_types);
         gestureDetector = new GestureDetector( this, new SwipeDetector());
     }
 
     protected void onSwipeRight() {
-        Intent intent = new Intent(this, OrderTypesActivity.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
     protected void onSwipeLeft() {
-        Intent intent = new Intent(this, OrderTypesActivity.class);
+        Intent intent = new Intent(this, CheckoutActivity.class);
         startActivity(intent);
     }
 

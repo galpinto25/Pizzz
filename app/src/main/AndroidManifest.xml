@@ -12,7 +12,8 @@
         android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".CheckoutActivity"></activity>
+        <activity android:name=".OrderTypesActivity"></activity>
+        <activity android:name=".CheckoutActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".EntryActivity">
             <intent-filter>
