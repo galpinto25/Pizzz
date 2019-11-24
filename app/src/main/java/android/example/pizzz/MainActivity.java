@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -127,18 +131,22 @@ public class MainActivity extends AppCompatActivity {
         mBasilButton = findViewById(R.id.button_basil);
         mTotalPrice = findViewById(R.id.total_price_button);
         mMushroomsImage = findViewById(R.id.mushrooms_image);
-        mMushroomsImage.setVisibility(View.INVISIBLE);
-        mOnionImage = findViewById(R.id.onion_image);
-        mOnionImage.setVisibility(View.INVISIBLE);
         mPepperoniImage = findViewById(R.id.pepperoni_image);
-        mPepperoniImage.setVisibility(View.INVISIBLE);
+        mOnionImage = findViewById(R.id.onion_image);
         mBasilImage = findViewById(R.id.basil_image);
-        mBasilImage.setVisibility(View.INVISIBLE);
         mColaImage = findViewById(R.id.cola_image);
-        mColaImage.setVisibility(View.INVISIBLE);
+        ArrayList<ImageView> list = new ArrayList<>(Arrays.asList(mMushroomsImage, mColaImage, mOnionImage, mPepperoniImage, mBasilImage));
+        setInvisible(list);
         // todo ask Efrat about the default size (or empty)
         changePizzaSize(PizzaSize.MEDIUM);
     }
+
+    private void setInvisible(ArrayList<ImageView> imageViewArrayList) {
+        for (ImageView imageView : imageViewArrayList) {
+            imageView.setVisibility(View.INVISIBLE);
+        }
+    }
+
 
     public void ClickS(View view) {
         changePizzaSize(PizzaSize.SMALL);
