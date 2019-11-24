@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mColabutton;
     private ImageButton mPepperoniButton;
     private ImageView mMushroomsImage;
+    private ImageView mOnionImage;
+    private ImageView mPepperoniImage;
     private boolean isOlives = false;
     private boolean isMushrooms = false;
     private boolean isCola = false;
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         if (pizzaExtra == PizzaExtra.ONION) {
             isOlives = true;
             mOlivesbutton.setImageResource(R.drawable.ic_onion_g);
+            mOnionImage.setVisibility(View.VISIBLE);
             mExtraPrice += 4;
         }
         else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
@@ -77,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         else if (pizzaExtra == PizzaExtra.PEPPERONI) {
             isPepperoni = true;
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_b);
+            mPepperoniImage.setVisibility(View.VISIBLE);
             mExtraPrice += 11;
         }
         updatePriceTag();
@@ -93,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         if (pizzaExtra == PizzaExtra.ONION) {
             isOlives = false;
             mOlivesbutton.setImageResource(R.drawable.ic_onion);
+            mOnionImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 4;
         }
         else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
@@ -109,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         else if (pizzaExtra == PizzaExtra.PEPPERONI) {
             isPepperoni = false;
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_w);
+            mPepperoniImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 11;
         }
         updatePriceTag();
@@ -128,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
         mTotalPrice = findViewById(R.id.total_price_button);
         mMushroomsImage = findViewById(R.id.mushrooms_image);
         mMushroomsImage.setVisibility(View.INVISIBLE);
+        mOnionImage = findViewById(R.id.onion_image);
+        mOnionImage.setVisibility(View.INVISIBLE);
+        mPepperoniImage = findViewById(R.id.pepperoni_image);
+        mPepperoniImage.setVisibility(View.INVISIBLE);
         // todo ask Efrat about the default size (or empty)
         changePizzaSize(PizzaSize.MEDIUM);
     }

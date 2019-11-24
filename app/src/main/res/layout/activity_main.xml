@@ -257,13 +257,43 @@
         android:id="@+id/mushrooms_image"
         android:layout_width="213dp"
         android:layout_height="71dp"
-        android:layout_marginBottom="19dp"
-        android:layout_marginEnd="100dp"
         android:layout_marginTop="170dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="19dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/total_price_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider6"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_pic_mucshrooms" />
+
+    <ImageView
+        android:id="@+id/onion_image"
+        android:layout_width="137dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="400dp"
+        android:layout_marginTop="141dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
+        app:layout_constraintEnd_toStartOf="@+id/mushrooms_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider6"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_pic_onion" />
+
+    <ImageView
+        android:id="@+id/pepperoni_image"
+        android:layout_width="251dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="410dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/total_price_button"
+        app:layout_constraintTop_toBottomOf="@+id/divider6"
+        app:srcCompat="@drawable/ic_pic_paparoni" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
