@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             mLbutton.setImageResource(R.drawable.ic_large_w);
         }
         mSize = pizzaSize;
-        SpannableString priceString=  new SpannableString(mPrice + mExtraPrice + currency);
+        SpannableString priceString = new SpannableString(mPrice + mExtraPrice + currency);
         int priceLen = Integer.toString(mPrice + mExtraPrice).length();
         priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
         mTotalPrice.setText(priceString);
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
             mExtraPrice += 5;
         }
-        SpannableString priceString=  new SpannableString(mPrice + mExtraPrice + currency);
+        SpannableString priceString = new SpannableString(mPrice + mExtraPrice + currency);
         int priceLen = Integer.toString(mPrice + mExtraPrice).length();
         priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
         mTotalPrice.setText(priceString);
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms);
             mExtraPrice -= 5;
         }
-        SpannableString priceString=  new SpannableString(mPrice + mExtraPrice + currency);
+        SpannableString priceString = new SpannableString(mPrice + mExtraPrice + currency);
         int priceLen = Integer.toString(mPrice + mExtraPrice).length();
         priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
         mTotalPrice.setText(priceString);
