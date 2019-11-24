@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
     tools:context=".MainActivity">
 
 
@@ -25,80 +24,17 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="162dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="300dp"
-        android:layout_marginEnd="250dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <ImageButton
-            android:id="@+id/s_button"
-            android:layout_width="58dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_toLeftOf="@+id/m_button"
-            android:background="@null"
-            android:contentDescription="TODO"
-            android:onClick="ClickS"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_small_w"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageButton
-            android:id="@+id/m_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_toLeftOf="@+id/l_button"
-            android:background="@null"
-            android:contentDescription="TODO"
-            android:onClick="ClickM"
-            app:layout_constraintStart_toEndOf="@+id/s_button"
-            app:srcCompat="@drawable/ic_medium_w"
-            tools:ignore="VectorDrawableCompat" />
-
-        <ImageButton
-            android:id="@+id/l_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="16dp"
-            android:background="@null"
-            android:contentDescription="TODO"
-            android:onClick="ClickL"
-            app:layout_constraintStart_toEndOf="@+id/m_button"
-            app:srcCompat="@drawable/ic_large_w"
-            tools:ignore="VectorDrawableCompat" />
-
-    </RelativeLayout>
-
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="425dp"
         android:layout_height="69dp"
-        android:layout_marginBottom="200dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginTop="4dp"
         android:overScrollMode="never"
         android:requiresFadingEdge="none"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -176,6 +112,65 @@
 
     </HorizontalScrollView>
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="162dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+        <ImageButton
+            android:id="@+id/s_button"
+            android:layout_width="58dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/m_button"
+            android:background="@null"
+            android:contentDescription="TODO"
+            android:onClick="ClickS"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_small_w"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageButton
+            android:id="@+id/m_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/l_button"
+            android:background="@null"
+            android:contentDescription="TODO"
+            android:onClick="ClickM"
+            app:layout_constraintStart_toEndOf="@+id/s_button"
+            app:srcCompat="@drawable/ic_medium_w"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageButton
+            android:id="@+id/l_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:contentDescription="TODO"
+            android:onClick="ClickL"
+            app:layout_constraintStart_toEndOf="@+id/m_button"
+            app:srcCompat="@drawable/ic_large_w"
+            tools:ignore="VectorDrawableCompat" />
+
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
@@ -194,5 +189,81 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="76dp"
+        android:background="@color/olives_background"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/olives_background"
+        app:layout_constraintTop_toBottomOf="@+id/divider4"
+        tools:layout_editor_absoluteX="-16dp" />
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="76dp"
+        android:background="@color/olives_background"
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/olives_background"
+        app:layout_constraintTop_toBottomOf="@+id/divider"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="76dp"
+        android:background="@color/olives_background"
+        app:layout_constraintTop_toBottomOf="@+id/divider3"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/olives_background"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="12dp" />
+
+    <ImageView
+        android:id="@+id/pizza_image"
+        android:layout_width="750dp"
+        android:layout_height="539dp"
+        android:layout_marginTop="145dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        app:srcCompat="@mipmap/pizza_img_foreground" />
+
+    <ImageView
+        android:id="@+id/mushrooms_image"
+        android:layout_width="213dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="170dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider6"
+        app:srcCompat="@drawable/ic_pic_mucshrooms" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

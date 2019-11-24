@@ -8,6 +8,7 @@ import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton mMushroomsbutton;
     private ImageButton mColabutton;
     private ImageButton mPepperoniButton;
+    private ImageView mMushroomsImage;
     private boolean isOlives = false;
     private boolean isMushrooms = false;
     private boolean isCola = false;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
             isMushrooms = true;
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
+            mMushroomsImage.setVisibility(View.VISIBLE);
             mExtraPrice += 5;
         }
         else if (pizzaExtra == PizzaExtra.COLA) {
@@ -95,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
         else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
             isMushrooms = false;
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms);
+            mMushroomsImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 5;
         }
         else if (pizzaExtra == PizzaExtra.COLA) {
@@ -122,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
         mColabutton = findViewById(R.id.button_cola);
         mPepperoniButton = findViewById(R.id.button_pepperoni);
         mTotalPrice = findViewById(R.id.total_price_button);
+        mMushroomsImage = findViewById(R.id.mushrooms_image);
+        mMushroomsImage.setVisibility(View.INVISIBLE);
         // todo ask Efrat about the default size (or empty)
         changePizzaSize(PizzaSize.MEDIUM);
     }
