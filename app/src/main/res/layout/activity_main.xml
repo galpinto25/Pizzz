@@ -148,7 +148,7 @@
                 app:layout_constraintHorizontal_bias="0.888"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_onion"
+                app:srcCompat="@drawable/ic_cola"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
