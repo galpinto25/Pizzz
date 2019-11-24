@@ -1,4 +1,5 @@
 package android.example.pizzz;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,37 +9,18 @@ import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    private int mPrice = 0;
-    private int mExtraPrice = 0;
+    private int mPrice = 0, mExtraPrice = 0;
     private PizzaSize mSize = PizzaSize.SMALL;
     private Button mTotalPrice;
-    private ImageButton mSbutton;
-    private ImageButton mMbutton;
-    private ImageButton mLbutton;
-    private ImageButton mOlivesbutton;
-    private ImageButton mMushroomsbutton;
-    private ImageButton mPepperoniButton;
-    private ImageButton mColabutton;
-    private ImageButton mBasilButton;
-    private ImageView mMushroomsImage;
-    private ImageView mOnionImage;
-    private ImageView mPepperoniImage;
-    private ImageView mBasilImage;
-    private ImageView mColaImage;
-    private boolean isOlives = false;
-    private boolean isMushrooms = false;
-    private boolean isCola = false;
-    private boolean isPepperoni = false;
-    private boolean isBasil = false;
-    private static final int smallPrice = 20;
-    private static final int mediumPrice = 40;
-    private static final int largePrice = 60;
+    private ImageButton mSbutton, mMbutton, mLbutton, mOlivesbutton, mMushroomsbutton, mPepperoniButton, mColabutton, mBasilButton;
+    private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage, mColaImage;
+    private boolean isOnion = false, isMushrooms = false, isCola = false, isPepperoni = false, isBasil = false;
+    private static final int smallPrice = 20, mediumPrice = 40, largePrice = 60;
     private static final String currency = " NIS";
 
     protected void changePizzaSize(PizzaSize pizzaSize) {
@@ -66,30 +48,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void addExtras(PizzaExtra pizzaExtra) {
         if (pizzaExtra == PizzaExtra.ONION) {
-            isOlives = true;
+            isOnion = true;
             mOlivesbutton.setImageResource(R.drawable.ic_onion_g);
             mOnionImage.setVisibility(View.VISIBLE);
             mExtraPrice += 4;
-        }
-        else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
+        } else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
             isMushrooms = true;
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
             mMushroomsImage.setVisibility(View.VISIBLE);
             mExtraPrice += 5;
-        }
-        else if (pizzaExtra == PizzaExtra.COLA) {
+        } else if (pizzaExtra == PizzaExtra.COLA) {
             isCola = true;
             mColabutton.setImageResource(R.drawable.ic_cola_b);
             mColaImage.setVisibility(View.VISIBLE);
             mExtraPrice += 8;
-        }
-        else if (pizzaExtra == PizzaExtra.PEPPERONI) {
+        } else if (pizzaExtra == PizzaExtra.PEPPERONI) {
             isPepperoni = true;
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_b);
             mPepperoniImage.setVisibility(View.VISIBLE);
             mExtraPrice += 11;
-        }
-        else if (pizzaExtra == PizzaExtra.BASIL) {
+        } else if (pizzaExtra == PizzaExtra.BASIL) {
             isBasil = true;
             mBasilButton.setImageResource(R.drawable.ic_paproni_b);
             mBasilImage.setVisibility(View.VISIBLE);
@@ -98,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         updatePriceTag();
     }
 
-    private void updatePriceTag(){
+    private void updatePriceTag() {
         SpannableString priceString = new SpannableString(mPrice + mExtraPrice + currency);
         int priceLen = Integer.toString(mPrice + mExtraPrice).length();
         priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
@@ -107,30 +85,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void removeExtras(PizzaExtra pizzaExtra) {
         if (pizzaExtra == PizzaExtra.ONION) {
-            isOlives = false;
+            isOnion = false;
             mOlivesbutton.setImageResource(R.drawable.ic_onion);
             mOnionImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 4;
-        }
-        else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
+        } else if (pizzaExtra == PizzaExtra.MUSHROOMS) {
             isMushrooms = false;
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms);
             mMushroomsImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 5;
-        }
-        else if (pizzaExtra == PizzaExtra.COLA) {
+        } else if (pizzaExtra == PizzaExtra.COLA) {
             isCola = false;
             mColabutton.setImageResource(R.drawable.ic_cola);
             mColaImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 8;
-        }
-        else if (pizzaExtra == PizzaExtra.PEPPERONI) {
+        } else if (pizzaExtra == PizzaExtra.PEPPERONI) {
             isPepperoni = false;
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_w);
             mPepperoniImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 11;
-        }
-        else if (pizzaExtra == PizzaExtra.BASIL) {
+        } else if (pizzaExtra == PizzaExtra.BASIL) {
             isBasil = false;
             mBasilButton.setImageResource(R.drawable.ic_paproni_w);
             mBasilImage.setVisibility(View.INVISIBLE);
@@ -179,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ClickOlives(View view) {
-        if (!isOlives) {
+        if (!isOnion) {
             addExtras(PizzaExtra.ONION);
         } else {
             removeExtras(PizzaExtra.ONION);
