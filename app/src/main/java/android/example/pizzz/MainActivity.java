@@ -21,9 +21,9 @@ public class MainActivity extends AppCompatActivity {
     private int mPrice = 0, mExtraPrice = 0;
     private PizzaSize mSize = PizzaSize.SMALL;
     private Button mTotalPrice;
-    private ImageButton mSbutton, mMbutton, mLbutton, mOlivesbutton, mMushroomsbutton, mPepperoniButton, mColabutton, mBasilButton;
-    private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage, mColaImage;
-    private boolean isOnion = false, isMushrooms = false, isCola = false, isPepperoni = false, isBasil = false;
+    private ImageButton mSbutton, mMbutton, mLbutton, mOlivesbutton, mMushroomsbutton, mPepperoniButton, mBasilButton;
+    private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage;
+    private boolean isOnion = false, isMushrooms = false, isPepperoni = false, isBasil = false;
     private static final int smallPrice = 20, mediumPrice = 40, largePrice = 60;
     private static final String currency = " NIS";
 
@@ -61,11 +61,6 @@ public class MainActivity extends AppCompatActivity {
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
             mMushroomsImage.setVisibility(View.VISIBLE);
             mExtraPrice += 5;
-        } else if (pizzaExtra == PizzaExtra.COLA) {
-            isCola = true;
-            mColabutton.setImageResource(R.drawable.ic_cola_b);
-            mColaImage.setVisibility(View.VISIBLE);
-            mExtraPrice += 8;
         } else if (pizzaExtra == PizzaExtra.PEPPERONI) {
             isPepperoni = true;
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_b);
@@ -98,11 +93,6 @@ public class MainActivity extends AppCompatActivity {
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms);
             mMushroomsImage.setVisibility(View.INVISIBLE);
             mExtraPrice -= 5;
-        } else if (pizzaExtra == PizzaExtra.COLA) {
-            isCola = false;
-            mColabutton.setImageResource(R.drawable.ic_cola);
-            mColaImage.setVisibility(View.INVISIBLE);
-            mExtraPrice -= 8;
         } else if (pizzaExtra == PizzaExtra.PEPPERONI) {
             isPepperoni = false;
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_w);
@@ -126,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         mLbutton = findViewById(R.id.l_button);
         mOlivesbutton = findViewById(R.id.button_onion);
         mMushroomsbutton = findViewById(R.id.button_mushrooms);
-        mColabutton = findViewById(R.id.button_cola);
         mPepperoniButton = findViewById(R.id.button_pepperoni);
         mBasilButton = findViewById(R.id.button_basil);
         mTotalPrice = findViewById(R.id.total_price_button);
@@ -134,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mOnionImage = findViewById(R.id.onion_image);
         mBasilImage = findViewById(R.id.basil_image);
-        mColaImage = findViewById(R.id.cola_image);
-        ArrayList<ImageView> list = new ArrayList<>(Arrays.asList(mMushroomsImage, mColaImage, mOnionImage, mPepperoniImage, mBasilImage));
+        ArrayList<ImageView> list = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage));
         setInvisible(list);
         // todo ask Efrat about the default size (or empty)
         changePizzaSize(PizzaSize.MEDIUM);
@@ -176,13 +164,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void ClickCola(View view) {
-        if (!isCola) {
-            addExtras(PizzaExtra.COLA);
-        } else {
-            removeExtras(PizzaExtra.COLA);
-        }
-    }
 
     public void ClickPepperoni(View view) {
         if (!isPepperoni) {
