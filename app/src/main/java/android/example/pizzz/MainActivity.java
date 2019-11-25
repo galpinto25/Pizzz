@@ -128,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
         Map<String,Boolean> extras = new HashMap<String, Boolean>();
         extras.put("onion", isOnion);
         extras.put("mushrooms", isMushrooms);
-        extras.put("cola", isCola);
         extras.put("pepperoni", isPepperoni);
         extras.put("basil", isBasil);
         return extras;
