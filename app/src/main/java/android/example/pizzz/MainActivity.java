@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.BoringLayout;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
@@ -14,6 +15,11 @@ import android.widget.ImageView;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -105,6 +111,27 @@ public class MainActivity extends AppCompatActivity {
             mExtraPrice -= 3;
         }
         updatePriceTag();
+    }
+
+    public int getPizzaPrice()
+    {
+        return mPrice;
+    }
+
+    public int getExtrasPrice()
+    {
+        return mExtraPrice;
+    }
+
+    public Map<String,Boolean> getExtras()
+    {
+        Map<String,Boolean> extras = new HashMap<String, Boolean>();
+        extras.put("onion", isOnion);
+        extras.put("mushrooms", isMushrooms);
+        extras.put("cola", isCola);
+        extras.put("pepperoni", isPepperoni);
+        extras.put("basil", isBasil);
+        return extras;
     }
 
     @Override
