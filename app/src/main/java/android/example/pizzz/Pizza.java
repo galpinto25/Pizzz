@@ -8,21 +8,94 @@ public class Pizza {
     private static Pizza pizza = null;
 
     // variable of type String
-    private String size;
+    private PizzaSize size;
     private int price = 40;
     private boolean isOnion = false;
     private boolean isMushrooms = false;
     private boolean isOlives = false;
-    private boolean isCola = false;
     private boolean isPepperoni = false;
     private boolean isBasil = false;
     private int extras_price = 0;
+    private boolean isCola = false;
 
+
+    public void setSize(PizzaSize size)
+    {
+        this.size = size;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setOnion(boolean onion) {
+        isOnion = onion;
+    }
+
+    public void setMushrooms(boolean mushrooms) {
+        isMushrooms = mushrooms;
+    }
+
+    public void setOlives(boolean olives) {
+        isOlives = olives;
+    }
+
+    public void setCola(boolean cola) {
+        isCola = cola;
+    }
+
+    public void setPepperoni(boolean pepperoni) {
+        isPepperoni = pepperoni;
+    }
+
+    public void setBasil(boolean basil) {
+        isBasil = basil;
+    }
+
+    public void setExtras_price(int extras_price) {
+        this.extras_price = extras_price;
+    }
+
+    public PizzaSize getSize() {
+        return size;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public boolean isOnion() {
+        return isOnion;
+    }
+
+    public boolean isMushrooms() {
+        return isMushrooms;
+    }
+
+    public boolean isOlives() {
+        return isOlives;
+    }
+
+    public boolean isCola() {
+        return isCola;
+    }
+
+    public boolean isPepperoni() {
+        return isPepperoni;
+    }
+
+    public boolean isBasil() {
+        return isBasil;
+    }
+
+    public int getExtras_price() {
+        return extras_price;
+    }
 
     // private constructor restricted to this class itself
     private Pizza()
     {
-        size = "none";
+        size = PizzaSize.NONE;
     }
 
     // static method to create instance of Singleton class
