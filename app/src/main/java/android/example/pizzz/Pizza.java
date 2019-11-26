@@ -2,7 +2,8 @@ package android.example.pizzz;
 
 public class Pizza {
 
-    //TODO: magic numbers of prices
+    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3;
+    final static public int SMALL_PRICE = 20, MEDIUM_PRICE = 40, LARGE_PRICE = 60;
 
     // static variable single_instance of type Singleton
     private static Pizza pizza = null;

@@ -22,24 +22,34 @@ import java.util.LinkedList;
 import java.util.Map;
 
 
-
 public class MainActivity extends AppCompatActivity
 {
+    private Pizza mPizza;
     private Button mTotalPrice;
     private ImageButton mSbutton, mMbutton, mLbutton, mOlivesbutton, mMushroomsbutton, mPepperoniButton, mBasilButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage;
-    private static final int smallPrice = 20, mediumPrice = 40, largePrice = 60;
     private static final String currency = " NIS";
-    private Pizza mPizza;
 
+    /**
+     * Create a pizza instance, and set all the button in the activity in their default state
+     * (visible or invisible).
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mPizza = Pizza.getInstance();
+
+        // todo change name to small_button
         mSbutton = findViewById(R.id.s_button);
+        // todo change name to medium_button
         mMbutton = findViewById(R.id.m_button);
+        // todo change name to large_button
         mLbutton = findViewById(R.id.l_button);
+        // todo olives or onion??
         mOlivesbutton = findViewById(R.id.button_onion);
         mMushroomsbutton = findViewById(R.id.button_mushrooms);
         mPepperoniButton = findViewById(R.id.button_pepperoni);
@@ -49,85 +59,15 @@ public class MainActivity extends AppCompatActivity
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mOnionImage = findViewById(R.id.onion_image);
         mBasilImage = findViewById(R.id.basil_image);
-        mPizza = Pizza.getInstance();
-        ArrayList<ImageView> list = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage));
-        setInvisible(list);
-        // todo ask Efrat about the default size (or empty)
+        ArrayList<ImageView> extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage));
+        setInvisible(extrasImages);
+        // todo the deafault size is medium and the button should be grey (not black). please validate it!
         changePizzaSize(PizzaSize.MEDIUM);
     }
 
-    protected void changePizzaSize(PizzaSize pizzaSize)
-    {
-        if (pizzaSize == PizzaSize.SMALL)
-        {
-            mSbutton.setImageResource(R.drawable.ic_small);
-            mPizza.setSize(PizzaSize.SMALL);
-            mPizza.setPrice(smallPrice);
-        }
-        else
-        {
-            mSbutton.setImageResource(R.drawable.ic_small_w);
-        }
-
-        if (pizzaSize == PizzaSize.MEDIUM)
-        {
-            mMbutton.setImageResource(R.drawable.ic_medium);
-            mPizza.setSize(PizzaSize.MEDIUM);
-            mPizza.setPrice(mediumPrice);
-        }
-        else
-        {
-            mMbutton.setImageResource(R.drawable.ic_medium_w);
-        }
-
-        if (pizzaSize == PizzaSize.LARGE)
-        {
-            mLbutton.setImageResource(R.drawable.ic_large);
-            mPizza.setSize(PizzaSize.LARGE);
-            mPizza.setPrice(largePrice);
-        }
-        else
-        {
-            mLbutton.setImageResource(R.drawable.ic_large_w);
-        }
-
-        updatePriceTag();
-    }
-
-    private void addExtras(PizzaExtra pizzaExtra)
-    {
-        int extraPrice = mPizza.getExtras_price();
-        if (pizzaExtra == PizzaExtra.ONION)
-        {
-            mPizza.setOnion(true);
-            mOlivesbutton.setImageResource(R.drawable.ic_onion_g);
-            mOnionImage.setVisibility(View.VISIBLE);
-            mPizza.setExtras_price(extraPrice + 4);
-        }
-        else if (pizzaExtra == PizzaExtra.MUSHROOMS)
-        {
-            mPizza.setMushrooms(true);
-            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
-            mMushroomsImage.setVisibility(View.VISIBLE);
-            mPizza.setExtras_price(extraPrice + 5);
-        }
-        else if (pizzaExtra == PizzaExtra.PEPPERONI)
-        {
-            mPizza.setPepperoni(true);
-            mPepperoniButton.setImageResource(R.drawable.ic_paproni_b);
-            mPepperoniImage.setVisibility(View.VISIBLE);
-            mPizza.setExtras_price(extraPrice + 11);
-        }
-        else if (pizzaExtra == PizzaExtra.BASIL)
-        {
-            mPizza.setBasil(true);
-            mBasilButton.setImageResource(R.drawable.ic_paproni_b);
-            mBasilImage.setVisibility(View.VISIBLE);
-            mPizza.setExtras_price(extraPrice + 3);
-        }
-        updatePriceTag();
-    }
-
+    /**
+     * todo complete the documentation
+     */
     private void updatePriceTag()
     {
         SpannableString priceString = new SpannableString(mPizza.getPrice() +
@@ -137,66 +77,183 @@ public class MainActivity extends AppCompatActivity
         mTotalPrice.setText(priceString);
     }
 
+    /**
+     * Change the size of the pizza to the size that the user chose, and update the price with
+     * respect to it. The function set the button of pizzaSize pressed and the other button of size
+     * not pressed.
+     * @param pizzaSize - the size of the pizza after the change
+     */
+    protected void changePizzaSize(PizzaSize pizzaSize)
+    {
+        // update the small button
+        if (pizzaSize == PizzaSize.SMALL)
+        {
+            // todo change the button name to ic_small_black
+            mSbutton.setImageResource(R.drawable.ic_small);
+            mPizza.setSize(PizzaSize.SMALL);
+            mPizza.setPrice(Pizza.SMALL_PRICE);
+        }
+        else
+        {
+            // todo change the button name to ic_small_white
+            mSbutton.setImageResource(R.drawable.ic_small_w);
+        }
+        // update the medium button
+        if (pizzaSize == PizzaSize.MEDIUM)
+        {
+            // todo change the button name to ic_medium_black
+            mMbutton.setImageResource(R.drawable.ic_medium);
+            mPizza.setSize(PizzaSize.MEDIUM);
+            mPizza.setPrice(Pizza.MEDIUM_PRICE);
+        }
+        else
+        {
+            // todo change the button name to ic_medium_white
+            mMbutton.setImageResource(R.drawable.ic_medium_w);
+        }
+        // update the large button
+        if (pizzaSize == PizzaSize.LARGE)
+        {
+            // todo change the button name to ic_large_black
+            mLbutton.setImageResource(R.drawable.ic_large);
+            mPizza.setSize(PizzaSize.LARGE);
+            mPizza.setPrice(Pizza.LARGE_PRICE);
+        }
+        else
+        {
+            // todo change the button name to ic_large_white
+            mLbutton.setImageResource(R.drawable.ic_large_w);
+        }
+
+        updatePriceTag();
+    }
+
+    /**
+     * Add the chosen extra to the pizza, and update the price respectively.
+     * @param pizzaExtra - enum, represents the extra to add
+     */
+    private void addExtras(PizzaExtra pizzaExtra)
+    {
+        int extraPrice = mPizza.getExtras_price();
+        if (pizzaExtra == PizzaExtra.ONION)
+        {
+            mPizza.setOnion(true);
+            mPizza.setExtras_price(extraPrice + Pizza.ONION_PRICE);
+            // todo olives??
+            mOlivesbutton.setImageResource(R.drawable.ic_onion_g);
+            mOnionImage.setVisibility(View.VISIBLE);
+        }
+        else if (pizzaExtra == PizzaExtra.MUSHROOMS)
+        {
+            mPizza.setMushrooms(true);
+            mPizza.setExtras_price(extraPrice + Pizza.MUSHROOMS_PRICE);
+            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
+            mMushroomsImage.setVisibility(View.VISIBLE);
+        }
+        else if (pizzaExtra == PizzaExtra.PEPPERONI)
+        {
+            mPizza.setPepperoni(true);
+            mPizza.setExtras_price(extraPrice + Pizza.PEPPERONI_PRICE);
+            mPepperoniButton.setImageResource(R.drawable.ic_paproni_b);
+            mPepperoniImage.setVisibility(View.VISIBLE);
+        }
+        else if (pizzaExtra == PizzaExtra.BASIL)
+        {
+            mPizza.setBasil(true);
+            mPizza.setExtras_price(extraPrice + Pizza.BASIL_PRICE);
+            mBasilButton.setImageResource(R.drawable.ic_paproni_b);
+            mBasilImage.setVisibility(View.VISIBLE);
+        }
+
+        updatePriceTag();
+    }
+
+    /**
+     * Remove the chosen extra from the pizza, and update the price respectively.
+     * @param pizzaExtra - enum, represents the extra to remove
+     */
     private void removeExtras(PizzaExtra pizzaExtra)
     {
         int extraPrice = mPizza.getExtras_price();
         if (pizzaExtra == PizzaExtra.ONION)
         {
             mPizza.setOnion(false);
+            mPizza.setExtras_price(extraPrice - Pizza.ONION_PRICE);
+            // todo olives or onion??
             mOlivesbutton.setImageResource(R.drawable.ic_onion);
             mOnionImage.setVisibility(View.INVISIBLE);
-            mPizza.setExtras_price(extraPrice - 4);
         }
 
         else if (pizzaExtra == PizzaExtra.MUSHROOMS)
         {
             mPizza.setMushrooms(false);
+            mPizza.setExtras_price(extraPrice - Pizza.MUSHROOMS_PRICE);
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms);
             mMushroomsImage.setVisibility(View.INVISIBLE);
-            mPizza.setExtras_price(extraPrice - 5);
         }
 
         else if (pizzaExtra == PizzaExtra.PEPPERONI)
         {
             mPizza.setPepperoni(false);
+            mPizza.setExtras_price(extraPrice - Pizza.PEPPERONI_PRICE);
             mPepperoniButton.setImageResource(R.drawable.ic_paproni_w);
             mPepperoniImage.setVisibility(View.INVISIBLE);
-            mPizza.setExtras_price(extraPrice - 11);
         }
 
         else if (pizzaExtra == PizzaExtra.BASIL)
         {
             mPizza.setBasil(false);
+            mPizza.setExtras_price(extraPrice - Pizza.BASIL_PRICE);
             mBasilButton.setImageResource(R.drawable.ic_paproni_w);
             mBasilImage.setVisibility(View.INVISIBLE);
-            mPizza.setExtras_price(extraPrice - 3);
         }
 
         updatePriceTag();
     }
 
+    /**
+     * todo complete the documentation
+     * @param imageViewArrayList
+     */
     private void setInvisible(ArrayList<ImageView> imageViewArrayList) {
         for (ImageView imageView : imageViewArrayList) {
             imageView.setVisibility(View.INVISIBLE);
         }
     }
 
-
-    public void ClickS(View view)
+    // todo the parameter view is unused in all the next functions - does this parameter needed?
+    /**
+     * Change the pizza size to small and update the price with respect to the new size
+     * @param view
+     */
+    public void ClickSmall(View view)
     {
         changePizzaSize(PizzaSize.SMALL);
     }
 
-    public void ClickM(View view)
+    /**
+     * Change the pizza size to medium and update the price with respect to the new size
+     * @param view
+     */
+    public void ClickMedium(View view)
     {
         changePizzaSize(PizzaSize.MEDIUM);
     }
 
-    public void ClickL(View view)
+    /**
+     * Change the pizza size to large and update the price according to the new size
+     * @param view
+     */
+    public void ClickLarge(View view)
     {
         changePizzaSize(PizzaSize.LARGE);
     }
 
+    /**
+     * Add the olives extra if it wasn't pressed, else remove the olives. Update the price according
+     * to the change.
+     * @param view
+     */
     public void ClickOlives(View view)
     {
         if (!mPizza.isOnion())
@@ -209,6 +266,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Add the mushrooms extra if it wasn't pressed, else remove the mushrooms. Update the price
+     * according to the change.
+     * @param view
+     */
     public void ClickMushrooms(View view)
     {
         if (!mPizza.isMushrooms())
@@ -221,7 +283,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
+    /**
+     * Add the pepperoni extra if it wasn't pressed, else remove the pepperoni. Update the price
+     * according to the change.
+     * @param view
+     */
     public void ClickPepperoni(View view) {
         if (!mPizza.isPepperoni())
         {
@@ -233,6 +299,11 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Add the basil extra if it wasn't pressed, else remove the basil. Update the price according
+     * to the change.
+     * @param view
+     */
     public void ClickBasil(View view)
     {
         if (!mPizza.isBasil())
@@ -244,9 +315,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Finish the order and replace the activity to the CheckoutActivity
+     * @param view
+     */
     public void ClickCheckout(View view) {
         Intent intent = new Intent(this, CheckoutActivity.class);
         startActivity(intent);
     }
-
 }

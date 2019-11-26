@@ -136,7 +136,7 @@
             android:layout_toLeftOf="@+id/m_button"
             android:background="@null"
             android:contentDescription="TODO"
-            android:onClick="ClickS"
+            android:onClick="ClickSmall"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_small_w"
             tools:ignore="VectorDrawableCompat" />
@@ -151,7 +151,7 @@
             android:layout_toLeftOf="@+id/l_button"
             android:background="@null"
             android:contentDescription="TODO"
-            android:onClick="ClickM"
+            android:onClick="ClickMedium"
             app:layout_constraintStart_toEndOf="@+id/s_button"
             app:srcCompat="@drawable/ic_medium_w"
             tools:ignore="VectorDrawableCompat" />
@@ -166,7 +166,7 @@
             android:layout_marginRight="16dp"
             android:background="@null"
             android:contentDescription="TODO"
-            android:onClick="ClickL"
+            android:onClick="ClickLarge"
             app:layout_constraintStart_toEndOf="@+id/m_button"
             app:srcCompat="@drawable/ic_large_w"
             tools:ignore="VectorDrawableCompat" />
