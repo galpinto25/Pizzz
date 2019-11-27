@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.BoringLayout;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
@@ -12,21 +11,15 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.LinkedList;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity
 {
     private Pizza mPizza;
     private Button mTotalPrice;
-    private ImageButton mSbutton, mMbutton, mLbutton, mOlivesbutton, mMushroomsbutton, mPepperoniButton, mBasilButton;
+    private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage;
     private static final String currency = " NIS";
 
@@ -43,14 +36,10 @@ public class MainActivity extends AppCompatActivity
 
         mPizza = Pizza.getInstance();
 
-        // todo change name to small_button
-        mSbutton = findViewById(R.id.s_button);
-        // todo change name to medium_button
-        mMbutton = findViewById(R.id.m_button);
-        // todo change name to large_button
-        mLbutton = findViewById(R.id.l_button);
-        // todo olives or onion??
-        mOlivesbutton = findViewById(R.id.button_onion);
+        mSbutton = findViewById(R.id.small_button);
+        mMbutton = findViewById(R.id.medium_button);
+        mLbutton = findViewById(R.id.large_button);
+        mOnionbutton = findViewById(R.id.button_onion);
         mMushroomsbutton = findViewById(R.id.button_mushrooms);
         mPepperoniButton = findViewById(R.id.button_pepperoni);
         mBasilButton = findViewById(R.id.button_basil);
@@ -66,14 +55,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * todo complete the documentation
+     * Updates the price on the total_price_button.
      */
     private void updatePriceTag()
     {
+        // sets the price string as the total price of the pizza
         SpannableString priceString = new SpannableString(mPizza.getPrice() +
                 mPizza.getExtras_price() + currency);
+        // doubles the price text size
         int priceLen = Integer.toString(mPizza.getPrice() + mPizza.getExtras_price()).length();
-        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0); // set size
+        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0);
         mTotalPrice.setText(priceString);
     }
 
@@ -88,41 +79,35 @@ public class MainActivity extends AppCompatActivity
         // update the small button
         if (pizzaSize == PizzaSize.SMALL)
         {
-            // todo change the button name to ic_small_black
-            mSbutton.setImageResource(R.drawable.ic_small);
+            mSbutton.setImageResource(R.drawable.ic_small_black);
             mPizza.setSize(PizzaSize.SMALL);
             mPizza.setPrice(Pizza.SMALL_PRICE);
         }
         else
         {
-            // todo change the button name to ic_small_white
-            mSbutton.setImageResource(R.drawable.ic_small_w);
+            mSbutton.setImageResource(R.drawable.ic_small_white);
         }
         // update the medium button
         if (pizzaSize == PizzaSize.MEDIUM)
         {
-            // todo change the button name to ic_medium_black
-            mMbutton.setImageResource(R.drawable.ic_medium);
+            mMbutton.setImageResource(R.drawable.ic_medium_black);
             mPizza.setSize(PizzaSize.MEDIUM);
             mPizza.setPrice(Pizza.MEDIUM_PRICE);
         }
         else
         {
-            // todo change the button name to ic_medium_white
-            mMbutton.setImageResource(R.drawable.ic_medium_w);
+            mMbutton.setImageResource(R.drawable.ic_medium_white);
         }
         // update the large button
         if (pizzaSize == PizzaSize.LARGE)
         {
-            // todo change the button name to ic_large_black
-            mLbutton.setImageResource(R.drawable.ic_large);
+            mLbutton.setImageResource(R.drawable.ic_large_black);
             mPizza.setSize(PizzaSize.LARGE);
             mPizza.setPrice(Pizza.LARGE_PRICE);
         }
         else
         {
-            // todo change the button name to ic_large_white
-            mLbutton.setImageResource(R.drawable.ic_large_w);
+            mLbutton.setImageResource(R.drawable.ic_large_white);
         }
 
         updatePriceTag();
@@ -139,29 +124,28 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setOnion(true);
             mPizza.setExtras_price(extraPrice + Pizza.ONION_PRICE);
-            // todo olives??
-            mOlivesbutton.setImageResource(R.drawable.ic_onion_g);
+            mOnionbutton.setImageResource(R.drawable.ic_onion_grey);
             mOnionImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.MUSHROOMS)
         {
             mPizza.setMushrooms(true);
             mPizza.setExtras_price(extraPrice + Pizza.MUSHROOMS_PRICE);
-            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_g);
+            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_grey);
             mMushroomsImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.PEPPERONI)
         {
             mPizza.setPepperoni(true);
             mPizza.setExtras_price(extraPrice + Pizza.PEPPERONI_PRICE);
-            mPepperoniButton.setImageResource(R.drawable.ic_paproni_b);
+            mPepperoniButton.setImageResource(R.drawable.ic_paproni_black);
             mPepperoniImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.BASIL)
         {
             mPizza.setBasil(true);
             mPizza.setExtras_price(extraPrice + Pizza.BASIL_PRICE);
-            mBasilButton.setImageResource(R.drawable.ic_paproni_b);
+            mBasilButton.setImageResource(R.drawable.ic_paproni_black);
             mBasilImage.setVisibility(View.VISIBLE);
         }
 
@@ -179,8 +163,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setOnion(false);
             mPizza.setExtras_price(extraPrice - Pizza.ONION_PRICE);
-            // todo olives or onion??
-            mOlivesbutton.setImageResource(R.drawable.ic_onion);
+            mOnionbutton.setImageResource(R.drawable.ic_onion_white);
             mOnionImage.setVisibility(View.INVISIBLE);
         }
 
@@ -188,7 +171,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setMushrooms(false);
             mPizza.setExtras_price(extraPrice - Pizza.MUSHROOMS_PRICE);
-            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms);
+            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_white);
             mMushroomsImage.setVisibility(View.INVISIBLE);
         }
 
@@ -196,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setPepperoni(false);
             mPizza.setExtras_price(extraPrice - Pizza.PEPPERONI_PRICE);
-            mPepperoniButton.setImageResource(R.drawable.ic_paproni_w);
+            mPepperoniButton.setImageResource(R.drawable.ic_paproni_white);
             mPepperoniImage.setVisibility(View.INVISIBLE);
         }
 
@@ -204,7 +187,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setBasil(false);
             mPizza.setExtras_price(extraPrice - Pizza.BASIL_PRICE);
-            mBasilButton.setImageResource(R.drawable.ic_paproni_w);
+            mBasilButton.setImageResource(R.drawable.ic_paproni_white);
             mBasilImage.setVisibility(View.INVISIBLE);
         }
 
@@ -221,7 +204,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // todo the parameter view is unused in all the next functions - does this parameter needed?
     /**
      * Change the pizza size to small and update the price with respect to the new size
      * @param view
@@ -250,11 +232,11 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Add the olives extra if it wasn't pressed, else remove the olives. Update the price according
+     * Add the onion extra if it wasn't pressed, else remove the onion. Update the price according
      * to the change.
      * @param view
      */
-    public void ClickOlives(View view)
+    public void ClickOnion(View view)
     {
         if (!mPizza.isOnion())
         {

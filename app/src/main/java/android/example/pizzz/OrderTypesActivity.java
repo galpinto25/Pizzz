@@ -40,8 +40,7 @@ public class OrderTypesActivity extends AppCompatActivity
 
     public void click_new(View view)
     {
-        // todo change name to ic_new_order_black
-        mNewOrder.setImageResource(R.drawable.ic_new_order_b);
+        mNewOrder.setImageResource(R.drawable.ic_new_order_black);
         mReOrder.setImageResource(R.drawable.ic_re_order_white);
 
         Intent intent = new Intent(this, MainActivity.class);

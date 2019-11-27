@@ -57,7 +57,7 @@
                 android:onClick="ClickMushrooms"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_mushrooms"
+                app:srcCompat="@drawable/ic_mushrooms_white"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
@@ -69,12 +69,12 @@
                 android:layout_marginBottom="0dp"
                 android:background="@null"
                 android:contentDescription="TODO"
-                android:onClick="ClickOlives"
+                android:onClick="ClickOnion"
                 app:layout_constraintEnd_toStartOf="@+id/button_mushrooms"
                 app:layout_constraintHorizontal_bias="0.888"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_onion"
+                app:srcCompat="@drawable/ic_onion_white"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
@@ -91,7 +91,7 @@
                 app:layout_constraintHorizontal_bias="0.888"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_paproni_w"
+                app:srcCompat="@drawable/ic_paproni_white"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
@@ -107,7 +107,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_pepperoni"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_paproni_w"
+                app:srcCompat="@drawable/ic_paproni_white"
                 tools:ignore="VectorDrawableCompat" />
 
         </LinearLayout>
@@ -126,38 +126,38 @@
         app:layout_constraintTop_toBottomOf="@+id/divider2">
 
         <ImageButton
-            android:id="@+id/s_button"
+            android:id="@+id/small_button"
             android:layout_width="58dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/m_button"
+            android:layout_toLeftOf="@+id/medium_button"
             android:background="@null"
             android:contentDescription="TODO"
             android:onClick="ClickSmall"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/ic_small_w"
+            app:srcCompat="@drawable/ic_small_white"
             tools:ignore="VectorDrawableCompat" />
 
         <ImageButton
-            android:id="@+id/m_button"
+            android:id="@+id/medium_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/l_button"
+            android:layout_toLeftOf="@+id/large_button"
             android:background="@null"
             android:contentDescription="TODO"
             android:onClick="ClickMedium"
-            app:layout_constraintStart_toEndOf="@+id/s_button"
-            app:srcCompat="@drawable/ic_medium_w"
+            app:layout_constraintStart_toEndOf="@+id/small_button"
+            app:srcCompat="@drawable/ic_medium_white"
             tools:ignore="VectorDrawableCompat" />
 
         <ImageButton
-            android:id="@+id/l_button"
+            android:id="@+id/large_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -167,8 +167,8 @@
             android:background="@null"
             android:contentDescription="TODO"
             android:onClick="ClickLarge"
-            app:layout_constraintStart_toEndOf="@+id/m_button"
-            app:srcCompat="@drawable/ic_large_w"
+            app:layout_constraintStart_toEndOf="@+id/medium_button"
+            app:srcCompat="@drawable/ic_large_white"
             tools:ignore="VectorDrawableCompat" />
 
     </RelativeLayout>
