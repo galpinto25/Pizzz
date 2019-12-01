@@ -50,8 +50,7 @@ public class MainActivity extends AppCompatActivity
         mBasilImage = findViewById(R.id.basil_image);
         ArrayList<ImageView> extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage));
         setInvisible(extrasImages);
-        // todo the deafault size is medium and the button should be grey (not black). please validate it!
-        changePizzaSize(PizzaSize.MEDIUM);
+        changePizzaSize(PizzaSize.NONE);
     }
 
     /**
@@ -124,14 +123,14 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setOnion(true);
             mPizza.setExtras_price(extraPrice + Pizza.ONION_PRICE);
-            mOnionbutton.setImageResource(R.drawable.ic_onion_grey);
+            mOnionbutton.setImageResource(R.drawable.ic_onion_black);
             mOnionImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.MUSHROOMS)
         {
             mPizza.setMushrooms(true);
             mPizza.setExtras_price(extraPrice + Pizza.MUSHROOMS_PRICE);
-            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_grey);
+            mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_black);
             mMushroomsImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.PEPPERONI)

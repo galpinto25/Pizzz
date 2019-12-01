@@ -10,7 +10,7 @@ public class Pizza {
 
     // variable of type String
     private PizzaSize size;
-    private int price = 40;
+    private int price = 0;
     private boolean isOnion = false;
     private boolean isMushrooms = false;
     private boolean isOlives = false;

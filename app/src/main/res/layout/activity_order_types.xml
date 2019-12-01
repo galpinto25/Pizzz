@@ -19,6 +19,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/hello_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="@string/hey_user"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/new_order"
         android:layout_width="wrap_content"
@@ -29,6 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.576"
         app:srcCompat="@drawable/ic_neworder_white"
         tools:ignore="VectorDrawableCompat" />
 
@@ -36,14 +50,29 @@
         android:id="@+id/re_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:layout_marginBottom="250dp"
         android:background="#00FFFFFF"
+        android:onClick="click_re_order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_order"
-        android:onClick="click_re_order"
         app:srcCompat="@drawable/ic_re_order_white"
         tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="27dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/new_order"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hello_text"
+        tools:srcCompat="@tools:sample/avatars[1]" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
