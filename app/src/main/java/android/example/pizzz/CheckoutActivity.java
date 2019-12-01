@@ -21,7 +21,8 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private String getPizzaDescription() {
         Pizza pizza = Pizza.getInstance();
-        String sizeDescription = "Pizza Size: " + pizza.getSize().toString();
+        String pizzaSizeText = pizza.getSize().toString().toLowerCase();
+        String sizeDescription = "Pizza Size: " + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
         String extrasDescription = "\n\nExtras: " + pizza.getExtrasDescription();
         String totalPriceDescription = "\n\nTotal Price: " + (pizza.getPrice() + pizza.getExtras_price()) + " NIS";
         return sizeDescription + extrasDescription + totalPriceDescription;

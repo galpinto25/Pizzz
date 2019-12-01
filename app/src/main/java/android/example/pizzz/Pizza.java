@@ -104,6 +104,13 @@ public class Pizza {
         return pizza;
     }
 
+    void reset() {
+        price = 0;
+        extras_price = 0;
+        size = PizzaSize.NONE;
+        pizza.initializeExtrasHashMap();
+    }
+
     private void initializeExtrasHashMap() {
         extras.put(PizzaExtra.ONION, new Pair<Boolean, Integer>(false, ONION_PRICE));
         extras.put(PizzaExtra.MUSHROOMS, new Pair<Boolean, Integer>(false, MUSHROOMS_PRICE));
@@ -121,7 +128,8 @@ public class Pizza {
         for (Map.Entry entry: extras.entrySet()) {
             Pair pair = (Pair) entry.getValue();
             if (pair.first.equals(true)) {
-                description.append("\n - ").append(entry.getKey().toString().toLowerCase())
+                String extraOutput = entry.getKey().toString().toLowerCase();
+                description.append("\n - ").append(extraOutput.substring(0, 1).toUpperCase()).append(extraOutput.substring(1))
                         .append(": ").append(pair.second);
             }
         }

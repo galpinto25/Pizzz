@@ -56,6 +56,12 @@ public class MainActivity extends AppCompatActivity
         changePizzaSize(PizzaSize.NONE);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mPizza.reset();
+    }
+
     /**
      * Updates the price on the total_price_button.
      */
@@ -140,14 +146,14 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setPepperoni(true);
             mPizza.setExtras_price(extraPrice + Pizza.PEPPERONI_PRICE);
-            mPepperoniButton.setImageResource(R.drawable.ic_paproni_black);
+            mPepperoniButton.setImageResource(R.drawable.ic_pepperoni_black);
             mPepperoniImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.BASIL)
         {
             mPizza.setBasil(true);
             mPizza.setExtras_price(extraPrice + Pizza.BASIL_PRICE);
-            mBasilButton.setImageResource(R.drawable.ic_paproni_black);
+            mBasilButton.setImageResource(R.drawable.ic_pepperoni_black);
             mBasilImage.setVisibility(View.VISIBLE);
         }
 
@@ -181,7 +187,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setPepperoni(false);
             mPizza.setExtras_price(extraPrice - Pizza.PEPPERONI_PRICE);
-            mPepperoniButton.setImageResource(R.drawable.ic_paproni_white);
+            mPepperoniButton.setImageResource(R.drawable.ic_pepperoni_white);
             mPepperoniImage.setVisibility(View.INVISIBLE);
         }
 
@@ -189,7 +195,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setBasil(false);
             mPizza.setExtras_price(extraPrice - Pizza.BASIL_PRICE);
-            mBasilButton.setImageResource(R.drawable.ic_paproni_white);
+            mBasilButton.setImageResource(R.drawable.ic_pepperoni_white);
             mBasilImage.setVisibility(View.INVISIBLE);
         }
 
