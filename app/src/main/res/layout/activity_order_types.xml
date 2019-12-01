@@ -4,23 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cola_img_background"
     tools:context=".OrderTypesActivity">
 
     <TextView
         android:id="@+id/hello_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="@string/hey_user"
-        android:textColor="@color/colorAccent"
-        android:textSize="36sp"
-        app:fontFamily="@font/roboto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/hello_text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
@@ -63,9 +51,9 @@
         tools:ignore="VectorDrawableCompat" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/profile_image"
+        android:layout_width="116dp"
+        android:layout_height="111dp"
         android:layout_marginTop="19dp"
         android:layout_marginBottom="27dp"
         android:visibility="visible"
@@ -73,6 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hello_text"
-        tools:srcCompat="@tools:sample/avatars[1]" />
+        app:srcCompat="@drawable/ic_profile_image"
+        tools:ignore="VectorDrawableCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

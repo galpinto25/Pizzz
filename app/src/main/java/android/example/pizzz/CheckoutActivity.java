@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CheckoutActivity extends AppCompatActivity {
 
@@ -14,7 +15,16 @@ public class CheckoutActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        TextView mPizzaStory = findViewById(R.id.pizza_story);
+        TextView mPizzaDescription = findViewById(R.id.pizza_description);
+        mPizzaDescription.setText(getPizzaDescription());
+    }
+
+    private String getPizzaDescription() {
+        Pizza pizza = Pizza.getInstance();
+        String sizeDescription = "Pizza Size: " + pizza.getSize().toString();
+        String extrasDescription = "\n\nExtras: " + pizza.getExtrasDescription();
+        String totalPriceDescription = "\n\nTotal Price: " + (pizza.getPrice() + pizza.getExtras_price()) + " NIS";
+        return sizeDescription + extrasDescription + totalPriceDescription;
     }
 
 }

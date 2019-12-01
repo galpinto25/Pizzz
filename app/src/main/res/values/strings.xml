@@ -5,7 +5,9 @@
     <string name="price_button">Button</string>
     <string name="app_intro">your pizzz is\njust a swipe away</string>
     <string name="checkout_title">Your Pizzz</string>
-    <string name="hey_user">Hi Coral</string>
+    <string name="hey_user">Hi, Coral</string>
     <string name="arrow_left"><![CDATA[<<<]]></string>
     <string name="arrow_right"><![CDATA[>>>]]></string>
+    <string name="copyright_symbol">©</string>
+    <string name="pizza_description">Pizza Size:\nExtras:\nPrice:</string>
 </resources>

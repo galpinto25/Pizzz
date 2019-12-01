@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FFFFFF"
+    android:background="#FFFFFFFF"
     tools:context=".MainActivity">
 
 
@@ -309,6 +309,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider6"
         app:srcCompat="@drawable/ic_pic_basil" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="76dp"
+        android:layout_height="73dp"
+        android:background="@android:color/transparent"
+        app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"
+        tools:layout_editor_absoluteX="328dp"
+        tools:layout_editor_absoluteY="585dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

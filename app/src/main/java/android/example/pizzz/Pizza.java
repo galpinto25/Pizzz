@@ -1,9 +1,16 @@
 package android.example.pizzz;
 
+import android.util.Log;
+import android.util.Pair;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Pizza {
 
-    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3;
-    final static public int SMALL_PRICE = 20, MEDIUM_PRICE = 40, LARGE_PRICE = 60;
+    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4;
+    final static public int SMALL_PRICE = 25, MEDIUM_PRICE = 35, LARGE_PRICE = 45;
 
     // static variable single_instance of type Singleton
     private static Pizza pizza = null;
@@ -11,14 +18,8 @@ public class Pizza {
     // variable of type String
     private PizzaSize size;
     private int price = 0;
-    private boolean isOnion = false;
-    private boolean isMushrooms = false;
-    private boolean isOlives = false;
-    private boolean isPepperoni = false;
-    private boolean isBasil = false;
     private int extras_price = 0;
-    private boolean isCola = false;
-
+    private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
 
     public void setSize(PizzaSize size)
     {
@@ -29,28 +30,24 @@ public class Pizza {
         this.price = price;
     }
 
-    public void setOnion(boolean onion) {
-        isOnion = onion;
+    public void setOnion(Boolean onion) {
+        extras.put(PizzaExtra.ONION, new Pair<Boolean, Integer>(onion, ONION_PRICE));
     }
 
-    public void setMushrooms(boolean mushrooms) {
-        isMushrooms = mushrooms;
+    public void setMushrooms(Boolean mushrooms) {
+        extras.put(PizzaExtra.MUSHROOMS, new Pair<Boolean, Integer>(mushrooms, MUSHROOMS_PRICE));
     }
 
-    public void setOlives(boolean olives) {
-        isOlives = olives;
+    public void setOlives(Boolean olives) {
+        extras.put(PizzaExtra.OLIVES, new Pair<Boolean, Integer>(olives, OLIVES_PRICE));
     }
 
-    public void setCola(boolean cola) {
-        isCola = cola;
+    public void setPepperoni(Boolean pepperoni) {
+        extras.put(PizzaExtra.PEPPERONI, new Pair<Boolean, Integer>(pepperoni, PEPPERONI_PRICE));
     }
 
-    public void setPepperoni(boolean pepperoni) {
-        isPepperoni = pepperoni;
-    }
-
-    public void setBasil(boolean basil) {
-        isBasil = basil;
+    public void setBasil(Boolean basil) {
+        extras.put(PizzaExtra.BASIL, new Pair<Boolean, Integer>(basil, BASIL_PRICE));
     }
 
     public void setExtras_price(int extras_price) {
@@ -65,28 +62,24 @@ public class Pizza {
         return price;
     }
 
-    public boolean isOnion() {
-        return isOnion;
+    public Boolean isOnion() {
+        return extras.get(PizzaExtra.ONION).first;
     }
 
-    public boolean isMushrooms() {
-        return isMushrooms;
+    public Boolean isMushrooms() {
+        return extras.get(PizzaExtra.MUSHROOMS).first;
     }
 
-    public boolean isOlives() {
-        return isOlives;
+    public Boolean isOlives() {
+        return extras.get(PizzaExtra.OLIVES).first;
     }
 
-    public boolean isCola() {
-        return isCola;
+    public Boolean isPepperoni() {
+        return extras.get(PizzaExtra.PEPPERONI).first;
     }
 
-    public boolean isPepperoni() {
-        return isPepperoni;
-    }
-
-    public boolean isBasil() {
-        return isBasil;
+    public Boolean isBasil() {
+        return extras.get(PizzaExtra.BASIL).first;
     }
 
     public int getExtras_price() {
@@ -99,12 +92,39 @@ public class Pizza {
         size = PizzaSize.NONE;
     }
 
-    // static method to create instance of Singleton class
+    /**
+     * static method to create instance of Singleton class
+     * @return todo
+     */
     public static Pizza getInstance() {
-        if (pizza == null)
+        if (pizza == null) {
             pizza = new Pizza();
-
+            pizza.initializeExtrasHashMap();
+        }
         return pizza;
     }
 
+    private void initializeExtrasHashMap() {
+        extras.put(PizzaExtra.ONION, new Pair<Boolean, Integer>(false, ONION_PRICE));
+        extras.put(PizzaExtra.MUSHROOMS, new Pair<Boolean, Integer>(false, MUSHROOMS_PRICE));
+        extras.put(PizzaExtra.OLIVES, new Pair<Boolean, Integer>(false, OLIVES_PRICE));
+        extras.put(PizzaExtra.PEPPERONI, new Pair<Boolean, Integer>(false, PEPPERONI_PRICE));
+        extras.put(PizzaExtra.BASIL, new Pair<Boolean, Integer>(false, BASIL_PRICE));
+    }
+
+    /**
+     * todo
+     * @return
+     */
+    public String getExtrasDescription() {
+        StringBuilder description = new StringBuilder();
+        for (Map.Entry entry: extras.entrySet()) {
+            Pair pair = (Pair) entry.getValue();
+            if (pair.first.equals(true)) {
+                description.append("\n - ").append(entry.getKey().toString().toLowerCase())
+                        .append(": ").append(pair.second);
+            }
+        }
+        return description.toString();
+    }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
@@ -13,6 +14,9 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends AppCompatActivity
@@ -21,7 +25,7 @@ public class MainActivity extends AppCompatActivity
     private Button mTotalPrice;
     private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage;
-    private static final String currency = " NIS";
+    private static final String currency = " NIS\n➔";
 
     /**
      * Create a pizza instance, and set all the button in the activity in their default state
@@ -35,7 +39,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         mPizza = Pizza.getInstance();
-
         mSbutton = findViewById(R.id.small_button);
         mMbutton = findViewById(R.id.medium_button);
         mLbutton = findViewById(R.id.large_button);
@@ -300,8 +303,31 @@ public class MainActivity extends AppCompatActivity
      * Finish the order and replace the activity to the CheckoutActivity
      * @param view
      */
-    public void ClickCheckout(View view) {
-        Intent intent = new Intent(this, CheckoutActivity.class);
-        startActivity(intent);
+    public void ClickCheckout(View view) throws InterruptedException {
+        if (mPizza.getSize() == PizzaSize.NONE) {
+            int j;
+            for (int i = 0; i < 2; i++) {
+                mSbutton.setImageResource(R.drawable.ic_small_black);
+                mMbutton.setImageResource(R.drawable.ic_medium_black);
+                mLbutton.setImageResource(R.drawable.ic_large_black);
+                Timer timer = new Timer();
+                TimerTask task = new Helper();
+                timer.schedule(task, 250);
+            }
+        } else {
+            Intent intent = new Intent(this, CheckoutActivity.class);
+            startActivity(intent);
+        }
     }
+
+    class Helper extends TimerTask
+    {
+        public void run()
+        {
+            mSbutton.setImageResource(R.drawable.ic_small_white);
+            mMbutton.setImageResource(R.drawable.ic_medium_white);
+            mLbutton.setImageResource(R.drawable.ic_large_white);
+        }
+    }
+
 }
