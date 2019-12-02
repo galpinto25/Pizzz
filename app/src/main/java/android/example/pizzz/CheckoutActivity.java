@@ -24,7 +24,7 @@ public class CheckoutActivity extends AppCompatActivity {
         String pizzaSizeText = pizza.getSize().toString().toLowerCase();
         String sizeDescription = "Pizza Size: " + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
         String extrasDescription = "\n\nExtras: " + pizza.getExtrasDescription();
-        String totalPriceDescription = "\n\nTotal Price: " + (pizza.getPrice() + pizza.getExtras_price()) + " NIS";
+        String totalPriceDescription = "\n\nTotal Price: " + (pizza.getTotalPrice()) + " NIS";
         return sizeDescription + extrasDescription + totalPriceDescription;
     }
 

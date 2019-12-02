@@ -3,7 +3,9 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/pacifico</item>
         <item>@font/roboto</item>
+        <item>@font/roboto_black</item>
         <item>@font/roboto_slab_bold</item>
+        <item>@font/roboto_slab_bold_1</item>
         <item>@font/roboto_thin</item>
     </array>
 </resources>

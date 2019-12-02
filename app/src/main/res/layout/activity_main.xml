@@ -10,19 +10,25 @@
 
     <Button
         android:id="@+id/total_price_button"
-        android:layout_width="0dp"
-        android:layout_height="82dp"
-        android:background="@android:color/background_light"
-        android:fontFamily="@font/roboto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="216dp"
+        android:background="@drawable/ic_price_button_white"
+        android:fontFamily="@font/roboto_black"
+        android:foreground="@android:color/transparent"
         android:onClick="ClickCheckout"
+        android:paddingLeft="25sp"
+        android:paddingBottom="10sp"
         android:text="@string/price_button"
+        android:textAlignment="center"
         android:textColor="@color/colorAccent"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
-
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
@@ -107,7 +113,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_pepperoni"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_pepperoni_white"
+                app:srcCompat="@drawable/ic_basil_white"
                 tools:ignore="VectorDrawableCompat" />
 
         </LinearLayout>
@@ -129,7 +135,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="32dp"
             android:layout_toLeftOf="@+id/medium_button"
             android:background="@null"
             android:contentDescription="TODO"
@@ -144,7 +150,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="80dp"
+            android:layout_marginRight="32dp"
             android:layout_toLeftOf="@+id/large_button"
             android:background="@null"
             android:contentDescription="TODO"
@@ -160,7 +166,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="8dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginRight="185dp"
             android:background="@null"
             android:contentDescription="TODO"
             android:onClick="ClickLarge"
@@ -181,7 +187,7 @@
         android:fontFamily="@font/roboto"
         android:text="@string/pizza_details"
         android:textColor="@color/colorPrimary"
-        android:textSize="36sp"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
@@ -243,84 +249,116 @@
 
     <ImageView
         android:id="@+id/pizza_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="150dp"
+        android:layout_width="409dp"
+        android:layout_height="215dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginEnd="70dp"
+        android:paddingTop="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
-        app:srcCompat="@drawable/ic_pizza" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_pizza"
+        tools:ignore="VectorDrawableCompat" />
 
     <ImageView
         android:id="@+id/mushrooms_image"
-        android:layout_width="236dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginEnd="96dp"
+        android:layout_width="261dp"
+        android:layout_height="99dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="88dp"
         android:layout_marginBottom="19dp"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/total_price_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider6"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_pic_mucshrooms" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_pic_mushrooms"
+        tools:ignore="VectorDrawableCompat" />
 
     <ImageView
         android:id="@+id/onion_image"
-        android:layout_width="160dp"
-        android:layout_height="100dp"
+        android:layout_width="188dp"
+        android:layout_height="114dp"
         android:layout_marginStart="400dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="96dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="150dp"
         android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/total_price_button"
         app:layout_constraintEnd_toStartOf="@+id/mushrooms_image"
-        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider6"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_pic_onion" />
+        app:srcCompat="@drawable/ic_pic_onion"
+        tools:ignore="VectorDrawableCompat" />
 
     <ImageView
         android:id="@+id/pepperoni_image"
-        android:layout_width="274dp"
-        android:layout_height="116dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="410dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
+        android:layout_width="282dp"
+        android:layout_height="133dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginEnd="320dp"
+        android:paddingTop="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toEndOf="@+id/total_price_button"
-        app:layout_constraintTop_toBottomOf="@+id/divider6"
-        app:layout_constraintVertical_bias="0.535"
-        app:srcCompat="@drawable/ic_pic_paparoni" />
+        app:layout_constraintTop_toBottomOf="@+id/divider5"
+        app:srcCompat="@drawable/ic_pic_peperroni"
+        tools:ignore="VectorDrawableCompat" />
 
     <ImageView
         android:id="@+id/basil_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="350dp"
-        android:layout_marginTop="141dp"
+        android:layout_marginTop="200dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/total_price_button"
         app:layout_constraintEnd_toStartOf="@+id/pepperoni_image"
         app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider6"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_pic_basil" />
+        app:srcCompat="@drawable/ic_pic_basil"
+        tools:ignore="VectorDrawableCompat" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="76dp"
-        android:layout_height="73dp"
-        android:background="@android:color/transparent"
-        app:srcCompat="@drawable/ic_keyboard_arrow_right_24px"
-        tools:layout_editor_absoluteX="328dp"
-        tools:layout_editor_absoluteY="585dp" />
+    <TextView
+        android:id="@+id/pizza_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/default_count"
+        android:textColor="#C4C4C4"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider6"
+        app:layout_constraintStart_toEndOf="@+id/minus_count" />
+
+    <ImageView
+        android:id="@+id/minus_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="clickMinusCount"
+        app:layout_constraintBottom_toTopOf="@+id/divider6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_minus"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/plus_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="clickPlusCount"
+        app:layout_constraintBottom_toTopOf="@+id/divider6"
+        app:layout_constraintStart_toEndOf="@+id/pizza_count"
+        app:srcCompat="@drawable/ic_plus"
+        tools:ignore="VectorDrawableCompat" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

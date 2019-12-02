@@ -20,6 +20,7 @@ public class Pizza {
     private int price = 0;
     private int extras_price = 0;
     private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
+    private int count = 1;
 
     public void setSize(PizzaSize size)
     {
@@ -84,6 +85,22 @@ public class Pizza {
 
     public int getExtras_price() {
         return extras_price;
+    }
+
+    public int getTotalPrice() {
+        return (extras_price + price) * count;
+    }
+
+    public void incCount() {
+        count++;
+    }
+
+    public void decCount() {
+        count--;
+    }
+
+    public int getCount() {
+        return count;
     }
 
     // private constructor restricted to this class itself

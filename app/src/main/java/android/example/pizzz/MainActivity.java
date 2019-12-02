@@ -2,21 +2,22 @@ package android.example.pizzz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 
 public class MainActivity extends AppCompatActivity
@@ -25,7 +26,9 @@ public class MainActivity extends AppCompatActivity
     private Button mTotalPrice;
     private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage;
-    private static final String currency = " NIS\n➔";
+    private TextView mPizzaCount;
+    private static final String currency = " NIS";
+    private static int count = 1;
 
     /**
      * Create a pizza instance, and set all the button in the activity in their default state
@@ -51,9 +54,11 @@ public class MainActivity extends AppCompatActivity
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mOnionImage = findViewById(R.id.onion_image);
         mBasilImage = findViewById(R.id.basil_image);
+        mPizzaCount = findViewById(R.id.pizza_count);
         ArrayList<ImageView> extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage));
         setInvisible(extrasImages);
         changePizzaSize(PizzaSize.NONE);
+        mPizzaCount.setText(Integer.toString(count));
     }
 
     @Override
@@ -62,16 +67,26 @@ public class MainActivity extends AppCompatActivity
         mPizza.reset();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
+        mTotalPrice.setTextColor(Color.WHITE);
+        if (mPizza.getSize() == PizzaSize.NONE) {
+            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
+            mTotalPrice.setTextColor(Color.BLACK);
+        }
+    }
+
     /**
      * Updates the price on the total_price_button.
      */
     private void updatePriceTag()
     {
         // sets the price string as the total price of the pizza
-        SpannableString priceString = new SpannableString(mPizza.getPrice() +
-                mPizza.getExtras_price() + currency);
+        SpannableString priceString = new SpannableString(mPizza.getTotalPrice() + currency);
         // doubles the price text size
-        int priceLen = Integer.toString(mPizza.getPrice() + mPizza.getExtras_price()).length();
+        int priceLen = Integer.toString(mPizza.getTotalPrice()).length();
         priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0);
         mTotalPrice.setText(priceString);
     }
@@ -90,6 +105,8 @@ public class MainActivity extends AppCompatActivity
             mSbutton.setImageResource(R.drawable.ic_small_black);
             mPizza.setSize(PizzaSize.SMALL);
             mPizza.setPrice(Pizza.SMALL_PRICE);
+            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
+            mTotalPrice.setTextColor(Color.WHITE);
         }
         else
         {
@@ -101,6 +118,8 @@ public class MainActivity extends AppCompatActivity
             mMbutton.setImageResource(R.drawable.ic_medium_black);
             mPizza.setSize(PizzaSize.MEDIUM);
             mPizza.setPrice(Pizza.MEDIUM_PRICE);
+            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
+            mTotalPrice.setTextColor(Color.WHITE);
         }
         else
         {
@@ -112,6 +131,8 @@ public class MainActivity extends AppCompatActivity
             mLbutton.setImageResource(R.drawable.ic_large_black);
             mPizza.setSize(PizzaSize.LARGE);
             mPizza.setPrice(Pizza.LARGE_PRICE);
+            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
+            mTotalPrice.setTextColor(Color.WHITE);
         }
         else
         {
@@ -153,7 +174,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setBasil(true);
             mPizza.setExtras_price(extraPrice + Pizza.BASIL_PRICE);
-            mBasilButton.setImageResource(R.drawable.ic_pepperoni_black);
+            mBasilButton.setImageResource(R.drawable.ic_basil_black);
             mBasilImage.setVisibility(View.VISIBLE);
         }
 
@@ -195,7 +216,7 @@ public class MainActivity extends AppCompatActivity
         {
             mPizza.setBasil(false);
             mPizza.setExtras_price(extraPrice - Pizza.BASIL_PRICE);
-            mBasilButton.setImageResource(R.drawable.ic_pepperoni_white);
+            mBasilButton.setImageResource(R.drawable.ic_basil_white);
             mBasilImage.setVisibility(View.INVISIBLE);
         }
 
@@ -322,7 +343,49 @@ public class MainActivity extends AppCompatActivity
             }
         } else {
             Intent intent = new Intent(this, CheckoutActivity.class);
+            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
+            mTotalPrice.setTextColor(Color.BLACK);
             startActivity(intent);
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void clickMinusCount(View view) {
+        if (mPizza.getSize() != PizzaSize.NONE) {
+            if (mPizza.getCount() > 1) {
+                mPizza.decCount();
+                mPizzaCount.setText(Integer.toString(mPizza.getCount()));
+            }
+            updatePriceTag();
+        } else {
+            for (int i = 0; i < 2; i++) {
+                mSbutton.setImageResource(R.drawable.ic_small_black);
+                mMbutton.setImageResource(R.drawable.ic_medium_black);
+                mLbutton.setImageResource(R.drawable.ic_large_black);
+                Timer timer = new Timer();
+                TimerTask task = new Helper();
+                timer.schedule(task, 250);
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    public void clickPlusCount(View view) {
+        if (mPizza.getSize() != PizzaSize.NONE) {
+            if (mPizza.getCount() < 3) {
+                mPizza.incCount();
+                mPizzaCount.setText(Integer.toString(mPizza.getCount()));
+            }
+            updatePriceTag();
+        } else {
+            for (int i = 0; i < 2; i++) {
+                mSbutton.setImageResource(R.drawable.ic_small_black);
+                mMbutton.setImageResource(R.drawable.ic_medium_black);
+                mLbutton.setImageResource(R.drawable.ic_large_black);
+                Timer timer = new Timer();
+                TimerTask task = new Helper();
+                timer.schedule(task, 250);
+            }
         }
     }
 
