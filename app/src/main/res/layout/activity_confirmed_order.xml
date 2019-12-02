@@ -7,4 +7,17 @@
     android:background="@color/cola_img_background"
     tools:context=".ConfirmedOrderActivity">
 
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="274dp"
+        android:layout_marginEnd="137dp"
+        android:layout_marginBottom="366dp"
+        android:text="PIZZA ON ITS WAY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

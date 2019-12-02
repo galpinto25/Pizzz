@@ -141,6 +141,10 @@ public class Pizza {
      * @return
      */
     public String getExtrasDescription() {
+        if (!hasExtras())
+        {
+            return "no extras";
+        }
         StringBuilder description = new StringBuilder();
         for (Map.Entry entry: extras.entrySet()) {
             Pair pair = (Pair) entry.getValue();
@@ -151,5 +155,23 @@ public class Pizza {
             }
         }
         return description.toString();
+    }
+
+    /**
+     * check if there is extras on the pizza
+     * @return true if there is extra, otherwise false
+     */
+    private boolean hasExtras()
+    {
+
+        for (Map.Entry entry: extras.entrySet())
+        {
+            Pair pair = (Pair) entry.getValue();
+            if (pair.first.equals(true))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
