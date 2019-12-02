@@ -149,6 +149,12 @@ public class MainActivity extends AppCompatActivity
     private void addExtras(PizzaExtra pizzaExtra)
     {
         int extraPrice = mPizza.getExtras_price();
+        Pizza pizza = Pizza.getInstance();
+        if (pizza.getSize() == PizzaSize.NONE)
+        {
+            flashSML();
+            return;
+        }
         if (pizzaExtra == PizzaExtra.ONION)
         {
             mPizza.setOnion(true);
@@ -326,22 +332,25 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void flashSML() {
+        for (int i = 0; i < 2; i++) {
+            mSbutton.setImageResource(R.drawable.ic_small_black);
+            mMbutton.setImageResource(R.drawable.ic_medium_black);
+            mLbutton.setImageResource(R.drawable.ic_large_black);
+            Timer timer = new Timer();
+            TimerTask task = new Helper();
+            timer.schedule(task, 250);
+        }
+    }
     /**
      * Finish the order and replace the activity to the CheckoutActivity
      * @param view
      */
     public void ClickCheckout(View view) throws InterruptedException {
         if (mPizza.getSize() == PizzaSize.NONE) {
-            int j;
-            for (int i = 0; i < 2; i++) {
-                mSbutton.setImageResource(R.drawable.ic_small_black);
-                mMbutton.setImageResource(R.drawable.ic_medium_black);
-                mLbutton.setImageResource(R.drawable.ic_large_black);
-                Timer timer = new Timer();
-                TimerTask task = new Helper();
-                timer.schedule(task, 250);
+            flashSML();
             }
-        } else {
+        else {
             Intent intent = new Intent(this, CheckoutActivity.class);
             mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
             mTotalPrice.setTextColor(Color.BLACK);
@@ -370,22 +379,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     @SuppressLint("SetTextI18n")
-    public void clickPlusCount(View view) {
-        if (mPizza.getSize() != PizzaSize.NONE) {
+    public void clickPlusCount(View view) throws InterruptedException {
+        if (mPizza.getSize() != PizzaSize.NONE)
+        {
             if (mPizza.getCount() < 3) {
                 mPizza.incCount();
                 mPizzaCount.setText(Integer.toString(mPizza.getCount()));
             }
             updatePriceTag();
-        } else {
-            for (int i = 0; i < 2; i++) {
-                mSbutton.setImageResource(R.drawable.ic_small_black);
-                mMbutton.setImageResource(R.drawable.ic_medium_black);
-                mLbutton.setImageResource(R.drawable.ic_large_black);
-                Timer timer = new Timer();
-                TimerTask task = new Helper();
-                timer.schedule(task, 250);
-            }
+        }
+        else
+        {
+                flashSML();
         }
     }
 

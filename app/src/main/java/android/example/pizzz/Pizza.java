@@ -125,6 +125,7 @@ public class Pizza {
         price = 0;
         extras_price = 0;
         size = PizzaSize.NONE;
+        count = 1;
         pizza.initializeExtrasHashMap();
     }
 
