@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity
         setInvisible(extrasImages);
         changePizzaSize(PizzaSize.NONE);
         mPizzaCount.setText(Integer.toString(count));
+        mPizza.reset();
+        updatePriceTag();
     }
 
     @Override
@@ -333,14 +335,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void flashSML() {
-        for (int i = 0; i < 2; i++) {
-            mSbutton.setImageResource(R.drawable.ic_small_black);
-            mMbutton.setImageResource(R.drawable.ic_medium_black);
-            mLbutton.setImageResource(R.drawable.ic_large_black);
-            Timer timer = new Timer();
-            TimerTask task = new Helper();
-            timer.schedule(task, 250);
-        }
+        mSbutton.setImageResource(R.drawable.ic_small_black);
+        mMbutton.setImageResource(R.drawable.ic_medium_black);
+        mLbutton.setImageResource(R.drawable.ic_large_black);
+        Timer timer = new Timer();
+        TimerTask task = new Helper();
+        timer.schedule(task, 250);
     }
     /**
      * Finish the order and replace the activity to the CheckoutActivity
@@ -349,8 +349,7 @@ public class MainActivity extends AppCompatActivity
     public void ClickCheckout(View view) throws InterruptedException {
         if (mPizza.getSize() == PizzaSize.NONE) {
             flashSML();
-            }
-        else {
+        } else {
             Intent intent = new Intent(this, CheckoutActivity.class);
             mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
             mTotalPrice.setTextColor(Color.BLACK);
@@ -390,7 +389,7 @@ public class MainActivity extends AppCompatActivity
         }
         else
         {
-                flashSML();
+            flashSML();
         }
     }
 
