@@ -12,7 +12,7 @@
         android:id="@+id/total_price_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="216dp"
+        android:layout_marginBottom="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/ic_price_button_white"
@@ -27,7 +27,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <HorizontalScrollView
@@ -153,85 +153,6 @@
     </HorizontalScrollView>
 
     <ImageView
-        android:id="@+id/pizza_image"
-        android:layout_width="409dp"
-        android:layout_height="215dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="125dp"
-        android:paddingTop="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/ic_pizza"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
-        android:id="@+id/mushrooms_image"
-        android:layout_width="261dp"
-        android:layout_height="99dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_pic_mushrooms"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
-        android:id="@+id/pepperoni_image"
-        android:layout_width="282dp"
-        android:layout_height="133dp"
-        android:paddingTop="30sp"
-        app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_pic_peperroni"
-        tools:ignore="VectorDrawableCompat" />
-
-
-    <ImageView
-        android:id="@+id/onion_image"
-        android:layout_width="188dp"
-        android:layout_height="114dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_pic_onion"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
-        android:id="@+id/olives_image"
-        android:layout_width="188dp"
-        android:layout_height="114dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_pic_olives"
-        tools:ignore="VectorDrawableCompat" />
-
-
-    <ImageView
-        android:id="@+id/basil_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_pic_basil"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
-        android:id="@+id/extra_cheese_image"
-        android:layout_width="wrap_content"
-        android:layout_height="118dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_pic_extra_cheese"
-        tools:ignore="VectorDrawableCompat" />
-
-    <ImageView
         android:id="@+id/minus_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -325,9 +246,8 @@
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pizza_top"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -394,6 +314,96 @@
         android:background="@color/olives_background"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:layout_editor_absoluteX="12dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pizza_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:rotation="180"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/pizza_image"
+            android:layout_width="409dp"
+            android:layout_height="215dp"
+            android:layout_marginEnd="70dp"
+            android:layout_marginStart="70dp"
+            android:paddingTop="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            app:srcCompat="@drawable/ic_pizza"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/mushrooms_image"
+            android:layout_width="261dp"
+            android:layout_height="99dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_pic_mushrooms"
+
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/pepperoni_image"
+            android:layout_width="282dp"
+            android:layout_height="133dp"
+            android:paddingTop="30sp"
+            app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_pic_peperroni"
+            tools:ignore="VectorDrawableCompat" />
+
+
+        <ImageView
+            android:id="@+id/onion_image"
+            android:layout_width="188dp"
+            android:layout_height="114dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_pic_onion"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/olives_image"
+            android:layout_width="188dp"
+            android:layout_height="114dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_pic_olives"
+            tools:ignore="VectorDrawableCompat" />
+
+
+        <ImageView
+            android:id="@+id/basil_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_pic_basil"
+            tools:ignore="VectorDrawableCompat" />
+
+        <ImageView
+            android:id="@+id/extra_cheese_image"
+            android:layout_width="wrap_content"
+            android:layout_height="118dp"
+            app:layout_constraintBottom_toBottomOf="@+id/pizza_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_pic_extra_cheese"
+            tools:ignore="VectorDrawableCompat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
