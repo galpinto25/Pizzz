@@ -7,6 +7,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.Console;
 import java.util.ArrayList;
@@ -62,6 +63,10 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
                 extras.get(pizzaExtra).setVisibility(View.VISIBLE);
             }
         }
+    }
+    public void onBackPressed() {
+        Toast toast = Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 //    private void showPizza() {
