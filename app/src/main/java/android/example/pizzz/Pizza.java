@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Pizza {
 
-    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4;
+    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4,EXTRA_CHEESE_PRICE = 8;
     final static public int SMALL_PRICE = 25, MEDIUM_PRICE = 35, LARGE_PRICE = 45;
 
     // static variable single_instance of type Singleton
@@ -51,6 +51,10 @@ public class Pizza {
         extras.put(PizzaExtra.BASIL, new Pair<Boolean, Integer>(basil, BASIL_PRICE));
     }
 
+    public void setExtraCheese(Boolean extraCheese) {
+        extras.put(PizzaExtra.EXTRA_CHEESE, new Pair<Boolean, Integer>(extraCheese, EXTRA_CHEESE_PRICE));
+    }
+
     public void setExtras_price(int extras_price) {
         this.extras_price = extras_price;
     }
@@ -81,6 +85,9 @@ public class Pizza {
 
     public Boolean isBasil() {
         return extras.get(PizzaExtra.BASIL).first;
+    }
+    public Boolean isExtraCheese() {
+        return extras.get(PizzaExtra.EXTRA_CHEESE).first;
     }
 
     public int getExtras_price() {
@@ -135,6 +142,7 @@ public class Pizza {
         extras.put(PizzaExtra.OLIVES, new Pair<Boolean, Integer>(false, OLIVES_PRICE));
         extras.put(PizzaExtra.PEPPERONI, new Pair<Boolean, Integer>(false, PEPPERONI_PRICE));
         extras.put(PizzaExtra.BASIL, new Pair<Boolean, Integer>(false, BASIL_PRICE));
+        extras.put(PizzaExtra.EXTRA_CHEESE, new Pair<Boolean, Integer>(false, EXTRA_CHEESE_PRICE));
     }
 
     /**

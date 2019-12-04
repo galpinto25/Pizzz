@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity
 {
     private Pizza mPizza;
     private Button mTotalPrice;
-    private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton;
-    private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage;
+    private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton,mOliveButton,mExtraCheeseButton;
+    private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mOliveImage,mExtraCheeseImage;
     private TextView mPizzaCount;
     private static final String currency = " NIS";
     private static int count = 1;
@@ -48,14 +48,18 @@ public class MainActivity extends AppCompatActivity
         mOnionbutton = findViewById(R.id.button_onion);
         mMushroomsbutton = findViewById(R.id.button_mushrooms);
         mPepperoniButton = findViewById(R.id.button_pepperoni);
+        mOliveButton = findViewById(R.id.button_olives);
+        mExtraCheeseButton = findViewById(R.id.button_extra_cheese);
         mBasilButton = findViewById(R.id.button_basil);
         mTotalPrice = findViewById(R.id.total_price_button);
         mMushroomsImage = findViewById(R.id.mushrooms_image);
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mOnionImage = findViewById(R.id.onion_image);
         mBasilImage = findViewById(R.id.basil_image);
+        mOliveImage= findViewById(R.id.olives_image);
+        mExtraCheeseImage= findViewById(R.id.extra_cheese_image);
         mPizzaCount = findViewById(R.id.pizza_count);
-        ArrayList<ImageView> extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage));
+        ArrayList<ImageView> extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mExtraCheeseImage,mOliveImage));
         setInvisible(extrasImages);
         changePizzaSize(PizzaSize.NONE);
         mPizzaCount.setText(Integer.toString(count));
@@ -185,6 +189,20 @@ public class MainActivity extends AppCompatActivity
             mBasilButton.setImageResource(R.drawable.ic_basil_black);
             mBasilImage.setVisibility(View.VISIBLE);
         }
+        else if (pizzaExtra == PizzaExtra.OLIVES)
+        {
+            mPizza.setOlives(true);
+            mPizza.setExtras_price(extraPrice + Pizza.OLIVES_PRICE);
+            mOliveButton.setImageResource(R.drawable.ic_olives_black);
+            mOliveImage.setVisibility(View.VISIBLE);
+        }
+        else if (pizzaExtra == PizzaExtra.EXTRA_CHEESE)
+        {
+            mPizza.setExtraCheese(true);
+            mPizza.setExtras_price(extraPrice + Pizza.EXTRA_CHEESE_PRICE);
+            mExtraCheeseButton.setImageResource(R.drawable.ic_extra_cheese_black);
+            mExtraCheeseImage.setVisibility(View.VISIBLE);
+        }
 
         updatePriceTag();
     }
@@ -226,6 +244,21 @@ public class MainActivity extends AppCompatActivity
             mPizza.setExtras_price(extraPrice - Pizza.BASIL_PRICE);
             mBasilButton.setImageResource(R.drawable.ic_basil_white);
             mBasilImage.setVisibility(View.INVISIBLE);
+        }
+
+        else if (pizzaExtra == PizzaExtra.OLIVES)
+        {
+            mPizza.setOlives(false);
+            mPizza.setExtras_price(extraPrice - Pizza.OLIVES_PRICE);
+            mOliveButton.setImageResource(R.drawable.ic_olives_white);
+            mOliveImage.setVisibility(View.INVISIBLE);
+        }
+        else if (pizzaExtra == PizzaExtra.EXTRA_CHEESE)
+        {
+            mPizza.setExtraCheese(false);
+            mPizza.setExtras_price(extraPrice - Pizza.EXTRA_CHEESE_PRICE);
+            mExtraCheeseButton.setImageResource(R.drawable.ic_extra_cheese_white);
+            mExtraCheeseImage.setVisibility(View.INVISIBLE);
         }
 
         updatePriceTag();
@@ -331,6 +364,29 @@ public class MainActivity extends AppCompatActivity
         } else
         {
             removeExtras(PizzaExtra.BASIL);
+        }
+    }
+
+
+    public void ClickExtraCheese(View view)
+    {
+        if (!mPizza.isExtraCheese())
+        {
+            addExtras(PizzaExtra.EXTRA_CHEESE);
+        } else
+        {
+            removeExtras(PizzaExtra.EXTRA_CHEESE);
+        }
+    }
+
+    public void ClickOlives(View view)
+    {
+        if (!mPizza.isOlives())
+        {
+            addExtras(PizzaExtra.OLIVES);
+        } else
+        {
+            removeExtras(PizzaExtra.OLIVES);
         }
     }
 
