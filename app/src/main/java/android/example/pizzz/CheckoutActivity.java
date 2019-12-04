@@ -14,8 +14,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
         TextView mPizzaDescription = findViewById(R.id.pizza_description);
@@ -25,8 +24,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private String getPizzaDescription() {
         Pizza pizza = Pizza.getInstance();
 //      if there is no pizza instance, choose default pizza
-        if (pizza.getSize() == PizzaSize.NONE)
-        {
+        if (pizza.getSize() == PizzaSize.NONE) {
             pizza.setSize(PizzaSize.SMALL);
             pizza.setPrice(Pizza.SMALL_PRICE);
         }
@@ -37,8 +35,7 @@ public class CheckoutActivity extends AppCompatActivity {
         return sizeDescription + extrasDescription + totalPriceDescription;
     }
 
-    public void clickConfirm(View view) throws InterruptedException
-    {
+    public void clickConfirm(View view) throws InterruptedException {
         Intent intent = new Intent(CheckoutActivity.this, ConfirmedOrderActivity.class);
 //        TODO: change cofirm button to be seen as pushed after click on it
 //        mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);

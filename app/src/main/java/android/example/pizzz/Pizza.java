@@ -1,15 +1,15 @@
 package android.example.pizzz;
 
-import android.util.Log;
 import android.util.Pair;
-import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Pizza {
 
-    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4,EXTRA_CHEESE_PRICE = 8;
+    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4, EXTRA_CHEESE_PRICE = 8;
     final static public int SMALL_PRICE = 25, MEDIUM_PRICE = 35, LARGE_PRICE = 45;
 
     // static variable single_instance of type Singleton
@@ -22,8 +22,7 @@ public class Pizza {
     private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
     private int count = 1;
 
-    public void setSize(PizzaSize size)
-    {
+    public void setSize(PizzaSize size) {
         this.size = size;
     }
 
@@ -55,7 +54,7 @@ public class Pizza {
         extras.put(PizzaExtra.EXTRA_CHEESE, new Pair<Boolean, Integer>(extraCheese, EXTRA_CHEESE_PRICE));
     }
 
-    public void setExtras_price(int extras_price) {
+    public void setExtrasPrice(int extras_price) {
         this.extras_price = extras_price;
     }
 
@@ -86,16 +85,28 @@ public class Pizza {
     public Boolean isBasil() {
         return extras.get(PizzaExtra.BASIL).first;
     }
+
     public Boolean isExtraCheese() {
         return extras.get(PizzaExtra.EXTRA_CHEESE).first;
     }
 
-    public int getExtras_price() {
+    public int getExtrasPrice() {
         return extras_price;
     }
 
     public int getTotalPrice() {
         return (extras_price + price) * count;
+    }
+
+    public List<PizzaExtra> getExtras() {
+        List<PizzaExtra> list = new ArrayList<PizzaExtra>();
+        for (Map.Entry entry : extras.entrySet()) {
+            Pair pair = (Pair) entry.getValue();
+            if (pair.first.equals(true)) {
+                list.add((PizzaExtra) entry.getKey());
+            }
+        }
+        return list;
     }
 
     public void incCount() {
@@ -111,13 +122,13 @@ public class Pizza {
     }
 
     // private constructor restricted to this class itself
-    private Pizza()
-    {
+    private Pizza() {
         size = PizzaSize.NONE;
     }
 
     /**
      * static method to create instance of Singleton class
+     *
      * @return todo
      */
     public static Pizza getInstance() {
@@ -147,18 +158,18 @@ public class Pizza {
 
     /**
      * todo
+     *
      * @return
      */
     public String getExtrasDescription() {
-        if (!hasExtras())
-        {
+        if (!hasExtras()) {
             return "no extras";
         }
         StringBuilder description = new StringBuilder();
-        for (Map.Entry entry: extras.entrySet()) {
+        for (Map.Entry entry : extras.entrySet()) {
             Pair pair = (Pair) entry.getValue();
             if (pair.first.equals(true)) {
-                String extraOutput = entry.getKey().toString().toLowerCase();
+                String extraOutput = entry.getKey().toString().toLowerCase().replace("_", " ");
                 description.append("\n - ").append(extraOutput.substring(0, 1).toUpperCase()).append(extraOutput.substring(1))
                         .append(": ").append(pair.second);
             }
@@ -168,16 +179,14 @@ public class Pizza {
 
     /**
      * check if there is extras on the pizza
+     *
      * @return true if there is extra, otherwise false
      */
-    private boolean hasExtras()
-    {
+    private boolean hasExtras() {
 
-        for (Map.Entry entry: extras.entrySet())
-        {
+        for (Map.Entry entry : extras.entrySet()) {
             Pair pair = (Pair) entry.getValue();
-            if (pair.first.equals(true))
-            {
+            if (pair.first.equals(true)) {
                 return true;
             }
         }

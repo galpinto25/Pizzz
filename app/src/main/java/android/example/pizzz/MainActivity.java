@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity
      */
     private void addExtras(PizzaExtra pizzaExtra)
     {
-        int extraPrice = mPizza.getExtras_price();
+        int extraPrice = mPizza.getExtrasPrice();
         Pizza pizza = Pizza.getInstance();
         if (pizza.getSize() == PizzaSize.NONE)
         {
@@ -164,42 +164,42 @@ public class MainActivity extends AppCompatActivity
         if (pizzaExtra == PizzaExtra.ONION)
         {
             mPizza.setOnion(true);
-            mPizza.setExtras_price(extraPrice + Pizza.ONION_PRICE);
+            mPizza.setExtrasPrice(extraPrice + Pizza.ONION_PRICE);
             mOnionbutton.setImageResource(R.drawable.ic_onion_black);
             mOnionImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.MUSHROOMS)
         {
             mPizza.setMushrooms(true);
-            mPizza.setExtras_price(extraPrice + Pizza.MUSHROOMS_PRICE);
+            mPizza.setExtrasPrice(extraPrice + Pizza.MUSHROOMS_PRICE);
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_black);
             mMushroomsImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.PEPPERONI)
         {
             mPizza.setPepperoni(true);
-            mPizza.setExtras_price(extraPrice + Pizza.PEPPERONI_PRICE);
+            mPizza.setExtrasPrice(extraPrice + Pizza.PEPPERONI_PRICE);
             mPepperoniButton.setImageResource(R.drawable.ic_pepperoni_black);
             mPepperoniImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.BASIL)
         {
             mPizza.setBasil(true);
-            mPizza.setExtras_price(extraPrice + Pizza.BASIL_PRICE);
+            mPizza.setExtrasPrice(extraPrice + Pizza.BASIL_PRICE);
             mBasilButton.setImageResource(R.drawable.ic_basil_black);
             mBasilImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.OLIVES)
         {
             mPizza.setOlives(true);
-            mPizza.setExtras_price(extraPrice + Pizza.OLIVES_PRICE);
+            mPizza.setExtrasPrice(extraPrice + Pizza.OLIVES_PRICE);
             mOliveButton.setImageResource(R.drawable.ic_olives_black);
             mOliveImage.setVisibility(View.VISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.EXTRA_CHEESE)
         {
             mPizza.setExtraCheese(true);
-            mPizza.setExtras_price(extraPrice + Pizza.EXTRA_CHEESE_PRICE);
+            mPizza.setExtrasPrice(extraPrice + Pizza.EXTRA_CHEESE_PRICE);
             mExtraCheeseButton.setImageResource(R.drawable.ic_extra_cheese_black);
             mExtraCheeseImage.setVisibility(View.VISIBLE);
         }
@@ -213,11 +213,11 @@ public class MainActivity extends AppCompatActivity
      */
     private void removeExtras(PizzaExtra pizzaExtra)
     {
-        int extraPrice = mPizza.getExtras_price();
+        int extraPrice = mPizza.getExtrasPrice();
         if (pizzaExtra == PizzaExtra.ONION)
         {
             mPizza.setOnion(false);
-            mPizza.setExtras_price(extraPrice - Pizza.ONION_PRICE);
+            mPizza.setExtrasPrice(extraPrice - Pizza.ONION_PRICE);
             mOnionbutton.setImageResource(R.drawable.ic_onion_white);
             mOnionImage.setVisibility(View.INVISIBLE);
         }
@@ -225,7 +225,7 @@ public class MainActivity extends AppCompatActivity
         else if (pizzaExtra == PizzaExtra.MUSHROOMS)
         {
             mPizza.setMushrooms(false);
-            mPizza.setExtras_price(extraPrice - Pizza.MUSHROOMS_PRICE);
+            mPizza.setExtrasPrice(extraPrice - Pizza.MUSHROOMS_PRICE);
             mMushroomsbutton.setImageResource(R.drawable.ic_mushrooms_white);
             mMushroomsImage.setVisibility(View.INVISIBLE);
         }
@@ -233,7 +233,7 @@ public class MainActivity extends AppCompatActivity
         else if (pizzaExtra == PizzaExtra.PEPPERONI)
         {
             mPizza.setPepperoni(false);
-            mPizza.setExtras_price(extraPrice - Pizza.PEPPERONI_PRICE);
+            mPizza.setExtrasPrice(extraPrice - Pizza.PEPPERONI_PRICE);
             mPepperoniButton.setImageResource(R.drawable.ic_pepperoni_white);
             mPepperoniImage.setVisibility(View.INVISIBLE);
         }
@@ -241,7 +241,7 @@ public class MainActivity extends AppCompatActivity
         else if (pizzaExtra == PizzaExtra.BASIL)
         {
             mPizza.setBasil(false);
-            mPizza.setExtras_price(extraPrice - Pizza.BASIL_PRICE);
+            mPizza.setExtrasPrice(extraPrice - Pizza.BASIL_PRICE);
             mBasilButton.setImageResource(R.drawable.ic_basil_white);
             mBasilImage.setVisibility(View.INVISIBLE);
         }
@@ -249,14 +249,14 @@ public class MainActivity extends AppCompatActivity
         else if (pizzaExtra == PizzaExtra.OLIVES)
         {
             mPizza.setOlives(false);
-            mPizza.setExtras_price(extraPrice - Pizza.OLIVES_PRICE);
+            mPizza.setExtrasPrice(extraPrice - Pizza.OLIVES_PRICE);
             mOliveButton.setImageResource(R.drawable.ic_olives_white);
             mOliveImage.setVisibility(View.INVISIBLE);
         }
         else if (pizzaExtra == PizzaExtra.EXTRA_CHEESE)
         {
             mPizza.setExtraCheese(false);
-            mPizza.setExtras_price(extraPrice - Pizza.EXTRA_CHEESE_PRICE);
+            mPizza.setExtrasPrice(extraPrice - Pizza.EXTRA_CHEESE_PRICE);
             mExtraCheeseButton.setImageResource(R.drawable.ic_extra_cheese_white);
             mExtraCheeseImage.setVisibility(View.INVISIBLE);
         }
