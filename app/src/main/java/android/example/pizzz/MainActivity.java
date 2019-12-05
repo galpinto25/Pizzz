@@ -23,6 +23,7 @@ import java.util.TimerTask;
 public class MainActivity extends AppCompatActivity
 {
     private Pizza mPizza;
+    private PizzaFactory mPizzaFactory;
     private Button mTotalPrice;
     private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton,mOliveButton,mExtraCheeseButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mOliveImage,mExtraCheeseImage;
@@ -40,8 +41,8 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mPizza = Pizza.getInstance();
+        mPizzaFactory = mPizzaFactory.getPizzaFactory();
+        mPizza = mPizzaFactory.getCurrentPizza();
         mSbutton = findViewById(R.id.small_button);
         mMbutton = findViewById(R.id.medium_button);
         mLbutton = findViewById(R.id.large_button);
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         mPizzaCount = findViewById(R.id.pizza_count);
         ArrayList<ImageView> extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mExtraCheeseImage,mOliveImage));
         setInvisible(extrasImages);
-        changePizzaSize(PizzaSize.NONE);
+//        changePizzaSize(PizzaSize.NONE);
         mPizzaCount.setText(Integer.toString(count));
         mPizza.reset();
         updatePriceTag();
@@ -70,12 +71,14 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        mPizza = mPizzaFactory.getCurrentPizza();
         mPizza.reset();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        mPizza = mPizzaFactory.getCurrentPizza();
         mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
         mTotalPrice.setTextColor(Color.WHITE);
         if (mPizza.getSize() == PizzaSize.NONE) {
@@ -155,8 +158,7 @@ public class MainActivity extends AppCompatActivity
     private void addExtras(PizzaExtra pizzaExtra)
     {
         int extraPrice = mPizza.getExtrasPrice();
-        Pizza pizza = Pizza.getInstance();
-        if (pizza.getSize() == PizzaSize.NONE)
+        if (mPizza.getSize() == PizzaSize.NONE)
         {
             flashSML();
             return;
@@ -413,6 +415,8 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
+    //TODO: this two buutons below need to be deletd?
     @SuppressLint("SetTextI18n")
     public void clickMinusCount(View view) {
         if (mPizza.getSize() != PizzaSize.NONE) {
@@ -421,16 +425,13 @@ public class MainActivity extends AppCompatActivity
                 mPizzaCount.setText(Integer.toString(mPizza.getCount()));
             }
             updatePriceTag();
-        } else {
-            for (int i = 0; i < 2; i++) {
-                mSbutton.setImageResource(R.drawable.ic_small_black);
-                mMbutton.setImageResource(R.drawable.ic_medium_black);
-                mLbutton.setImageResource(R.drawable.ic_large_black);
-                Timer timer = new Timer();
-                TimerTask task = new Helper();
-                timer.schedule(task, 250);
-            }
         }
+        else
+        {
+            flashSML();
+        }
+
+
     }
 
     @SuppressLint("SetTextI18n")

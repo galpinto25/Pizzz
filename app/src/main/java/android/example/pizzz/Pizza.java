@@ -122,29 +122,30 @@ public class Pizza {
     }
 
     // private constructor restricted to this class itself
-    private Pizza() {
+    public Pizza() {
         size = PizzaSize.NONE;
+        this.initializeExtrasHashMap();
     }
 
-    /**
-     * static method to create instance of Singleton class
-     *
-     * @return todo
-     */
-    public static Pizza getInstance() {
-        if (pizza == null) {
-            pizza = new Pizza();
-            pizza.initializeExtrasHashMap();
-        }
-        return pizza;
-    }
+//    /**
+//     * static method to create instance of Singleton class
+//     *
+//     * @return todo
+//     */
+//    public static Pizza getInstance() {
+//        if (pizza == null) {
+//            pizza = new Pizza();
+//            pizza.initializeExtrasHashMap();
+//        }
+//        return pizza;
+//    }
 
     void reset() {
         price = 0;
         extras_price = 0;
         size = PizzaSize.NONE;
         count = 1;
-        pizza.initializeExtrasHashMap();
+        this.initializeExtrasHashMap();
     }
 
     private void initializeExtrasHashMap() {

@@ -57,7 +57,7 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
 
 
     private void setExtras() {
-        list = Pizza.getInstance().getExtras();
+        list = PizzaFactory.getPizzaFactory().getCurrentPizza().getExtras();
         if (list.size() > 0) {
             for (PizzaExtra pizzaExtra : list) {
                 extras.get(pizzaExtra).setVisibility(View.VISIBLE);

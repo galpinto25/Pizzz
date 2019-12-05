@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class CheckoutActivity extends AppCompatActivity {
-
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,7 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private String getPizzaDescription() {
-        Pizza pizza = Pizza.getInstance();
+        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
 //      if there is no pizza instance, choose default pizza
         if (pizza.getSize() == PizzaSize.NONE) {
             pizza.setSize(PizzaSize.SMALL);
@@ -42,5 +41,112 @@ public class CheckoutActivity extends AppCompatActivity {
 //        mTotalPrice.setTextColor(Color.BLACK);
         startActivity(intent);
     }
+
+
+    //newFunctions:
+
+    /**
+     * add new Pizza
+     * @param view
+     * @throws Exception if there are maximum of pizzas (3)
+     */
+    public void clickAddNew(View view) throws Exception
+    {
+        try
+        {
+            PizzaFactory.getPizzaFactory().createNewPizza();
+            Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+        catch (Exception e)
+        {
+            //TODO: print a message that cannot add more than 3 pizzas
+        }
+    }
+
+    /**
+     * edit pizza 1
+     */
+    public void clickEditSamePizza1(View view)
+    {
+        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
+        PizzaFactory.getPizzaFactory().setCurrentPizza(0);
+        startActivity(intent);
+    }
+
+    /**
+     * edit pizza 2
+     */
+    public void clickEditSamePizza2(View view)
+    {
+        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
+        PizzaFactory.getPizzaFactory().setCurrentPizza(1);
+        startActivity(intent);
+    }
+
+    /**
+     * edit pizza 3
+     */
+    public void clickEditSamePizza3(View view)
+    {
+        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
+        PizzaFactory.getPizzaFactory().setCurrentPizza(2);
+        startActivity(intent);
+    }
+
+    /**
+     * addSamePizza1
+     */
+    public void clickAddSamePizza1()
+    {
+            Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(0);
+            if (pizza.getCount() >=3 )
+            {
+                int x = 5;
+                //TODO: print a message that cannot add more than 3 pizzas
+            }
+            else
+            {
+                pizza.incCount();
+                //TODO: update counter/details, print newCount
+            }
+    }
+
+    /**
+     * addSamePizza2
+     */
+    public void clickAddSamePizza2()
+    {
+        Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(1);
+        if (pizza.getCount() >=3 )
+        {
+            int x = 5;
+            //TODO: print a message that cannot add more than 3 pizzas
+        }
+        else
+        {
+            pizza.incCount();
+            //TODO: update counter/details, print newCount
+        }
+    }
+
+    /**
+     * addSamePizza2
+     */
+    public void clickAddSamePizza3()
+    {
+        Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(2);
+        if (pizza.getCount() >=3 )
+        {
+            int x = 5;
+            //TODO: print a message that cannot add more than 3 pizzas
+        }
+        else
+        {
+            pizza.incCount();
+            //TODO: update counter/details, print newCount
+        }
+    }
+
 
 }
