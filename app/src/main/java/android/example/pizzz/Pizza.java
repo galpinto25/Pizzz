@@ -16,18 +16,27 @@ public class Pizza {
 //    private static Pizza pizza = null;
 
     // variable of type String
+    private String title;
     private PizzaSize size;
-    private int price = 0;
-    private int extras_price = 0;
+    private int sizePrice = 0;
+    private int extrasPrice = 0;
     private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
-    private int count = 1;
+    private int quantity = 1;
+
+    void setTitle(String title) {
+        this.title = title;
+    }
+
+    String getTitle() {
+        return title;
+    }
 
     void setSize(PizzaSize size) {
         this.size = size;
     }
 
-    void setPrice(int price) {
-        this.price = price;
+    void setSizePrice(int sizePrice) {
+        this.sizePrice = sizePrice;
     }
 
     void setOnion(Boolean onion) {
@@ -55,15 +64,15 @@ public class Pizza {
     }
 
     void setExtrasPrice(int extras_price) {
-        this.extras_price = extras_price;
+        this.extrasPrice = extras_price;
     }
 
     PizzaSize getSize() {
         return size;
     }
 
-    public int getPrice() {
-        return price;
+    public int getSizePrice() {
+        return sizePrice;
     }
 
     Boolean isOnion() {
@@ -91,11 +100,11 @@ public class Pizza {
     }
 
     int getExtrasPrice() {
-        return extras_price;
+        return extrasPrice;
     }
 
     int getTotalPrice() {
-        return (extras_price + price) * count;
+        return (extrasPrice + sizePrice) * quantity;
     }
 
     List<PizzaExtra> getExtras() {
@@ -110,15 +119,15 @@ public class Pizza {
     }
 
     void incCount() {
-        count++;
+        quantity++;
     }
 
     void decCount() {
-        count--;
+        quantity--;
     }
 
-    int getCount() {
-        return count;
+    int getQuantity() {
+        return quantity;
     }
 
     // private constructor restricted to this class itself
@@ -141,10 +150,10 @@ public class Pizza {
 //    }
 
     void reset() {
-        price = 0;
-        extras_price = 0;
+        sizePrice = 0;
+        extrasPrice = 0;
         size = PizzaSize.NONE;
-        count = 1;
+        quantity = 1;
         this.initializeExtrasHashMap();
     }
 
@@ -163,18 +172,31 @@ public class Pizza {
      */
     String getExtrasDescription() {
         if (!hasExtras()) {
-            return "no extras";
+            return "\t\tno extras";
         }
         StringBuilder description = new StringBuilder();
         for (Map.Entry entry : extras.entrySet()) {
             Pair pair = (Pair) entry.getValue();
             if (pair.first.equals(true)) {
                 String extraOutput = entry.getKey().toString().toLowerCase().replace("_", " ");
-                description.append("\n - ").append(extraOutput.substring(0, 1).toUpperCase()).append(extraOutput.substring(1))
-                        .append(": ").append(pair.second);
+                description.append("\t\t").append(extraOutput.substring(0, 1).toUpperCase()).append(extraOutput.substring(1))
+                        .append(" - ").append(pair.second).append("\n");
             }
         }
-        return description.toString();
+        return "\t\t" + description.toString().trim();
+    }
+
+    String getSizeDescription() {
+        String pizzaSizeText = this.getSize().toString().toLowerCase();
+        return "\t\t" + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1) + " - " + this.getSizePrice();
+    }
+
+    String getQuantityDescription() {
+        return "\t\t x " + this.getQuantity();
+    }
+
+    String getTotalPriceDescription() {
+        return this.getTotalPrice() + " NIS";
     }
 
     /**

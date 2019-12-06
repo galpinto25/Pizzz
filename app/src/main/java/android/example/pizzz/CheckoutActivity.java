@@ -1,38 +1,49 @@
 package android.example.pizzz;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class CheckoutActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        TextView mPizzaDescription = findViewById(R.id.pizza_description);
-        mPizzaDescription.setText(getPizzaDescription());
+        recyclerView = (RecyclerView) findViewById(R.id.pizzas_descriptions);
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true);
+        // use a linear layout manager
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        // specify an adapter (see also next example)
+        mAdapter = new PizzaAdapter(this, PizzaFactory.getPizzaFactory().getPizzas());
+        recyclerView.setAdapter(mAdapter);
     }
 
-    private String getPizzaDescription() {
-        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
-//      if there is no pizza instance, choose default pizza
-        if (pizza.getSize() == PizzaSize.NONE) {
-            pizza.setSize(PizzaSize.SMALL);
-            pizza.setPrice(Pizza.SMALL_PRICE);
-        }
-        String pizzaSizeText = pizza.getSize().toString().toLowerCase();
-        String sizeDescription = "Pizza Size: " + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
-        String extrasDescription = "\n\nExtras: " + pizza.getExtrasDescription();
-        String totalPriceDescription = "\n\nTotal Price: " + (pizza.getTotalPrice()) + " NIS";
-        return sizeDescription + extrasDescription + totalPriceDescription;
-    }
+//    private String getPizzaDescription() {
+//        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
+////      if there is no pizza instance, choose default pizza
+//        if (pizza.getSize() == PizzaSize.NONE) {
+//            pizza.setSize(PizzaSize.SMALL);
+//            pizza.setSizePrice(Pizza.SMALL_PRICE);
+//        }
+//        String pizzaSizeText = pizza.getSize().toString().toLowerCase();
+//        String sizeDescription = "Pizza Size: " + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
+//        String extrasDescription = "\n\nExtras: " + pizza.getExtrasDescription();
+//        String totalPriceDescription = "\n\nTotal Price: " + (pizza.getTotalPrice()) + " NIS";
+//        return sizeDescription + extrasDescription + totalPriceDescription;
+//    }
 
     public void clickConfirm(View view) throws InterruptedException {
         Intent intent = new Intent(CheckoutActivity.this, ConfirmedOrderActivity.class);
@@ -100,7 +111,7 @@ public class CheckoutActivity extends AppCompatActivity {
     public void clickAddSamePizza1()
     {
             Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(0);
-            if (pizza.getCount() >=3 )
+            if (pizza.getQuantity() >=3 )
             {
                 int x = 5;
                 //TODO: print a message that cannot add more than 3 pizzas
@@ -118,7 +129,7 @@ public class CheckoutActivity extends AppCompatActivity {
     public void clickAddSamePizza2()
     {
         Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(1);
-        if (pizza.getCount() >=3 )
+        if (pizza.getQuantity() >=3 )
         {
             int x = 5;
             //TODO: print a message that cannot add more than 3 pizzas
@@ -136,7 +147,7 @@ public class CheckoutActivity extends AppCompatActivity {
     public void clickAddSamePizza3()
     {
         Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(2);
-        if (pizza.getCount() >=3 )
+        if (pizza.getQuantity() >=3 )
         {
             int x = 5;
             //TODO: print a message that cannot add more than 3 pizzas

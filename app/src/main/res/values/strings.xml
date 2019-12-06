@@ -15,4 +15,5 @@
     <string name="delivery_conf_message">YOUR PIZZZ IS ON ITS WAY!</string>
     <string name="initial_price">0 NIS</string>
     <string name="checkout_button_message">Pizzz it!</string>
+    <string name="default_price">34 NIS</string>
 </resources>

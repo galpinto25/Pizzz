@@ -74,7 +74,7 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
 ////      if there is no pizza instance, choose default pizza
 //        if (pizza.getSize() == PizzaSize.NONE) {
 //            pizza.setSize(PizzaSize.SMALL);
-//            pizza.setPrice(Pizza.SMALL_PRICE);
+//            pizza.setSizePrice(Pizza.SMALL_PRICE);
 //        }
 
 

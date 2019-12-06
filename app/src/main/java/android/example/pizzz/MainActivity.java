@@ -36,12 +36,13 @@ public class MainActivity extends AppCompatActivity
      * (visible or invisible).
      * @param savedInstanceState
      */
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mPizzaFactory = mPizzaFactory.getPizzaFactory();
+        mPizzaFactory = PizzaFactory.getPizzaFactory();
         mPizza = mPizzaFactory.getCurrentPizza();
         mSbutton = findViewById(R.id.small_button);
         mMbutton = findViewById(R.id.medium_button);
@@ -114,7 +115,7 @@ public class MainActivity extends AppCompatActivity
         {
             mSbutton.setImageResource(R.drawable.ic_small_black);
             mPizza.setSize(PizzaSize.SMALL);
-            mPizza.setPrice(Pizza.SMALL_PRICE);
+            mPizza.setSizePrice(Pizza.SMALL_PRICE);
             mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
             mCheckoutButton.setTextColor(Color.WHITE);
         }
@@ -127,7 +128,7 @@ public class MainActivity extends AppCompatActivity
         {
             mMbutton.setImageResource(R.drawable.ic_medium_black);
             mPizza.setSize(PizzaSize.MEDIUM);
-            mPizza.setPrice(Pizza.MEDIUM_PRICE);
+            mPizza.setSizePrice(Pizza.MEDIUM_PRICE);
             mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
             mCheckoutButton.setTextColor(Color.WHITE);
         }
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity
         {
             mLbutton.setImageResource(R.drawable.ic_large_black);
             mPizza.setSize(PizzaSize.LARGE);
-            mPizza.setPrice(Pizza.LARGE_PRICE);
+            mPizza.setSizePrice(Pizza.LARGE_PRICE);
             mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
             mCheckoutButton.setTextColor(Color.WHITE);
         }
@@ -421,9 +422,9 @@ public class MainActivity extends AppCompatActivity
     @SuppressLint("SetTextI18n")
     public void clickMinusCount(View view) {
         if (mPizza.getSize() != PizzaSize.NONE) {
-            if (mPizza.getCount() > 1) {
+            if (mPizza.getQuantity() > 1) {
                 mPizza.decCount();
-                mPizzaCount.setText(Integer.toString(mPizza.getCount()));
+                mPizzaCount.setText(Integer.toString(mPizza.getQuantity()));
             }
             updatePriceTag();
         }
@@ -439,9 +440,9 @@ public class MainActivity extends AppCompatActivity
     public void clickPlusCount(View view) throws InterruptedException {
         if (mPizza.getSize() != PizzaSize.NONE)
         {
-            if (mPizza.getCount() < 3) {
+            if (mPizza.getQuantity() < 3) {
                 mPizza.incCount();
-                mPizzaCount.setText(Integer.toString(mPizza.getCount()));
+                mPizzaCount.setText(Integer.toString(mPizza.getQuantity()));
             }
             updatePriceTag();
         }

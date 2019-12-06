@@ -29,10 +29,18 @@ public class OrderTypesActivity extends AppCompatActivity
         mNewOrder.setImageResource(R.drawable.ic_neworder_white);
     }
 
-    public void click_re_order(View view)
-    {
+    public void click_re_order(View view) throws Exception {
         mReOrder.setImageResource(R.drawable.ic_re_order_black);
         mNewOrder.setImageResource(R.drawable.ic_neworder_white);
+
+        // todo maybe needs to move the price logic to the Pizza object
+        // Sets the default re-ordered pizza
+        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
+        pizza.setSize(PizzaSize.MEDIUM);
+        pizza.setSizePrice(Pizza.MEDIUM_PRICE);
+        pizza.setMushrooms(true);
+        pizza.setBasil(true);
+        pizza.setExtrasPrice(Pizza.MUSHROOMS_PRICE + Pizza.BASIL_PRICE);
 
         Intent intent = new Intent(this, CheckoutActivity.class);
         startActivity(intent);

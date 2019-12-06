@@ -1,20 +1,24 @@
 package android.example.pizzz;
 
+import java.util.ArrayList;
+
 public class PizzaFactory
 {
     private static PizzaFactory pizzaFactory = null;
-    private Pizza[] pizzas;
+    private ArrayList<Pizza> pizzas;
     private int currentPizza;
-    final static public int maxPizzas = 3;
+    final static private int maxPizzas = 3;
 
     private PizzaFactory()
     {
         currentPizza = 0;
-        pizzas = new Pizza[maxPizzas];
-        pizzas[0] = new Pizza();
+        pizzas = new ArrayList<>();
+        Pizza pizza = new Pizza();
+        pizza.setTitle("Pizzz #" + (currentPizza + 1));
+        pizzas.add(pizza);
     }
 
-    public static PizzaFactory getPizzaFactory()
+    static PizzaFactory getPizzaFactory()
     {
         if (pizzaFactory == null)
         {
@@ -24,23 +28,24 @@ public class PizzaFactory
         return pizzaFactory;
     }
 
-    public Pizza getCurrentPizza()
+    Pizza getCurrentPizza()
     {
-        return pizzas[currentPizza];
+        return pizzas.get(currentPizza);
     }
 
-    public void setCurrentPizza(int newCurrentPizza)
+    void setCurrentPizza(int newCurrentPizza)
     {
         currentPizza = newCurrentPizza;
     }
 
-    public void createNewPizza() throws Exception
+    void createNewPizza() throws Exception
     {
         currentPizza++;
         if ((currentPizza <= maxPizzas - 1) && (currentPizza >= 0))
         {
             Pizza pizza = new Pizza();
-            pizzas[currentPizza] = pizza;
+            pizza.setTitle("Pizzz #" + (currentPizza + 1));
+            pizzas.add(pizza);
         }
         else
         {
@@ -48,16 +53,16 @@ public class PizzaFactory
         }
     }
 
-    public Pizza getPizzaByIndex(int index)
+    Pizza getPizzaByIndex(int index)
     {
-        if ((index >= 0) && (index <= maxPizzas) && pizzas[index] != null)
+        if ((index >= 0) && (index <= maxPizzas) && pizzas.get(index) != null)
         {
-            return pizzas[index];
+            return pizzas.get(index);
         }
         return null;
     }
 
-    public Pizza[] getPizzas()
+    ArrayList<Pizza> getPizzas()
     {
         return pizzas;
     }
