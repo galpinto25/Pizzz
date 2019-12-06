@@ -9,11 +9,11 @@ import java.util.Map;
 
 public class Pizza {
 
-    final static public int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4, EXTRA_CHEESE_PRICE = 8;
-    final static public int SMALL_PRICE = 25, MEDIUM_PRICE = 35, LARGE_PRICE = 45;
+    final static int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4, EXTRA_CHEESE_PRICE = 8;
+    final static int SMALL_PRICE = 25, MEDIUM_PRICE = 35, LARGE_PRICE = 45;
 
     // static variable single_instance of type Singleton
-    private static Pizza pizza = null;
+//    private static Pizza pizza = null;
 
     // variable of type String
     private PizzaSize size;
@@ -22,43 +22,43 @@ public class Pizza {
     private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
     private int count = 1;
 
-    public void setSize(PizzaSize size) {
+    void setSize(PizzaSize size) {
         this.size = size;
     }
 
-    public void setPrice(int price) {
+    void setPrice(int price) {
         this.price = price;
     }
 
-    public void setOnion(Boolean onion) {
+    void setOnion(Boolean onion) {
         extras.put(PizzaExtra.ONION, new Pair<Boolean, Integer>(onion, ONION_PRICE));
     }
 
-    public void setMushrooms(Boolean mushrooms) {
+    void setMushrooms(Boolean mushrooms) {
         extras.put(PizzaExtra.MUSHROOMS, new Pair<Boolean, Integer>(mushrooms, MUSHROOMS_PRICE));
     }
 
-    public void setOlives(Boolean olives) {
+    void setOlives(Boolean olives) {
         extras.put(PizzaExtra.OLIVES, new Pair<Boolean, Integer>(olives, OLIVES_PRICE));
     }
 
-    public void setPepperoni(Boolean pepperoni) {
+    void setPepperoni(Boolean pepperoni) {
         extras.put(PizzaExtra.PEPPERONI, new Pair<Boolean, Integer>(pepperoni, PEPPERONI_PRICE));
     }
 
-    public void setBasil(Boolean basil) {
+    void setBasil(Boolean basil) {
         extras.put(PizzaExtra.BASIL, new Pair<Boolean, Integer>(basil, BASIL_PRICE));
     }
 
-    public void setExtraCheese(Boolean extraCheese) {
+    void setExtraCheese(Boolean extraCheese) {
         extras.put(PizzaExtra.EXTRA_CHEESE, new Pair<Boolean, Integer>(extraCheese, EXTRA_CHEESE_PRICE));
     }
 
-    public void setExtrasPrice(int extras_price) {
+    void setExtrasPrice(int extras_price) {
         this.extras_price = extras_price;
     }
 
-    public PizzaSize getSize() {
+    PizzaSize getSize() {
         return size;
     }
 
@@ -66,39 +66,39 @@ public class Pizza {
         return price;
     }
 
-    public Boolean isOnion() {
+    Boolean isOnion() {
         return extras.get(PizzaExtra.ONION).first;
     }
 
-    public Boolean isMushrooms() {
+    Boolean isMushrooms() {
         return extras.get(PizzaExtra.MUSHROOMS).first;
     }
 
-    public Boolean isOlives() {
+    Boolean isOlives() {
         return extras.get(PizzaExtra.OLIVES).first;
     }
 
-    public Boolean isPepperoni() {
+    Boolean isPepperoni() {
         return extras.get(PizzaExtra.PEPPERONI).first;
     }
 
-    public Boolean isBasil() {
+    Boolean isBasil() {
         return extras.get(PizzaExtra.BASIL).first;
     }
 
-    public Boolean isExtraCheese() {
+    Boolean isExtraCheese() {
         return extras.get(PizzaExtra.EXTRA_CHEESE).first;
     }
 
-    public int getExtrasPrice() {
+    int getExtrasPrice() {
         return extras_price;
     }
 
-    public int getTotalPrice() {
+    int getTotalPrice() {
         return (extras_price + price) * count;
     }
 
-    public List<PizzaExtra> getExtras() {
+    List<PizzaExtra> getExtras() {
         List<PizzaExtra> list = new ArrayList<PizzaExtra>();
         for (Map.Entry entry : extras.entrySet()) {
             Pair pair = (Pair) entry.getValue();
@@ -109,20 +109,20 @@ public class Pizza {
         return list;
     }
 
-    public void incCount() {
+    void incCount() {
         count++;
     }
 
-    public void decCount() {
+    void decCount() {
         count--;
     }
 
-    public int getCount() {
+    int getCount() {
         return count;
     }
 
     // private constructor restricted to this class itself
-    public Pizza() {
+    Pizza() {
         size = PizzaSize.NONE;
         this.initializeExtrasHashMap();
     }
@@ -160,9 +160,8 @@ public class Pizza {
     /**
      * todo
      *
-     * @return
      */
-    public String getExtrasDescription() {
+    String getExtrasDescription() {
         if (!hasExtras()) {
             return "no extras";
         }

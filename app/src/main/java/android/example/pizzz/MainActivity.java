@@ -24,10 +24,10 @@ public class MainActivity extends AppCompatActivity
 {
     private Pizza mPizza;
     private PizzaFactory mPizzaFactory;
-    private Button mTotalPrice;
+    private Button mCheckoutButton;
     private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton,mOliveButton,mExtraCheeseButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mOliveImage,mExtraCheeseImage;
-    private TextView mPizzaCount;
+    private TextView mPizzaCount, mTotalPrice;
     private static final String currency = " NIS";
     private static int count = 1;
 
@@ -52,7 +52,8 @@ public class MainActivity extends AppCompatActivity
         mOliveButton = findViewById(R.id.button_olives);
         mExtraCheeseButton = findViewById(R.id.button_extra_cheese);
         mBasilButton = findViewById(R.id.button_basil);
-        mTotalPrice = findViewById(R.id.total_price_button);
+        mTotalPrice = findViewById(R.id.total_price);
+        mCheckoutButton = findViewById(R.id.checkout_button);
         mMushroomsImage = findViewById(R.id.mushrooms_image);
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mOnionImage = findViewById(R.id.onion_image);
@@ -79,11 +80,11 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         mPizza = mPizzaFactory.getCurrentPizza();
-        mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
-        mTotalPrice.setTextColor(Color.WHITE);
+        mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
+        mCheckoutButton.setTextColor(Color.WHITE);
         if (mPizza.getSize() == PizzaSize.NONE) {
-            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
-            mTotalPrice.setTextColor(Color.BLACK);
+            mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_white);
+            mCheckoutButton.setTextColor(Color.BLACK);
         }
     }
 
@@ -114,8 +115,8 @@ public class MainActivity extends AppCompatActivity
             mSbutton.setImageResource(R.drawable.ic_small_black);
             mPizza.setSize(PizzaSize.SMALL);
             mPizza.setPrice(Pizza.SMALL_PRICE);
-            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
-            mTotalPrice.setTextColor(Color.WHITE);
+            mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
+            mCheckoutButton.setTextColor(Color.WHITE);
         }
         else
         {
@@ -127,8 +128,8 @@ public class MainActivity extends AppCompatActivity
             mMbutton.setImageResource(R.drawable.ic_medium_black);
             mPizza.setSize(PizzaSize.MEDIUM);
             mPizza.setPrice(Pizza.MEDIUM_PRICE);
-            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
-            mTotalPrice.setTextColor(Color.WHITE);
+            mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
+            mCheckoutButton.setTextColor(Color.WHITE);
         }
         else
         {
@@ -140,8 +141,8 @@ public class MainActivity extends AppCompatActivity
             mLbutton.setImageResource(R.drawable.ic_large_black);
             mPizza.setSize(PizzaSize.LARGE);
             mPizza.setPrice(Pizza.LARGE_PRICE);
-            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_black);
-            mTotalPrice.setTextColor(Color.WHITE);
+            mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
+            mCheckoutButton.setTextColor(Color.WHITE);
         }
         else
         {
@@ -409,8 +410,8 @@ public class MainActivity extends AppCompatActivity
             flashSML();
         } else {
             Intent intent = new Intent(this, CheckoutActivity.class);
-            mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
-            mTotalPrice.setTextColor(Color.BLACK);
+            mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_white);
+            mCheckoutButton.setTextColor(Color.BLACK);
             startActivity(intent);
         }
     }

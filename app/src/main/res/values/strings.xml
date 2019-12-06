@@ -12,4 +12,7 @@
     <string name="pizza_description">Pizza Size:\nExtras:\nPrice:</string>
     <string name="default_count">1</string>
     <string name="toast_message">hyushhhh byeushhhhh</string>
+    <string name="delivery_conf_message">YOUR PIZZZ IS ON ITS WAY!</string>
+    <string name="initial_price">0 NIS</string>
+    <string name="checkout_button_message">Pizzz it!</string>
 </resources>
