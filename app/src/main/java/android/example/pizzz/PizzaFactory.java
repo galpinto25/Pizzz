@@ -38,7 +38,7 @@ public class PizzaFactory
         currentPizza = newCurrentPizza;
     }
 
-    void createNewPizza() throws Exception
+    void createNewPizza()
     {
         currentPizza++;
         if ((currentPizza <= maxPizzas - 1) && (currentPizza >= 0))
@@ -47,10 +47,10 @@ public class PizzaFactory
             pizza.setTitle("Pizzz #" + (currentPizza + 1));
             pizzas.add(pizza);
         }
-        else
-        {
-            throw new Exception("PIZZA FULL");
-        }
+//        else
+//        {
+//            throw new Exception("PIZZA FULL");
+//        }
     }
 
     Pizza getPizzaByIndex(int index)
@@ -62,8 +62,24 @@ public class PizzaFactory
         return null;
     }
 
+    boolean isMaxPizzas() {
+        return (currentPizza >= maxPizzas - 1);
+    }
+
     ArrayList<Pizza> getPizzas()
     {
         return pizzas;
+    }
+
+    int getTotalPizzasPrice() {
+        int totalPrice = 0;
+        for (Pizza pizza: pizzas) {
+            totalPrice += pizza.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    String getTotalPizzasPriceDescription() {
+        return "Total: " + this.getTotalPizzasPrice() + " NIS";
     }
 }

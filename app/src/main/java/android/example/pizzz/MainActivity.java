@@ -13,9 +13,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton,mOliveButton,mExtraCheeseButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mOliveImage,mExtraCheeseImage;
     private TextView mPizzaCount, mTotalPrice;
+    ArrayList<ImageView> extrasImages = new ArrayList<>();
     private static final String currency = " NIS";
     private static int count = 1;
 
@@ -62,11 +67,14 @@ public class MainActivity extends AppCompatActivity
         mOliveImage= findViewById(R.id.olives_image);
         mExtraCheeseImage= findViewById(R.id.extra_cheese_image);
         mPizzaCount = findViewById(R.id.pizza_count);
-        ArrayList<ImageView> extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mExtraCheeseImage,mOliveImage));
+        extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mExtraCheeseImage,mOliveImage));
+        Bundle bundle = getIntent().getExtras();
         setInvisible(extrasImages);
-//        changePizzaSize(PizzaSize.NONE);
         mPizzaCount.setText(Integer.toString(count));
-        mPizza.reset();
+        if (bundle == null) {
+            mPizza.reset();
+//            changePizzaSize(PizzaSize.NONE);
+        }
         updatePriceTag();
     }
 
@@ -77,15 +85,41 @@ public class MainActivity extends AppCompatActivity
         mPizza.reset();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
         super.onResume();
-        mPizza = mPizzaFactory.getCurrentPizza();
-        mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
-        mCheckoutButton.setTextColor(Color.WHITE);
-        if (mPizza.getSize() == PizzaSize.NONE) {
-            mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_white);
-            mCheckoutButton.setTextColor(Color.BLACK);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+        {
+            mPizza = mPizzaFactory.getPizzaByIndex(bundle.getInt("pizza_number"));
+            mPizza.setExtrasPrice(0);
+            this.changePizzaSize(mPizza.getSize());
+            mPizzaCount.setText(Integer.toString(mPizza.getQuantity()));
+            List<PizzaExtra> pizzaExtras = mPizza.getExtras();
+            Map<PizzaExtra, ImageView> extras = new HashMap<>();
+            extras.put(PizzaExtra.MUSHROOMS, mMushroomsImage);
+            extras.put(PizzaExtra.PEPPERONI, mPepperoniImage);
+            extras.put(PizzaExtra.ONION, mOnionImage);
+            extras.put(PizzaExtra.OLIVES, mOliveImage);
+            extras.put(PizzaExtra.BASIL, mBasilImage);
+            extras.put(PizzaExtra.EXTRA_CHEESE, mExtraCheeseImage);
+            if (pizzaExtras.size() > 0) {
+                for (PizzaExtra pizzaExtra : pizzaExtras) {
+                    extras.get(pizzaExtra).setVisibility(View.VISIBLE);
+                    addExtras(pizzaExtra);
+                }
+            }
+            Toast toast = Toast.makeText(this, mPizza.getTitle(), Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            mPizza = mPizzaFactory.getCurrentPizza();
+            mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
+            mCheckoutButton.setTextColor(Color.WHITE);
+            if (mPizza.getSize() == PizzaSize.NONE) {
+                mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_white);
+                mCheckoutButton.setTextColor(Color.BLACK);
+            }
         }
     }
 

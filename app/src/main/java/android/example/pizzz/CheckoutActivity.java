@@ -7,18 +7,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class CheckoutActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private ImageView confirmButton;
 
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
+
         recyclerView = (RecyclerView) findViewById(R.id.pizzas_descriptions);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -29,9 +36,26 @@ public class CheckoutActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         mAdapter = new PizzaAdapter(this, PizzaFactory.getPizzaFactory().getPizzas());
         recyclerView.setAdapter(mAdapter);
+
+        confirmButton = (ImageView) findViewById(R.id.confirm_button);
+
+        TextView pizzasTotalPrice = (TextView) findViewById(R.id.pizzas_total_price);
+        SpannableString priceString = new SpannableString(PizzaFactory.getPizzaFactory().getTotalPizzasPriceDescription());
+        priceString.setSpan(new RelativeSizeSpan(0.8f), priceString.length() - 3, priceString.length(), 0);
+        pizzasTotalPrice.setText(priceString);
     }
 
-//    private String getPizzaDescription() {
+    @Override
+    public void onBackPressed() {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        confirmButton.setImageResource(R.drawable.ic_ok_button_black);
+    }
+
+    //    private String getPizzaDescription() {
 //        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
 ////      if there is no pizza instance, choose default pizza
 //        if (pizza.getSize() == PizzaSize.NONE) {
@@ -45,14 +69,14 @@ public class CheckoutActivity extends AppCompatActivity {
 //        return sizeDescription + extrasDescription + totalPriceDescription;
 //    }
 
-    public void clickConfirm(View view) throws InterruptedException {
+    public void clickConfirm(View view) {
+        confirmButton.setImageResource(R.drawable.ic_ok_button_white);
         Intent intent = new Intent(CheckoutActivity.this, ConfirmedOrderActivity.class);
-//        TODO: change cofirm button to be seen as pushed after click on it
+        startActivity(intent);
+        //        TODO: change confirm button to be seen as pushed after click on it
 //        mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
 //        mTotalPrice.setTextColor(Color.BLACK);
-        startActivity(intent);
     }
-
 
     //newFunctions:
 
@@ -61,17 +85,15 @@ public class CheckoutActivity extends AppCompatActivity {
      * @param view
      * @throws Exception if there are maximum of pizzas (3)
      */
-    public void clickAddNew(View view) throws Exception
+    public void clickAddNew(View view)
     {
-        try
-        {
+        if (!PizzaFactory.getPizzaFactory().isMaxPizzas()) {
             PizzaFactory.getPizzaFactory().createNewPizza();
             Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
             startActivity(intent);
-        }
-        catch (Exception e)
-        {
-            //TODO: print a message that cannot add more than 3 pizzas
+        } else {
+            Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message, Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 

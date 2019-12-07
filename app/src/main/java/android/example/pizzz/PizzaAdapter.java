@@ -1,6 +1,9 @@
 package android.example.pizzz;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.SpannableString;
+import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +44,9 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         holder.pizzaSize.setText(pizza.getSizeDescription());
         holder.pizzaExtras.setText(pizza.getExtrasDescription());
         holder.pizzaQuantity.setText(pizza.getQuantityDescription());
-        holder.pizzaPrice.setText(pizza.getTotalPriceDescription());
+        SpannableString pizzaPriceString = new SpannableString(pizza.getTotalPriceDescription());
+        pizzaPriceString.setSpan(new RelativeSizeSpan(0.8f), pizzaPriceString.length() - 3, pizzaPriceString.length(), 0);
+        holder.pizzaPrice.setText(pizzaPriceString);
         Map<PizzaExtra, ImageView> extras = new HashMap<>();
         extras.put(PizzaExtra.MUSHROOMS, holder.mushroomsImage);
         extras.put(PizzaExtra.PEPPERONI, holder.pepperoniImage);
@@ -51,7 +56,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         extras.put(PizzaExtra.EXTRA_CHEESE, holder.extraCheeseImage);
         setInvisible(new ImageView[]{holder.mushroomsImage, holder.pepperoniImage,
                 holder.onionImage, holder.oliveImage, holder.basilImage, holder.extraCheeseImage});
-        setExtras(extras);
+        setExtras(extras, pizza);
     }
 
     // total number of rows
@@ -59,7 +64,6 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     public int getItemCount() {
         return mData.size();
     }
-
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -87,6 +91,10 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            Context context = view.getContext();
+            Intent intent = new Intent(context, MainActivity.class);
+            intent.putExtra("pizza_number", getAdapterPosition());
+            context.startActivity(intent);
         }
     }
 
@@ -111,8 +119,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         }
     }
 
-    private void setExtras(Map<PizzaExtra, ImageView> extras) {
-        List<PizzaExtra> list = PizzaFactory.getPizzaFactory().getCurrentPizza().getExtras();
+    private void setExtras(Map<PizzaExtra, ImageView> extras, Pizza pizza) {
+        List<PizzaExtra> list = pizza.getExtras();
         if (list.size() > 0) {
             for (PizzaExtra pizzaExtra : list) {
                 extras.get(pizzaExtra).setVisibility(View.VISIBLE);
