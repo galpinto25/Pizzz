@@ -103,7 +103,7 @@ public class CheckoutActivity extends AppCompatActivity {
     {
         if (!PizzaFactory.getPizzaFactory().isMaxPizzas()) {
             PizzaFactory.getPizzaFactory().createNewPizza();
-            Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
+            Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
             startActivity(intent);
         } else {
             Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message, Toast.LENGTH_SHORT);
@@ -116,8 +116,8 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     public void clickEditSamePizza1(View view)
     {
-        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
-        PizzaFactory.getPizzaFactory().setCurrentPizza(0);
+        Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
+        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(0);
         startActivity(intent);
     }
 
@@ -126,8 +126,8 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     public void clickEditSamePizza2(View view)
     {
-        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
-        PizzaFactory.getPizzaFactory().setCurrentPizza(1);
+        Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
+        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(1);
         startActivity(intent);
     }
 
@@ -136,8 +136,8 @@ public class CheckoutActivity extends AppCompatActivity {
      */
     public void clickEditSamePizza3(View view)
     {
-        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
-        PizzaFactory.getPizzaFactory().setCurrentPizza(2);
+        Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
+        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(2);
         startActivity(intent);
     }
 

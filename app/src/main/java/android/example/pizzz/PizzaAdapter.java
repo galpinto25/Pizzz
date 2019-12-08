@@ -92,7 +92,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
             Context context = view.getContext();
-            Intent intent = new Intent(context, MainActivity.class);
+            Intent intent = new Intent(context, PizzaDetailsActivity.class);
             intent.putExtra("pizza_number", getAdapterPosition());
             context.startActivity(intent);
         }

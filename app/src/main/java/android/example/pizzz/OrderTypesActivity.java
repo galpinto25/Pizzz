@@ -58,7 +58,7 @@ public class OrderTypesActivity extends AppCompatActivity
         mNewOrder.setImageResource(R.drawable.ic_new_order_black);
         mReOrder.setImageResource(R.drawable.ic_re_order_white);
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, PizzaDetailsActivity.class);
         startActivity(intent);
     }
 

@@ -15,7 +15,7 @@
         <activity android:name=".ConfirmedOrderActivity"></activity>
         <activity android:name=".OrderTypesActivity" />
         <activity android:name=".CheckoutActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".PizzaDetailsActivity" />
         <activity android:name=".EntryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

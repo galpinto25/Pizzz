@@ -44,9 +44,14 @@ public class PizzaFactory
         pizzaToAdd.setTitle("Pizzz #" + (currentPizza + 1));
     }
 
-    void setCurrentPizza(int newCurrentPizza)
+    void setCurrentPizzaIndex(int newCurrentPizza)
     {
         currentPizza = newCurrentPizza;
+    }
+
+    int getCurrentPizzaIndex()
+    {
+        return currentPizza;
     }
 
     void createNewPizza()
@@ -58,10 +63,6 @@ public class PizzaFactory
             pizza.setTitle("Pizzz #" + (currentPizza + 1));
             pizzas.add(pizza);
         }
-//        else
-//        {
-//            throw new Exception("PIZZA FULL");
-//        }
     }
 
     Pizza getPizzaByIndex(int index)
@@ -115,6 +116,8 @@ public class PizzaFactory
         newPizza.setTitle(oldPizza.getTitle());
         newPizza.setSizePrice(oldPizza.getSizePrice());
         newPizza.setExtrasPrice(oldPizza.getExtrasPrice());
+        newPizza.setVegan(oldPizza.getVegan());
+        newPizza.setQuantity(oldPizza.getQuantity());
         List<PizzaExtra> extras = oldPizza.getExtras();
         for (PizzaExtra pizzaExtra: extras)
         {

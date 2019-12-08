@@ -22,6 +22,7 @@ public class Pizza {
     private int extrasPrice = 0;
     private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
     private int quantity = 1;
+    private boolean vegan = false;
 
     void setTitle(String title) {
         this.title = title;
@@ -29,6 +30,14 @@ public class Pizza {
 
     String getTitle() {
         return title;
+    }
+
+    public boolean getVegan() {
+        return vegan;
+    }
+
+    public void setVegan(boolean vegan) {
+        this.vegan = vegan;
     }
 
     void setSize(PizzaSize size) {

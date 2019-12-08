@@ -24,17 +24,18 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class MainActivity extends AppCompatActivity
+public class PizzaDetailsActivity extends AppCompatActivity
 {
     private Pizza mPizza;
     private PizzaFactory mPizzaFactory;
     private Button mCheckoutButton;
-    private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton,mOliveButton,mExtraCheeseButton;
+    private ImageButton mSbutton, mMbutton, mLbutton, mOnionbutton, mMushroomsbutton, mPepperoniButton, mBasilButton,mOliveButton,mExtraCheeseButton, mVeganButton;
     private ImageView mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mOliveImage,mExtraCheeseImage;
     private TextView mPizzaCount, mTotalPrice;
     ArrayList<ImageView> extrasImages = new ArrayList<>();
     private static final String currency = " NIS";
     private static int count = 1;
+    private boolean veganClicked = false;
 
     /**
      * Create a pizza instance, and set all the button in the activity in their default state
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_pizza_details);
 
         //pizza setting
         mPizzaFactory = PizzaFactory.getPizzaFactory();
@@ -63,16 +64,17 @@ public class MainActivity extends AppCompatActivity
         mExtraCheeseButton = findViewById(R.id.button_extra_cheese);
         mBasilButton = findViewById(R.id.button_basil);
         mCheckoutButton = findViewById(R.id.checkout_button);
+        mVeganButton = findViewById(R.id.vegan_button);
 
         //textView setting
         mTotalPrice = findViewById(R.id.total_price);
+        mPizzaCount = findViewById(R.id.pizza_count);
         mMushroomsImage = findViewById(R.id.mushrooms_image);
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mOnionImage = findViewById(R.id.onion_image);
         mBasilImage = findViewById(R.id.basil_image);
         mOliveImage= findViewById(R.id.olives_image);
         mExtraCheeseImage= findViewById(R.id.extra_cheese_image);
-        mPizzaCount = findViewById(R.id.pizza_count);
         extrasImages = new ArrayList<>(Arrays.asList(mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage,mExtraCheeseImage,mOliveImage));
         Bundle bundle = getIntent().getExtras();
         setInvisible(extrasImages);
@@ -89,6 +91,8 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed()
     {
         super.onBackPressed();
+        mPizzaFactory.getPizzas().remove(mPizzaFactory.getCurrentPizzaIndex());
+        mPizzaFactory.setCurrentPizzaIndex(mPizzaFactory.getCurrentPizzaIndex()-1);
     }
 
     @SuppressLint("SetTextI18n")
@@ -496,6 +500,21 @@ public class MainActivity extends AppCompatActivity
         {
             flashSML();
         }
+    }
+
+    public void clickVegan(View view) {
+        if (!veganClicked) {
+            mPizza.setVegan(true);
+            mVeganButton.setImageResource(R.drawable.ic_vegan);
+            Toast toast = Toast.makeText(this, R.string.vegan_toast, Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            mPizza.setVegan(false);
+            mVeganButton.setImageResource(R.drawable.ic_vegan_gray);
+            Toast toast = Toast.makeText(this, R.string.not_vegan_toast, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        veganClicked = !veganClicked;
     }
 
     class Helper extends TimerTask
