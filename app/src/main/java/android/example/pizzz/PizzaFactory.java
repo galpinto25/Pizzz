@@ -80,7 +80,7 @@ public class PizzaFactory
     }
 
     int getPizzasNumber() {
-        return currentPizza;
+        return currentPizza + 1;
     }
 
     String getTotalPizzasPriceDescription() {

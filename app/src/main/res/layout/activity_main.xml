@@ -82,6 +82,22 @@
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
+                android:id="@+id/button_basil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="0dp"
+                android:background="@null"
+                android:contentDescription="TODO"
+                android:onClick="ClickBasil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_pepperoni"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+                app:srcCompat="@drawable/ic_basil_white"
+                tools:ignore="VectorDrawableCompat" />
+
+            <ImageButton
                 android:id="@+id/button_pepperoni"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,22 +112,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
                 app:srcCompat="@drawable/ic_pepperoni_white"
-                tools:ignore="VectorDrawableCompat" />
-
-            <ImageButton
-                android:id="@+id/button_basil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="0dp"
-                android:background="@null"
-                android:contentDescription="TODO"
-                android:onClick="ClickBasil"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button_pepperoni"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-                app:srcCompat="@drawable/ic_basil_white"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageButton
