@@ -71,12 +71,16 @@ public class PizzaFactory
         return pizzas;
     }
 
-    int getTotalPizzasPrice() {
+    private int getTotalPizzasPrice() {
         int totalPrice = 0;
         for (Pizza pizza: pizzas) {
             totalPrice += pizza.getTotalPrice();
         }
         return totalPrice;
+    }
+
+    int getPizzasNumber() {
+        return currentPizza;
     }
 
     String getTotalPizzasPriceDescription() {

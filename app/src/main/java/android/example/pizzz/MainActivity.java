@@ -80,9 +80,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        mPizza = mPizzaFactory.getCurrentPizza();
-        mPizza.reset();
+        if (mPizzaFactory.getPizzasNumber() < 1) {
+            super.onBackPressed();
+            mPizza = mPizzaFactory.getCurrentPizza();
+            mPizza.reset();
+        }
     }
 
     @SuppressLint("SetTextI18n")
