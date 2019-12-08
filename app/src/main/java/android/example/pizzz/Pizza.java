@@ -16,29 +16,11 @@ public class Pizza {
 //    private static Pizza pizza = null;
 
     // variable of type String
-    private String title;
     private PizzaSize size;
     private int sizePrice = 0;
     private int extrasPrice = 0;
     private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
     private int quantity = 1;
-    private boolean vegan = false;
-
-    void setTitle(String title) {
-        this.title = title;
-    }
-
-    String getTitle() {
-        return title;
-    }
-
-    public boolean getVegan() {
-        return vegan;
-    }
-
-    public void setVegan(boolean vegan) {
-        this.vegan = vegan;
-    }
 
     void setSize(PizzaSize size) {
         this.size = size;
@@ -203,20 +185,19 @@ public class Pizza {
             Pair pair = (Pair) entry.getValue();
             if (pair.first.equals(true)) {
                 String extraOutput = entry.getKey().toString().toLowerCase().replace("_", " ");
-                description.append("\t\t").append(extraOutput.substring(0, 1).toUpperCase()).append(extraOutput.substring(1))
-                        .append(" - ").append(pair.second).append("\n");
+                description.append(extraOutput.substring(0, 1).toUpperCase()).append(extraOutput.substring(1)).append("\n");
             }
         }
-        return "\t\t" + description.toString().trim();
+        return description.toString().trim();
     }
 
     String getSizeDescription() {
         String pizzaSizeText = this.getSize().toString().toLowerCase();
-        return "\t\t" + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1) + " - " + this.getSizePrice();
+        return "\t\t" + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
     }
 
     String getQuantityDescription() {
-        return "\t\t x " + this.getQuantity();
+        return Integer.toString(this.getQuantity());
     }
 
     String getTotalPriceDescription() {

@@ -4,20 +4,17 @@
     <string name="total_price">Your Pizzz</string>
     <string name="price_button">Button</string>
     <string name="app_intro">your pizzz is\njust a swipe away</string>
-    <string name="checkout_title">Your Pizzz</string>
+    <string name="checkout_title">Your Receipt</string>
     <string name="hey_user">Hi, Coral</string>
-    <string name="arrow_left"><![CDATA[<<<]]></string>
-    <string name="arrow_right"><![CDATA[>>>]]></string>
     <string name="copyright_symbol">©</string>
     <string name="pizza_description">Pizza Size:\nExtras:\nPrice:</string>
     <string name="default_count">1</string>
     <string name="toast_message">hyushhhh byeushhhhh</string>
-    <string name="not_vegan_toast">oh no, why not vegan? </string>
-    <string name="vegan_toast">the cow is happy now :) </string>
     <string name="max_pizzas_order_message">sorry, we can\'t deliver more\nthan 3 pizzz in one order</string>
     <string name="cannot_back_toast">sorry, no regrets, YOLO!!</string>
     <string name="delivery_conf_message">YOUR PIZZZ IS ON ITS WAY!</string>
     <string name="initial_price">0 NIS</string>
     <string name="checkout_button_message">Pizzz it!</string>
     <string name="default_price">34 NIS</string>
+    <string name="_1_x">1 x</string>
 </resources>

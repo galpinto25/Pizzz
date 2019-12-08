@@ -17,7 +17,6 @@ public class PizzaFactory
         currentPizza = 0;
         pizzas = new ArrayList<>();
         Pizza pizza = new Pizza();
-        pizza.setTitle("Pizzz #" + (currentPizza + 1));
         pizzas.add(pizza);
     }
 
@@ -41,7 +40,6 @@ public class PizzaFactory
     {
         //change the current pizza to be the new one with changes
         pizzas.set(currentPizza, pizzaToAdd);
-        pizzaToAdd.setTitle("Pizzz #" + (currentPizza + 1));
     }
 
     void setCurrentPizzaIndex(int newCurrentPizza)
@@ -60,7 +58,6 @@ public class PizzaFactory
         if ((currentPizza <= maxPizzas - 1) && (currentPizza >= 0))
         {
             Pizza pizza = new Pizza();
-            pizza.setTitle("Pizzz #" + (currentPizza + 1));
             pizzas.add(pizza);
         }
     }
@@ -97,7 +94,7 @@ public class PizzaFactory
     }
 
     String getTotalPizzasPriceDescription() {
-        return "Total: " + this.getTotalPizzasPrice() + " NIS";
+        return this.getTotalPizzasPrice() + " NIS";
     }
 
     public void reset()
@@ -105,7 +102,6 @@ public class PizzaFactory
         currentPizza = 0;
         pizzas = new ArrayList<>();
         Pizza pizza = new Pizza();
-        pizza.setTitle("Pizzz #" + (currentPizza + 1));
         pizzas.add(pizza);
     }
 
@@ -113,10 +109,8 @@ public class PizzaFactory
     {
         Pizza newPizza = new Pizza();
         newPizza.setSize(oldPizza.getSize());
-        newPizza.setTitle(oldPizza.getTitle());
         newPizza.setSizePrice(oldPizza.getSizePrice());
         newPizza.setExtrasPrice(oldPizza.getExtrasPrice());
-        newPizza.setVegan(oldPizza.getVegan());
         newPizza.setQuantity(oldPizza.getQuantity());
         List<PizzaExtra> extras = oldPizza.getExtras();
         for (PizzaExtra pizzaExtra: extras)

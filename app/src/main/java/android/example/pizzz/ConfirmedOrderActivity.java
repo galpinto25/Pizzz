@@ -39,19 +39,19 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
 
 
     private void setExtrasImages() {
-        ImageView mMushroomsImage = findViewById(R.id.mushrooms_image_c);
-        ImageView mPepperoniImage = findViewById(R.id.pepperoni_image_c);
-        ImageView mOnionImage = findViewById(R.id.onion_image_c);
-        ImageView mBasilImage = findViewById(R.id.basil_image_c);
-        ImageView mOliveImage = findViewById(R.id.olives_image_c);
-        ImageView mExtraCheeseImage = findViewById(R.id.extra_cheese_image_c);
-        extras.put(PizzaExtra.MUSHROOMS, mMushroomsImage);
-        extras.put(PizzaExtra.PEPPERONI, mPepperoniImage);
-        extras.put(PizzaExtra.ONION, mOnionImage);
-        extras.put(PizzaExtra.OLIVES, mOliveImage);
-        extras.put(PizzaExtra.BASIL, mBasilImage);
-        extras.put(PizzaExtra.EXTRA_CHEESE, mExtraCheeseImage);
-        setInvisible(new ImageView[]{mMushroomsImage, mOnionImage, mPepperoniImage, mBasilImage, mExtraCheeseImage, mOliveImage});
+        ImageView mushroomsImage = findViewById(R.id.mushrooms_image_c);
+        ImageView pepperoniImage = findViewById(R.id.pepperoni_image_c);
+        ImageView onionImage = findViewById(R.id.onion_image_c);
+        ImageView basilImage = findViewById(R.id.basil_image_c);
+        ImageView oliveImage = findViewById(R.id.olives_image_c);
+        ImageView extraCheeseImage = findViewById(R.id.extra_cheese_image_c);
+        extras.put(PizzaExtra.MUSHROOMS, mushroomsImage);
+        extras.put(PizzaExtra.PEPPERONI, pepperoniImage);
+        extras.put(PizzaExtra.ONION, onionImage);
+        extras.put(PizzaExtra.OLIVES, oliveImage);
+        extras.put(PizzaExtra.BASIL, basilImage);
+        extras.put(PizzaExtra.EXTRA_CHEESE, extraCheeseImage);
+        setInvisible(new ImageView[]{mushroomsImage, onionImage, pepperoniImage, basilImage, extraCheeseImage, oliveImage});
 
     }
 
@@ -68,14 +68,5 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT);
         toast.show();
     }
-
-//    private void showPizza() {
-//        Pizza pizza = Pizza.getInstance();
-////      if there is no pizza instance, choose default pizza
-//        if (pizza.getSize() == PizzaSize.NONE) {
-//            pizza.setSize(PizzaSize.SMALL);
-//            pizza.setSizePrice(Pizza.SMALL_PRICE);
-//        }
-
 
 }

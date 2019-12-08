@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CheckoutActivity extends AppCompatActivity {
+public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.ItemClickListener {
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private PizzaAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ImageView confirmButton;
 
@@ -34,11 +34,20 @@ public class CheckoutActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
-        mAdapter = new PizzaAdapter(this, PizzaFactory.getPizzaFactory().getPizzas());
-        recyclerView.setAdapter(mAdapter);
+        adapter = new PizzaAdapter(this, PizzaFactory.getPizzaFactory().getPizzas());
+        adapter.setClickListener(new PizzaAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                CheckoutActivity.this.onItemClick(view, position);
+            }
+        });
+        recyclerView.setAdapter(adapter);
 
         confirmButton = (ImageView) findViewById(R.id.confirm_button);
+        setTotalPrice();
+    }
 
+    void setTotalPrice() {
         TextView pizzasTotalPrice = (TextView) findViewById(R.id.pizzas_total_price);
         SpannableString priceString = new SpannableString(PizzaFactory.getPizzaFactory().getTotalPizzasPriceDescription());
         priceString.setSpan(new RelativeSizeSpan(0.8f), priceString.length() - 3, priceString.length(), 0);
@@ -66,30 +75,11 @@ public class CheckoutActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        confirmButton.setImageResource(R.drawable.ic_ok_button_black);
     }
 
-    //    private String getPizzaDescription() {
-//        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
-////      if there is no pizza instance, choose default pizza
-//        if (pizza.getSize() == PizzaSize.NONE) {
-//            pizza.setSize(PizzaSize.SMALL);
-//            pizza.setSizePrice(Pizza.SMALL_PRICE);
-//        }
-//        String pizzaSizeText = pizza.getSize().toString().toLowerCase();
-//        String sizeDescription = "Pizza Size: " + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
-//        String extrasDescription = "\n\nExtras: " + pizza.getExtrasDescription();
-//        String totalPriceDescription = "\n\nTotal Price: " + (pizza.getTotalPrice()) + " NIS";
-//        return sizeDescription + extrasDescription + totalPriceDescription;
-//    }
-
     public void clickConfirm(View view) {
-        confirmButton.setImageResource(R.drawable.ic_ok_button_white);
         Intent intent = new Intent(CheckoutActivity.this, ConfirmedOrderActivity.class);
         startActivity(intent);
-        //        TODO: change confirm button to be seen as pushed after click on it
-//        mTotalPrice.setBackgroundResource(R.drawable.ic_price_button_white);
-//        mTotalPrice.setTextColor(Color.BLACK);
     }
 
     //newFunctions:
@@ -111,89 +101,18 @@ public class CheckoutActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * edit pizza 1
-     */
-    public void clickEditSamePizza1(View view)
-    {
-        Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
-        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(0);
-        startActivity(intent);
-    }
-
-    /**
-     * edit pizza 2
-     */
-    public void clickEditSamePizza2(View view)
-    {
-        Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
-        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(1);
-        startActivity(intent);
-    }
-
-    /**
-     * edit pizza 3
-     */
-    public void clickEditSamePizza3(View view)
-    {
-        Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
-        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(2);
-        startActivity(intent);
-    }
-
-    /**
-     * addSamePizza1
-     */
-    public void clickAddSamePizza1()
-    {
-            Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(0);
-            if (pizza.getQuantity() >=3 )
-            {
-                int x = 5;
-                //TODO: print a message that cannot add more than 3 pizzas
-            }
-            else
-            {
-                pizza.incCount();
-                //TODO: update counter/details, print newCount
-            }
-    }
-
-    /**
-     * addSamePizza2
-     */
-    public void clickAddSamePizza2()
-    {
-        Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(1);
-        if (pizza.getQuantity() >=3 )
-        {
-            int x = 5;
-            //TODO: print a message that cannot add more than 3 pizzas
-        }
-        else
-        {
-            pizza.incCount();
-            //TODO: update counter/details, print newCount
+    @Override
+    public void onItemClick(View view, int position) {
+        PizzaFactory.getPizzaFactory().getPizzas().remove(position);
+        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(PizzaFactory.getPizzaFactory().getCurrentPizzaIndex() - 1);
+        adapter = new PizzaAdapter(CheckoutActivity.this, PizzaFactory.getPizzaFactory().getPizzas());
+        recyclerView.setAdapter(adapter);
+        setTotalPrice();
+        if (PizzaFactory.getPizzaFactory().getPizzasNumber() == 0) {
+            Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message, Toast.LENGTH_SHORT);
+            toast.show();
+//            Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
+//            startActivity(intent);
         }
     }
-
-    /**
-     * addSamePizza2
-     */
-    public void clickAddSamePizza3()
-    {
-        Pizza pizza = PizzaFactory.getPizzaFactory().getPizzaByIndex(2);
-        if (pizza.getQuantity() >=3 )
-        {
-            int x = 5;
-            //TODO: print a message that cannot add more than 3 pizzas
-        }
-        else
-        {
-            pizza.incCount();
-            //TODO: update counter/details, print newCount
-        }
-    }
-
-
 }
