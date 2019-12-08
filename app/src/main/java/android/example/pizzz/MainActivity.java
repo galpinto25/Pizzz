@@ -47,8 +47,12 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //pizza setting
         mPizzaFactory = PizzaFactory.getPizzaFactory();
         mPizza = mPizzaFactory.getCurrentPizza();
+
+        //buttons setting
         mSbutton = findViewById(R.id.small_button);
         mMbutton = findViewById(R.id.medium_button);
         mLbutton = findViewById(R.id.large_button);
@@ -58,8 +62,10 @@ public class MainActivity extends AppCompatActivity
         mOliveButton = findViewById(R.id.button_olives);
         mExtraCheeseButton = findViewById(R.id.button_extra_cheese);
         mBasilButton = findViewById(R.id.button_basil);
-        mTotalPrice = findViewById(R.id.total_price);
         mCheckoutButton = findViewById(R.id.checkout_button);
+
+        //textView setting
+        mTotalPrice = findViewById(R.id.total_price);
         mMushroomsImage = findViewById(R.id.mushrooms_image);
         mPepperoniImage = findViewById(R.id.pepperoni_image);
         mOnionImage = findViewById(R.id.onion_image);
@@ -71,6 +77,7 @@ public class MainActivity extends AppCompatActivity
         Bundle bundle = getIntent().getExtras();
         setInvisible(extrasImages);
         mPizzaCount.setText(Integer.toString(count));
+
         if (bundle == null) {
             mPizza.reset();
 //            changePizzaSize(PizzaSize.NONE);
@@ -79,12 +86,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onBackPressed() {
-        if (mPizzaFactory.getPizzasNumber() < 1) {
-            super.onBackPressed();
-            mPizza = mPizzaFactory.getCurrentPizza();
-            mPizza.reset();
-        }
+    public void onBackPressed()
+    {
+        super.onBackPressed();
     }
 
     @SuppressLint("SetTextI18n")
@@ -106,8 +110,10 @@ public class MainActivity extends AppCompatActivity
             extras.put(PizzaExtra.OLIVES, mOliveImage);
             extras.put(PizzaExtra.BASIL, mBasilImage);
             extras.put(PizzaExtra.EXTRA_CHEESE, mExtraCheeseImage);
-            if (pizzaExtras.size() > 0) {
-                for (PizzaExtra pizzaExtra : pizzaExtras) {
+            if (pizzaExtras.size() > 0)
+            {
+                for (PizzaExtra pizzaExtra : pizzaExtras)
+                {
                     extras.get(pizzaExtra).setVisibility(View.VISIBLE);
                     addExtras(pizzaExtra);
                 }
@@ -443,12 +449,16 @@ public class MainActivity extends AppCompatActivity
      * @param view
      */
     public void ClickCheckout(View view) throws InterruptedException {
-        if (mPizza.getSize() == PizzaSize.NONE) {
+        if (mPizza.getSize() == PizzaSize.NONE)
+        {
             flashSML();
-        } else {
+        }
+        else
+        {
             Intent intent = new Intent(this, CheckoutActivity.class);
             mCheckoutButton.setBackgroundResource(R.drawable.ic_price_button_white);
             mCheckoutButton.setTextColor(Color.BLACK);
+            mPizzaFactory.setNewPizza(mPizza);
             startActivity(intent);
         }
     }

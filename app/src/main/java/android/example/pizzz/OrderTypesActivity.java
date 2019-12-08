@@ -27,9 +27,14 @@ public class OrderTypesActivity extends AppCompatActivity
         super.onResume();
         mReOrder.setImageResource(R.drawable.ic_re_order_white);
         mNewOrder.setImageResource(R.drawable.ic_neworder_white);
+        if (PizzaFactory.getPizzaFactory().getPizzasNumber() != 0)
+        {
+            PizzaFactory.getPizzaFactory().reset();
+        }
     }
 
-    public void click_re_order(View view) throws Exception {
+    public void click_re_order(View view) throws Exception
+    {
         mReOrder.setImageResource(R.drawable.ic_re_order_black);
         mNewOrder.setImageResource(R.drawable.ic_neworder_white);
 
@@ -41,8 +46,10 @@ public class OrderTypesActivity extends AppCompatActivity
         pizza.setMushrooms(true);
         pizza.setBasil(true);
         pizza.setExtrasPrice(Pizza.MUSHROOMS_PRICE + Pizza.BASIL_PRICE);
+        PizzaFactory.getPizzaFactory().setNewPizza(pizza);
 
         Intent intent = new Intent(this, CheckoutActivity.class);
+        intent.putExtra("ReOrder pressed",1);
         startActivity(intent);
     }
 

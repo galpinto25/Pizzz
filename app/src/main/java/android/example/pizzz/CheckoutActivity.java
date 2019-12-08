@@ -46,7 +46,21 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+        {
+            if (bundle.getInt("ReOrder pressed") == 1)
+            {
+                super.onBackPressed();
+            }
+        }
+        else
+        {
+            Toast toast = Toast.makeText(this, R.string.cannot_back_toast, Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     @Override

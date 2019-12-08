@@ -118,6 +118,21 @@ public class Pizza {
         return list;
     }
 
+    void setExtras(Map<PizzaExtra, Pair<Boolean, Integer>> newExtras)
+    {
+        extras = newExtras;
+    }
+
+    Map<PizzaExtra, Pair<Boolean, Integer>> getExtrasForCopy()
+    {
+        return extras;
+    }
+
+    void setQuantity(int newQuantity)
+    {
+        quantity = newQuantity;
+    }
+
     void incCount() {
         quantity++;
     }
