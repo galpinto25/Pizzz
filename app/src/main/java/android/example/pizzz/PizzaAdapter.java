@@ -103,8 +103,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
                 intent.putExtra("pizza_number", getAdapterPosition());
                 context.startActivity(intent);
             }
-            else if (view.getId()==deleteButton.getId()){
-                if (clickListener != null) clickListener.onItemClick(view, getAdapterPosition());
+            else if (view.getId() == deleteButton.getId()){
+                if (clickListener != null) clickListener.onPizzaDeleteClick(view, getAdapterPosition());
             }
         }
     }
@@ -121,7 +121,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onPizzaDeleteClick(View view, int position);
     }
 
     private void setInvisible(ImageView[] imageViewArrayList) {

@@ -11,10 +11,12 @@ public class PizzaFactory
     private ArrayList<Pizza> pizzas;
     private int currentPizza;
     final static private int maxPizzas = 3;
+    private int indexOfPizzaThatEditedNow;
 
     private PizzaFactory()
     {
         currentPizza = 0;
+        indexOfPizzaThatEditedNow = 0;
         pizzas = new ArrayList<>();
         Pizza pizza = new Pizza();
         pizzas.add(pizza);
@@ -33,13 +35,15 @@ public class PizzaFactory
     Pizza getCurrentPizza()
     {
         Pizza pizza =  pizzas.get(currentPizza);
+        indexOfPizzaThatEditedNow = currentPizza;
         return copyPizza(pizza);
     }
 
     void setNewPizza(Pizza pizzaToAdd)
     {
         //change the current pizza to be the new one with changes
-        pizzas.set(currentPizza, pizzaToAdd);
+        pizzas.set(indexOfPizzaThatEditedNow, pizzaToAdd);
+        indexOfPizzaThatEditedNow = currentPizza;
     }
 
     void setCurrentPizzaIndex(int newCurrentPizza)
@@ -55,6 +59,7 @@ public class PizzaFactory
     void createNewPizza()
     {
         currentPizza++;
+        indexOfPizzaThatEditedNow++;
         if ((currentPizza <= maxPizzas - 1) && (currentPizza >= 0))
         {
             Pizza pizza = new Pizza();
@@ -67,6 +72,7 @@ public class PizzaFactory
         if ((index >= 0) && (index <= maxPizzas) && pizzas.get(index) != null)
         {
             Pizza pizza =  pizzas.get(index);
+            indexOfPizzaThatEditedNow = index;
             return copyPizza(pizza);
         }
         return null;
