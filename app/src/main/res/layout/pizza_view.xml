@@ -118,8 +118,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mushrooms_image"
-                tools:layout_editor_absoluteX="39dp" />
+                app:layout_constraintTop_toBottomOf="@+id/mushrooms_image" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -128,7 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_black"
-            android:letterSpacing="1.5"
+            android:letterSpacing=".05"
             android:text="Pizza1"
             android:textColor="@color/colorAccent"
             android:textSize="18sp"
@@ -139,14 +138,14 @@
             android:id="@+id/pizza_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="365dp"
+            android:layout_marginStart="6dp"
             android:fontFamily="@font/roboto"
             android:text="S"
             android:textColor="@color/olives_background"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/pizza_quantity" />
 
         <TextView
             android:id="@+id/pizza_extras"
@@ -164,7 +163,6 @@
             android:id="@+id/pizza_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="1dp"
             android:fontFamily="@font/roboto"
             android:text="@string/_1_x"
             android:textColor="@color/olives_background"

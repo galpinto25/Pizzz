@@ -9,13 +9,13 @@
 
     <TextView
         android:id="@+id/pizzas_total_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="127dp"
-        android:layout_marginEnd="315dp"
+        android:layout_width="259dp"
+        android:layout_height="33dp"
         android:layout_marginStart="38dp"
+        android:layout_marginEnd="315dp"
+        android:layout_marginBottom="124dp"
         android:fontFamily="@font/roboto"
-        android:gravity="center_horizontal|center_vertical"
+        android:gravity="center_vertical"
         android:letterSpacing=".05"
         android:padding="1dp"
         android:text="100 NIS"
@@ -24,6 +24,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -59,15 +60,12 @@
         android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="174dp"
-        android:layout_marginEnd="20dp"
         android:layout_marginStart="38dp"
+        android:layout_marginBottom="174dp"
         android:background="@android:color/transparent"
         android:onClick="clickAddNew"
         android:src="@drawable/ic_add_another"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RelativeLayout

@@ -44,7 +44,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         Pizza pizza = data.get(position);
         holder.pizzaNumber.setText("Pizza" + (position + 1));
-        holder.pizzaSize.setText(pizza.getSizeDescription().charAt(0));
+        holder.pizzaSize.setText(pizza.getSizeDescription().substring(0, 1));
         holder.pizzaExtras.setText(pizza.getExtrasDescription());
         holder.pizzaQuantity.setText(pizza.getQuantityDescription());
         SpannableString pizzaPriceString = new SpannableString(pizza.getTotalPriceDescription());

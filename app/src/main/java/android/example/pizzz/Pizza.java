@@ -193,11 +193,11 @@ public class Pizza {
 
     String getSizeDescription() {
         String pizzaSizeText = this.getSize().toString().toLowerCase();
-        return "\t\t" + pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
+        return pizzaSizeText.substring(0, 1).toUpperCase() + pizzaSizeText.substring(1);
     }
 
     String getQuantityDescription() {
-        return Integer.toString(this.getQuantity());
+        return this.getQuantity() + " x";
     }
 
     String getTotalPriceDescription() {
