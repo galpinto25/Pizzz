@@ -72,8 +72,8 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
-        android:layout_width="392dp"
-        android:layout_height="468dp"
+        android:layout_width="389dp"
+        android:layout_height="437dp"
         app:layout_constraintBottom_toTopOf="@+id/add_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
