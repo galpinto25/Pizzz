@@ -11,7 +11,7 @@
         android:id="@+id/hello_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="255dp"
         android:text="@string/hey_user"
         android:textColor="@color/colorAccent"
         android:textSize="36sp"
@@ -24,13 +24,12 @@
         android:id="@+id/new_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:background="#00FFFFFF"
         android:onClick="click_new"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.576"
+        app:layout_constraintTop_toBottomOf="@+id/choose"
         app:srcCompat="@drawable/ic_neworder_white"
         tools:ignore="VectorDrawableCompat" />
 
@@ -50,18 +49,16 @@
         app:srcCompat="@drawable/ic_re_order_white"
         tools:ignore="VectorDrawableCompat" />
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="116dp"
-        android:layout_height="111dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginBottom="27dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/new_order"
+    <TextView
+        android:id="@+id/choose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:text="@string/choose"
+        android:textColor="#000000"
+        android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hello_text"
-        app:srcCompat="@drawable/ic_profile_image"
-        tools:ignore="VectorDrawableCompat" />
+        app:layout_constraintTop_toBottomOf="@+id/hello_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

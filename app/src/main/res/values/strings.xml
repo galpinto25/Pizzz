@@ -9,6 +9,7 @@
     <string name="copyright_symbol">©</string>
     <string name="pizza_description">Pizza Size:\nExtras:\nPrice:</string>
     <string name="default_count">1</string>
+    <string name="choose">Choose your Pizzz</string>
     <string name="toast_message">hyushhhh byeushhhhh</string>
     <string name="max_pizzas_order_message">sorry, we can\'t deliver more\nthan 3 pizzz in one order</string>
     <string name="min_pizzas_order_message">stop being negative!</string>
