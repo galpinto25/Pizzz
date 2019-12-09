@@ -19,4 +19,5 @@
     <string name="checkout_button_message">Pizzz it!</string>
     <string name="default_price">34 NIS</string>
     <string name="_1_x">1</string>
+    <string name="choose_size_title">choose\nyour size</string>
 </resources>

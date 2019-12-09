@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="176dp">
+        android:layout_height="182dp">
 
         <ImageButton
             android:id="@+id/delete_button"
@@ -113,7 +113,7 @@
                 android:id="@+id/pizza_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/default_price"
@@ -127,10 +127,10 @@
 
         <ImageButton
             android:id="@+id/plus_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="16dp"
+            android:layout_width="37dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
             android:background="@android:color/transparent"
             android:onClick="clickPlusCount"
             android:src="@drawable/ic_plus"
@@ -139,10 +139,10 @@
 
         <ImageButton
             android:id="@+id/minus_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="28dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="12dp"
             android:background="@android:color/transparent"
             android:onClick="clickMinusCount"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -179,7 +179,7 @@
             android:id="@+id/pizza_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="41dp"
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/roboto"
             android:text="@string/_1_x"
