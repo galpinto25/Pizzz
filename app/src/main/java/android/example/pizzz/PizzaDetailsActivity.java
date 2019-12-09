@@ -28,8 +28,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
 {
     private Pizza pizza;
     private PizzaFactory pizzaFactory;
-    private Button checkoutButton;
-    private ImageButton sbutton, mbutton, lbutton, onionbutton, mushroomsbutton, pepperoniButton, basilButton, oliveButton, extraCheeseButton;
+    private ImageButton sbutton, mbutton, lbutton, onionbutton, mushroomsbutton, pepperoniButton, basilButton, oliveButton, extraCheeseButton,checkoutButton;
     private ImageView mushroomsImage, onionImage, pepperoniImage, basilImage, oliveImage, extraCheeseImage;
     private TextView pizzaCount, totalPrice;
     ArrayList<ImageView> extrasImages = new ArrayList<>();
@@ -66,7 +65,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
 
         //textView setting
         totalPrice = findViewById(R.id.total_price);
-        pizzaCount = findViewById(R.id.pizza_count);
         mushroomsImage = findViewById(R.id.mushrooms_image);
         pepperoniImage = findViewById(R.id.pepperoni_image);
         onionImage = findViewById(R.id.onion_image);
@@ -128,11 +126,9 @@ public class PizzaDetailsActivity extends AppCompatActivity
 //            toast.show();
         } else {
             pizza = pizzaFactory.getCurrentPizza();
-            checkoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
-            checkoutButton.setTextColor(Color.WHITE);
+            checkoutButton.setImageResource(R.drawable.ic_continue);
             if (pizza.getSize() == PizzaSize.NONE) {
-                checkoutButton.setBackgroundResource(R.drawable.ic_price_button_white);
-                checkoutButton.setTextColor(Color.BLACK);
+                checkoutButton.setImageResource(R.drawable.ic_continue_grey);
             }
         }
     }
@@ -164,8 +160,9 @@ public class PizzaDetailsActivity extends AppCompatActivity
             sbutton.setImageResource(R.drawable.ic_small_black);
             pizza.setSize(PizzaSize.SMALL);
             pizza.setSizePrice(Pizza.SMALL_PRICE);
-            checkoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
-            checkoutButton.setTextColor(Color.WHITE);
+            checkoutButton.setImageResource(R.drawable.ic_continue);
+
+
         }
         else
         {
@@ -177,8 +174,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
             mbutton.setImageResource(R.drawable.ic_medium_black);
             pizza.setSize(PizzaSize.MEDIUM);
             pizza.setSizePrice(Pizza.MEDIUM_PRICE);
-            checkoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
-            checkoutButton.setTextColor(Color.WHITE);
+            checkoutButton.setImageResource(R.drawable.ic_continue);
+
         }
         else
         {
@@ -190,8 +187,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
             lbutton.setImageResource(R.drawable.ic_large_black);
             pizza.setSize(PizzaSize.LARGE);
             pizza.setSizePrice(Pizza.LARGE_PRICE);
-            checkoutButton.setBackgroundResource(R.drawable.ic_price_button_black);
-            checkoutButton.setTextColor(Color.WHITE);
+            checkoutButton.setImageResource(R.drawable.ic_continue);
+
         }
         else
         {
@@ -462,8 +459,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
         else
         {
             Intent intent = new Intent(this, CheckoutActivity.class);
-            checkoutButton.setBackgroundResource(R.drawable.ic_price_button_white);
-            checkoutButton.setTextColor(Color.BLACK);
+            checkoutButton.setImageResource(R.drawable.ic_continue_grey);
+
             pizzaFactory.setNewPizza(pizza);
             startActivity(intent);
         }
