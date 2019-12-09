@@ -88,8 +88,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
         Bundle bundle = getIntent().getExtras();
         if (bundle == null)
         {
-            pizzaFactory.getPizzas().remove(pizzaFactory.getCurrentPizzaIndex());
-            pizzaFactory.setCurrentPizzaIndex(pizzaFactory.getCurrentPizzaIndex() - 1);
+            pizzaFactory.reset();
         }
     }
 
