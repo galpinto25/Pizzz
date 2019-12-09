@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Pizza {
 
-    final static int ONION_PRICE = 4, MUSHROOMS_PRICE = 5, PEPPERONI_PRICE = 11, BASIL_PRICE = 3, OLIVES_PRICE = 4, EXTRA_CHEESE_PRICE = 8;
+    final static int ONION_PRICE = 1, MUSHROOMS_PRICE = 4, PEPPERONI_PRICE = 5, BASIL_PRICE = 3, OLIVES_PRICE = 3, EXTRA_CHEESE_PRICE = 6;
     final static int SMALL_PRICE = 25, MEDIUM_PRICE = 35, LARGE_PRICE = 45;
 
     // static variable single_instance of type Singleton
@@ -197,7 +197,7 @@ public class Pizza {
     }
 
     String getQuantityDescription() {
-        return this.getQuantity() + " x";
+        return Integer.toString(this.getQuantity());
     }
 
     String getTotalPriceDescription() {

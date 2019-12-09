@@ -129,4 +129,18 @@ public class PizzaFactory
         }
         return newPizza;
     }
+
+    void incPizzaQuantity(int position)
+    {
+        Pizza pizza = getPizzaByIndex(position);
+        pizza.incCount();
+        setNewPizza(pizza);
+    }
+
+    void decPizzaQuantity(int position)
+    {
+        Pizza pizza = getPizzaByIndex(position);
+        pizza.decCount();
+        setNewPizza(pizza);
+    }
 }

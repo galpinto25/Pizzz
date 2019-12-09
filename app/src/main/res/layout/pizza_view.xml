@@ -8,12 +8,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="176dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pizza_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -33,9 +35,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0"
-
                 app:layout_constraintTop_toTopOf="parent"
+
+                app:layout_constraintVertical_bias="0"
                 app:srcCompat="@drawable/ic_pizza_small_base"
                 tools:ignore="VectorDrawableCompat" />
 
@@ -46,9 +48,9 @@
                 app:layout_constraintBottom_toBottomOf="@id/pizza_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintVertical_bias="0"
-
                 app:layout_constraintTop_toTopOf="parent"
+
+                app:layout_constraintVertical_bias="0"
                 app:srcCompat="@drawable/ic_pepperoni_small"
                 tools:ignore="VectorDrawableCompat" />
 
@@ -104,28 +106,55 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_extra_chees_small"
+                app:srcCompat="@drawable/ic_extra_cheese_small"
                 tools:ignore="VectorDrawableCompat" />
 
             <TextView
                 android:id="@+id/pizza_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/default_price"
                 android:textAlignment="center"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/olives_background"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/mushrooms_image" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ImageButton
+            android:id="@+id/plus_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="16dp"
+            android:background="@android:color/transparent"
+            android:onClick="clickPlusCount"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/pizza_quantity" />
+
+        <ImageButton
+            android:id="@+id/minus_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@android:color/transparent"
+            android:onClick="clickMinusCount"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_minus" />
+
         <TextView
             android:id="@+id/pizza_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/roboto_black"
             android:letterSpacing=".05"
             android:text="Pizza1"
@@ -135,26 +164,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/pizza_size"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:fontFamily="@font/roboto"
-            android:text="S"
-            android:textColor="@color/olives_background"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/pizza_quantity" />
-
-        <TextView
             android:id="@+id/pizza_extras"
-            android:layout_width="128dp"
-            android:layout_height="171dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="127dp"
+            android:layout_height="112dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="35dp"
             android:fontFamily="@font/roboto"
-            android:lineSpacingExtra="10sp"
             android:text="Mushrooms\nOnion"
             android:textColor="@color/olives_background"
             app:layout_constraintStart_toStartOf="parent"
@@ -164,10 +179,12 @@
             android:id="@+id/pizza_quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/roboto"
             android:text="@string/_1_x"
             android:textColor="@color/olives_background"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

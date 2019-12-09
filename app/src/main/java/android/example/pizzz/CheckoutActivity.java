@@ -31,7 +31,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // specifies a PizzaAdapter
-        updatePizzaAdpater();
+        updatePizzaAdapter();
 
         confirmButton = (ImageView) findViewById(R.id.confirm_button);
         setTotalPrice();
@@ -65,14 +65,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
     @Override
     protected void onResume() {
         super.onResume();
-        adapter = new PizzaAdapter(this, PizzaFactory.getPizzaFactory().getPizzas());
-        adapter.setClickListener(new PizzaAdapter.ItemClickListener() {
-            @Override
-            public void onPizzaDeleteClick(View view, int position) {
-                CheckoutActivity.this.onPizzaDeleteClick(view, position);
-            }
-        });
-        recyclerView.setAdapter(adapter);
+        updatePizzaAdapter();
     }
 
     public void clickConfirm(View view) {
@@ -107,7 +100,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
     {
         PizzaFactory.getPizzaFactory().getPizzas().remove(position);
         PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(PizzaFactory.getPizzaFactory().getCurrentPizzaIndex() - 1);
-        updatePizzaAdpater();
+        updatePizzaAdapter();
         setTotalPrice();
         if (PizzaFactory.getPizzaFactory().getPizzasNumber() == 0)
         {
@@ -117,7 +110,37 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         }
     }
 
-    void updatePizzaAdpater()
+    @Override
+    public void incPizzaQuantity(View view, int position) {
+        if (PizzaFactory.getPizzaFactory().getPizzaByIndex(position).getQuantity() < 3)
+        {
+            PizzaFactory.getPizzaFactory().incPizzaQuantity(position);
+            updatePizzaAdapter();
+            setTotalPrice();
+        }
+        else
+        {
+            Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    @Override
+    public void decPizzaQuantity(View view, int position) {
+        if (PizzaFactory.getPizzaFactory().getPizzaByIndex(position).getQuantity() > 1)
+        {
+            PizzaFactory.getPizzaFactory().decPizzaQuantity(position);
+            updatePizzaAdapter();
+            setTotalPrice();
+        }
+        else
+        {
+            Toast toast = Toast.makeText(this, R.string.min_pizzas_order_message, Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    void updatePizzaAdapter()
     {
         adapter = new PizzaAdapter(CheckoutActivity.this, PizzaFactory.getPizzaFactory().getPizzas());
         recyclerView.setAdapter(adapter);
@@ -125,6 +148,16 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
             @Override
             public void onPizzaDeleteClick(View view, int position) {
                 CheckoutActivity.this.onPizzaDeleteClick(view, position);
+            }
+
+            @Override
+            public void incPizzaQuantity(View view, int position) {
+                CheckoutActivity.this.incPizzaQuantity(view, position);
+            }
+
+            @Override
+            public void decPizzaQuantity(View view, int position) {
+                CheckoutActivity.this.decPizzaQuantity(view, position);
             }
         });
     }

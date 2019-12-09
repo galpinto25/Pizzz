@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/pizza_image_c"
-        app:srcCompat="@drawable/ic_extra_chees_small"
+        app:srcCompat="@drawable/ic_extra_cheese_small"
         tools:ignore="VectorDrawableCompat" />
 
     <ImageView

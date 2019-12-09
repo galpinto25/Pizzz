@@ -30,10 +30,9 @@ public class PizzaDetailsActivity extends AppCompatActivity
     private PizzaFactory pizzaFactory;
     private ImageButton sbutton, mbutton, lbutton, onionbutton, mushroomsbutton, pepperoniButton, basilButton, oliveButton, extraCheeseButton,checkoutButton;
     private ImageView mushroomsImage, onionImage, pepperoniImage, basilImage, oliveImage, extraCheeseImage;
-    private TextView pizzaCount, totalPrice;
+    private TextView totalPrice;
     ArrayList<ImageView> extrasImages = new ArrayList<>();
     private static final String currency = " NIS";
-    private static int count = 1;
 
     /**
      * Create a pizza instance, and set all the button in the activity in their default state
@@ -74,7 +73,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
         extrasImages = new ArrayList<>(Arrays.asList(mushroomsImage, onionImage, pepperoniImage, basilImage, extraCheeseImage, oliveImage));
         Bundle bundle = getIntent().getExtras();
         setInvisible(extrasImages);
-        pizzaCount.setText(Integer.toString(count));
 
         if (bundle == null) {
             pizza.reset();
@@ -105,7 +103,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
             pizza = pizzaFactory.getPizzaByIndex(bundle.getInt("pizza_number"));
             pizza.setExtrasPrice(0);
             this.changePizzaSize(pizza.getSize());
-            pizzaCount.setText(Integer.toString(pizza.getQuantity()));
             List<PizzaExtra> pizzaExtras = pizza.getExtras();
             Map<PizzaExtra, ImageView> extras = new HashMap<>();
             extras.put(PizzaExtra.MUSHROOMS, mushroomsImage);
@@ -136,14 +133,15 @@ public class PizzaDetailsActivity extends AppCompatActivity
     /**
      * Updates the price on the total_price_button.
      */
+    @SuppressLint("SetTextI18n")
     private void updatePriceTag()
     {
-        // sets the price string as the total price of the pizza
-        SpannableString priceString = new SpannableString(pizza.getTotalPrice() + currency);
-        // doubles the price text size
-        int priceLen = Integer.toString(pizza.getTotalPrice()).length();
-        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0);
-        totalPrice.setText(priceString);
+//        // sets the price string as the total price of the pizza
+//        SpannableString priceString = new SpannableString(pizza.getTotalPrice() + currency);
+//        // doubles the price text size
+//        int priceLen = Integer.toString(pizza.getTotalPrice()).length();
+//        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0);
+        totalPrice.setText(pizza.getTotalPrice() + currency);
     }
 
     /**
@@ -463,41 +461,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
 
             pizzaFactory.setNewPizza(pizza);
             startActivity(intent);
-        }
-    }
-
-
-    //TODO: this two buutons below need to be deletd?
-    @SuppressLint("SetTextI18n")
-    public void clickMinusCount(View view) {
-        if (pizza.getSize() != PizzaSize.NONE) {
-            if (pizza.getQuantity() > 1) {
-                pizza.decCount();
-                pizzaCount.setText(Integer.toString(pizza.getQuantity()));
-            }
-            updatePriceTag();
-        }
-        else
-        {
-            flashSML();
-        }
-
-
-    }
-
-    @SuppressLint("SetTextI18n")
-    public void clickPlusCount(View view) throws InterruptedException {
-        if (pizza.getSize() != PizzaSize.NONE)
-        {
-            if (pizza.getQuantity() < 3) {
-                pizza.incCount();
-                pizzaCount.setText(Integer.toString(pizza.getQuantity()));
-            }
-            updatePriceTag();
-        }
-        else
-        {
-            flashSML();
         }
     }
 

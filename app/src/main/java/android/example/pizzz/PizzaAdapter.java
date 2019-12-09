@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.SpannableString;
+import android.text.method.ScrollingMovementMethod;
 import android.text.style.RelativeSizeSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,12 +45,13 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         Pizza pizza = data.get(position);
         holder.pizzaNumber.setText("Pizza" + (position + 1));
-        holder.pizzaSize.setText(pizza.getSizeDescription().substring(0, 1));
+//        holder.pizzaSize.setText(pizza.getSizeDescription().substring(0, 1));
         holder.pizzaExtras.setText(pizza.getExtrasDescription());
         holder.pizzaQuantity.setText(pizza.getQuantityDescription());
         SpannableString pizzaPriceString = new SpannableString(pizza.getTotalPriceDescription());
         pizzaPriceString.setSpan(new RelativeSizeSpan(0.8f), pizzaPriceString.length() - 3, pizzaPriceString.length(), 0);
         holder.pizzaPrice.setText(pizzaPriceString);
+        holder.pizzaExtras.setMovementMethod(new ScrollingMovementMethod());
         Map<PizzaExtra, ImageView> extras = new HashMap<>();
         extras.put(PizzaExtra.MUSHROOMS, holder.mushroomsImage);
         extras.put(PizzaExtra.PEPPERONI, holder.pepperoniImage);
@@ -72,16 +74,18 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView pizzaNumber, pizzaSize, pizzaExtras, pizzaQuantity, pizzaPrice;
         ImageView mushroomsImage, pepperoniImage, onionImage, basilImage, oliveImage, extraCheeseImage;
-        ImageButton deleteButton;
+        ImageButton deleteButton, plusButton, minusButton;
 
         ViewHolder(View itemView) {
             super(itemView);
             pizzaNumber = itemView.findViewById(R.id.pizza_num);
-            pizzaSize = itemView.findViewById(R.id.pizza_size);
+//            pizzaSize = itemView.findViewById(R.id.pizza_size);
             pizzaExtras = itemView.findViewById(R.id.pizza_extras);
             pizzaQuantity = itemView.findViewById(R.id.pizza_quantity);
             pizzaPrice = itemView.findViewById(R.id.pizza_price);
             deleteButton = itemView.findViewById(R.id.delete_button);
+            plusButton = itemView.findViewById(R.id.plus_count);
+            minusButton = itemView.findViewById(R.id.minus_count);
 
             mushroomsImage = itemView.findViewById(R.id.mushrooms_image);
             pepperoniImage = itemView.findViewById(R.id.pepperoni_image);
@@ -92,6 +96,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
 
             itemView.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
+            plusButton.setOnClickListener(this);
+            minusButton.setOnClickListener(this);
 
         }
 
@@ -105,6 +111,12 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
             }
             else if (view.getId() == deleteButton.getId()){
                 if (clickListener != null) clickListener.onPizzaDeleteClick(view, getAdapterPosition());
+            }
+            else if (view.getId() == plusButton.getId()){
+                if (clickListener != null) clickListener.incPizzaQuantity(view, getAdapterPosition());
+            }
+            else if (view.getId() == minusButton.getId()){
+                if (clickListener != null) clickListener.decPizzaQuantity(view, getAdapterPosition());
             }
         }
     }
@@ -122,6 +134,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onPizzaDeleteClick(View view, int position);
+        void incPizzaQuantity(View view, int position);
+        void decPizzaQuantity(View view, int position);
     }
 
     private void setInvisible(ImageView[] imageViewArrayList) {
