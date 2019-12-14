@@ -90,6 +90,13 @@ public class PizzaDetailsActivity extends AppCompatActivity
         {
             pizzaFactory.reset();
         }
+        else if (bundle.getInt("delete_pizza_pressed") == 1) {
+            pizzaFactory.reset();
+            Intent intent = new Intent(this, OrderTypesActivity.class);
+            startActivity(intent);
+//            Toast toast = Toast.makeText(this, "sorry, you must choose your pizzz", Toast.LENGTH_SHORT);
+//            toast.show();
+        }
     }
 
     @SuppressLint("SetTextI18n")

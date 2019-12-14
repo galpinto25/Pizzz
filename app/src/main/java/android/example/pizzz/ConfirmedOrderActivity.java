@@ -3,15 +3,11 @@ package android.example.pizzz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.io.Console;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,7 +61,7 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
         }
     }
     public void onBackPressed() {
-        Toast toast = Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, R.string.confirm_screen_onback_message, Toast.LENGTH_SHORT);
         toast.show();
     }
 

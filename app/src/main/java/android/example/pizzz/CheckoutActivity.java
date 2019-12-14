@@ -50,7 +50,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
         {
-            if (bundle.getInt("ReOrder pressed") == 1)
+            if (bundle.getInt("reorder_pressed") == 1)
             {
                 super.onBackPressed();
             }
@@ -106,6 +106,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         {
             PizzaFactory.getPizzaFactory().reset();
             Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
+            intent.putExtra("delete_pizza_pressed",1);
             startActivity(intent);
         }
     }

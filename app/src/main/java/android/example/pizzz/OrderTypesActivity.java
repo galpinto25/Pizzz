@@ -49,7 +49,7 @@ public class OrderTypesActivity extends AppCompatActivity
         PizzaFactory.getPizzaFactory().setNewPizza(pizza);
 
         Intent intent = new Intent(this, CheckoutActivity.class);
-        intent.putExtra("ReOrder pressed",1);
+        intent.putExtra("reorder_pressed",1);
         startActivity(intent);
     }
 

@@ -178,7 +178,7 @@ public class Pizza {
      */
     String getExtrasDescription() {
         if (!hasExtras()) {
-            return "\t\tno extras";
+            return "no extras";
         }
         StringBuilder description = new StringBuilder();
         for (Map.Entry entry : extras.entrySet()) {

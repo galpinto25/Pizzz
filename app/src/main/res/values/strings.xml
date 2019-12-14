@@ -10,8 +10,8 @@
     <string name="pizza_description">Pizza Size:\nExtras:\nPrice:</string>
     <string name="default_count">1</string>
     <string name="choose">Choose your Pizzz</string>
-    <string name="toast_message">hyushhhh byeushhhhh</string>
-    <string name="max_pizzas_order_message">sorry, we can\'t deliver more\nthan 3 pizzz in one order</string>
+    <string name="confirm_screen_onback_message">why going back?\nyour pizzz is on its way!</string>
+    <string name="max_pizzas_order_message">sorry, we can\'t deliver\nmore than 3 types of\npizzz in one order</string>
     <string name="min_pizzas_order_message">stop being negative!</string>
     <string name="cannot_back_toast">sorry, no regrets, YOLO!!</string>
     <string name="delivery_conf_message">Your Order\nis it!</string>
