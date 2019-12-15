@@ -82,4 +82,5 @@ public class OrderTypesActivity extends AppCompatActivity
         Intent intent = new Intent(this, PizzaDetailsActivity.class);
         startActivity(intent);
     }
+
 }

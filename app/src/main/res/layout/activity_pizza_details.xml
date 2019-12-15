@@ -10,11 +10,11 @@
 
     <ImageButton
         android:id="@+id/checkout_button"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
         android:layout_marginEnd="19dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/ic_price_button_white"
         android:foreground="@android:color/transparent"
         android:onClick="ClickCheckout"
@@ -29,15 +29,15 @@
         android:id="@+id/horizontalScrollView"
         android:layout_width="392dp"
         android:layout_height="104dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="64dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="15dp"
         android:overScrollMode="never"
         android:requiresFadingEdge="none"
         android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@+id/total_price"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/extras_title">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,9 +152,9 @@
         android:layout_width="209dp"
         android:layout_height="60dp"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="85dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pizza_details">
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/extras_title"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageButton
             android:id="@+id/small_button"
@@ -209,17 +209,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="562dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="@font/roboto"
         android:text="@string/pizza_details"
         android:textColor="@color/colorPrimary"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/size_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pizza_top"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintTop_toBottomOf="@id/pizza_top" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/pizza_top"
@@ -237,11 +236,9 @@
             android:layout_marginStart="70dp"
             android:layout_marginEnd="70dp"
             android:paddingTop="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
             app:srcCompat="@drawable/ic_pizza"
             tools:ignore="VectorDrawableCompat" />
 
@@ -315,9 +312,9 @@
         android:id="@+id/total_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/roboto"
         android:letterSpacing=".05"
         android:text="@string/initial_price"
@@ -334,46 +331,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/roboto_black"
         android:letterSpacing=".1"
-        android:text="Size"
 
+        android:text="Size"
         android:textColor="@color/colorAccent"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pizza_details" />
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/size_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="83dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="85dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/roboto_light"
         android:gravity="center_horizontal|left|center_vertical"
         android:letterSpacing="0.1"
         android:text="@string/choose_size_title"
         android:textColor="@color/olives_clicked_background"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/extras_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/relativeLayout"
-        app:layout_constraintTop_toBottomOf="@+id/pizza_details" />
+        app:layout_constraintStart_toEndOf="@+id/relativeLayout" />
 
     <TextView
         android:id="@+id/extras_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/roboto_black"
         android:letterSpacing=".1"
         android:text="Extras"
         android:textColor="@color/colorAccent"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        app:layout_constraintBottom_toTopOf="@+id/horizontalScrollView"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

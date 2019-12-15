@@ -1,5 +1,5 @@
 package android.example.pizzz;
-
+/*******************imports*******************************/
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -19,8 +19,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*******************pizza adapter*******************************/
+
+
+/**
+ * A class which represents an adapter of Pizza objects, which extends
+ * the RecyclerView.Adapter<PizzaAdapter.ViewHolder> class.
+ */
 public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> {
 
+    // class private variables declaration:
     private List<Pizza> data;
     private LayoutInflater inflater;
     private ItemClickListener clickListener;
@@ -31,7 +39,10 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         this.data = data;
     }
 
-    // inflates the row layout from xml when needed
+    /**
+     * inflates the row layout from xml when needed
+     * @return a new single pizza view
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,20 +50,27 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         return new ViewHolder(view);
     }
 
-    // binds the data to the TextView in each row
+    /**
+     *  binds the data to the View objects in each row
+     */
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        // sets the pizza attributes of each pizza
         Pizza pizza = data.get(position);
         holder.pizzaNumber.setText("Pizza" + (position + 1));
+        // todo check if needed with Efrat
 //        holder.pizzaSize.setText(pizza.getSizeDescription().substring(0, 1));
         holder.pizzaExtras.setText(pizza.getExtrasDescription());
         holder.pizzaQuantity.setText(pizza.getQuantityDescription());
         SpannableString pizzaPriceString = new SpannableString(pizza.getTotalPriceDescription());
-        pizzaPriceString.setSpan(new RelativeSizeSpan(0.8f), pizzaPriceString.length() - 3, pizzaPriceString.length(), 0);
+        pizzaPriceString.setSpan(new RelativeSizeSpan(0.8f),
+                pizzaPriceString.length() - 3, pizzaPriceString.length(), 0);
         holder.pizzaPrice.setText(pizzaPriceString);
         holder.pizzaExtras.setMovementMethod(new ScrollingMovementMethod());
+        // sets the included extras of each pizza
         Map<PizzaExtra, ImageView> extras = new HashMap<>();
+
         extras.put(PizzaExtra.MUSHROOMS, holder.mushroomsImage);
         extras.put(PizzaExtra.PEPPERONI, holder.pepperoniImage);
         extras.put(PizzaExtra.ONION, holder.onionImage);
@@ -64,29 +82,41 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         setExtras(extras, pizza);
     }
 
-    // total number of rows
+    /**
+     * @return the number of rows.
+     */
     @Override
     public int getItemCount() {
         return data.size();
     }
 
-    // stores and recycles views as they are scrolled off screen
+    /**
+     * Stores and recycles views as they are scrolled off screen.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        // todo check if 'pizzaSize' is needed with Efrat
         TextView pizzaNumber, pizzaSize, pizzaExtras, pizzaQuantity, pizzaPrice;
-        ImageView mushroomsImage, pepperoniImage, onionImage, basilImage, oliveImage, extraCheeseImage;
+        ImageView mushroomsImage, pepperoniImage, onionImage, basilImage, oliveImage,
+                extraCheeseImage;
         ImageButton deleteButton, plusButton, minusButton;
 
         ViewHolder(View itemView) {
             super(itemView);
+
+            // finds ids of TextView objects
             pizzaNumber = itemView.findViewById(R.id.pizza_num);
+            // todo check if 'pizzaSize' is needed with Efrat
 //            pizzaSize = itemView.findViewById(R.id.pizza_size);
             pizzaExtras = itemView.findViewById(R.id.pizza_extras);
             pizzaQuantity = itemView.findViewById(R.id.pizza_quantity);
             pizzaPrice = itemView.findViewById(R.id.pizza_price);
+
+            // finds ids of ImageButton objects
             deleteButton = itemView.findViewById(R.id.delete_button);
             plusButton = itemView.findViewById(R.id.plus_count);
             minusButton = itemView.findViewById(R.id.minus_count);
 
+            // finds ids of ImageView objects
             mushroomsImage = itemView.findViewById(R.id.mushrooms_image);
             pepperoniImage = itemView.findViewById(R.id.pepperoni_image);
             onionImage = itemView.findViewById(R.id.onion_image);
@@ -94,11 +124,11 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
             oliveImage = itemView.findViewById(R.id.olives_image);
             extraCheeseImage = itemView.findViewById(R.id.extra_cheese_image);
 
+            // sets onClickListeners
             itemView.setOnClickListener(this);
             deleteButton.setOnClickListener(this);
             plusButton.setOnClickListener(this);
             minusButton.setOnClickListener(this);
-
         }
 
         @Override
@@ -110,40 +140,55 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
                 context.startActivity(intent);
             }
             else if (view.getId() == deleteButton.getId()){
-                if (clickListener != null) clickListener.onPizzaDeleteClick(view, getAdapterPosition());
+                if (clickListener != null) {
+                    clickListener.onPizzaDeleteClick(view, getAdapterPosition());
+                }
             }
             else if (view.getId() == plusButton.getId()){
-                if (clickListener != null) clickListener.incPizzaQuantity(view, getAdapterPosition());
+                if (clickListener != null) {
+                    clickListener.incPizzaQuantity(view, getAdapterPosition());
+                }
             }
             else if (view.getId() == minusButton.getId()){
-                if (clickListener != null) clickListener.decPizzaQuantity(view, getAdapterPosition());
+                if (clickListener != null) {
+                    clickListener.decPizzaQuantity(view, getAdapterPosition());
+                }
             }
         }
     }
 
-    // convenience method for getting data at click position
-    Pizza getItem(int id) {
-        return data.get(id);
-    }
 
-    // allows clicks events to be caught
+    /**
+     * allows clicks events to be caught
+     */
     void setClickListener(ItemClickListener itemClickListener) {
         this.clickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
+    /**
+     * parent activity will implement this method to respond to click events
+      */
     public interface ItemClickListener {
         void onPizzaDeleteClick(View view, int position);
         void incPizzaQuantity(View view, int position);
         void decPizzaQuantity(View view, int position);
     }
 
+    /***
+     *
+     * @param imageViewArrayList
+     */
     private void setInvisible(ImageView[] imageViewArrayList) {
         for (ImageView imageView : imageViewArrayList) {
             imageView.setVisibility(View.INVISIBLE);
         }
     }
 
+    /**
+     *
+     * @param extras
+     * @param pizza
+     */
     private void setExtras(Map<PizzaExtra, ImageView> extras, Pizza pizza) {
         List<PizzaExtra> list = pizza.getExtras();
         if (list.size() > 0) {
@@ -152,4 +197,5 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
             }
         }
     }
+
 }
