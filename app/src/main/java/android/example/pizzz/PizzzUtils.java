@@ -7,8 +7,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-public class PizzzUtils {
+/**
+ * A class which includes useful functions.
+ */
+class PizzzUtils {
 
 
     static List<PizzaExtra> pizzaExtras = new ArrayList<>(Arrays.asList(PizzaExtra.MUSHROOMS,PizzaExtra.PEPPERONI,PizzaExtra.ONION, PizzaExtra.OLIVES,PizzaExtra.BASIL,PizzaExtra.EXTRA_CHEESE));
@@ -32,7 +36,7 @@ public class PizzzUtils {
         List<PizzaExtra> list = pizza.getExtras();
         if (list.size() > 0) {
             for (PizzaExtra pizzaExtra : list) {
-                extras.get(pizzaExtra).setVisibility(View.VISIBLE);
+                Objects.requireNonNull(extras.get(pizzaExtra)).setVisibility(View.VISIBLE);
             }
         }
     }

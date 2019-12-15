@@ -5,13 +5,18 @@ import android.util.Pair;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * todo complete doc
+ */
 public class PizzaFactory
 {
+    final static private int maxPizzasCanOrder = 3;
+
+    // class private variables declaration:
     private static PizzaFactory pizzaFactorySingletonObject = null;
     private ArrayList<Pizza> pizzas;
     private int currentPizzaIndex;
-    final static private int maxPizzasCanOrder = 3;
-    private int pizzaThatEditedNowIndex;
+    private int pizzaThatWasEditedNowIndex;
 
     /**
      * private constructor because factory is singleton
@@ -19,7 +24,7 @@ public class PizzaFactory
     private PizzaFactory()
     {
         currentPizzaIndex = 0;
-        pizzaThatEditedNowIndex = 0;
+        pizzaThatWasEditedNowIndex = 0;
         pizzas = new ArrayList<>();
         Pizza pizza = new Pizza();
         pizzas.add(pizza);
@@ -38,14 +43,14 @@ public class PizzaFactory
     Pizza getCurrentPizza()
     {
         Pizza pizza =  pizzas.get(currentPizzaIndex);
-        pizzaThatEditedNowIndex = currentPizzaIndex;
+        pizzaThatWasEditedNowIndex = currentPizzaIndex;
         return copyPizza(pizza);
     }
 
     void setNewPizza(Pizza pizzaToAdd)
     {
-        pizzas.set(pizzaThatEditedNowIndex, pizzaToAdd);
-        pizzaThatEditedNowIndex = currentPizzaIndex;
+        pizzas.set(pizzaThatWasEditedNowIndex, pizzaToAdd);
+        pizzaThatWasEditedNowIndex = currentPizzaIndex;
     }
 
     void setCurrentPizzaIndex(int newCurrentPizza)
@@ -61,7 +66,7 @@ public class PizzaFactory
     void createNewPizza()
     {
         currentPizzaIndex++;
-        pizzaThatEditedNowIndex++;
+        pizzaThatWasEditedNowIndex++;
         if ((currentPizzaIndex <= maxPizzasCanOrder - 1) && (currentPizzaIndex >= 0))
         {
             Pizza pizza = new Pizza();
@@ -69,12 +74,25 @@ public class PizzaFactory
         }
     }
 
+    /**
+     * Creates the default pizza, used when re-order is pressed in order-types activity
+     */
+    void createDefaultPizza() {
+        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
+        pizza.setSize(PizzaSize.MEDIUM);
+        pizza.setSizePrice(Pizza.MEDIUM_PRICE);
+        pizza.setMushrooms(true);
+        pizza.setBasil(true);
+        pizza.setExtrasPrice(Pizza.MUSHROOMS_PRICE + Pizza.BASIL_PRICE);
+        PizzaFactory.getPizzaFactory().setNewPizza(pizza);
+    }
+
     Pizza getPizzaByIndex(int index)
     {
         if ((index >= 0) && (index <= maxPizzasCanOrder) && pizzas.get(index) != null)
         {
             Pizza pizza =  pizzas.get(index);
-            pizzaThatEditedNowIndex = index;
+            pizzaThatWasEditedNowIndex = index;
             return copyPizza(pizza);
         }
         return null;
