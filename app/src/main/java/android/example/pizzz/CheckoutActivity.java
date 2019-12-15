@@ -14,31 +14,36 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * This class is responsible on the activity of the checkout. In this activity the user
+ * should see his order and can edit it or proceed to checkout.
+ */
 public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.ItemClickListener {
-    private RecyclerView recyclerView;
-    private PizzaAdapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ImageView confirmButton;
 
+    // class private variables declaration:
+    private RecyclerView recyclerView;
+
+    /**
+     * Sets up the RecycleView on the screen
+     */
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        recyclerView = (RecyclerView) findViewById(R.id.pizzas_descriptions);
+        recyclerView = findViewById(R.id.pizzas_descriptions);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         // specifies a PizzaAdapter
         updatePizzaAdapter();
 
-        confirmButton = (ImageView) findViewById(R.id.confirm_button);
         setTotalPrice();
     }
 
     void setTotalPrice() {
-        TextView pizzasTotalPrice = (TextView) findViewById(R.id.pizzas_total_price);
+        TextView pizzasTotalPrice = findViewById(R.id.pizzas_total_price);
         SpannableString priceString = new SpannableString(PizzaFactory.getPizzaFactory().getTotalPizzasPriceDescription());
         priceString.setSpan(new RelativeSizeSpan(0.8f), priceString.length() - 3, priceString.length(), 0);
         pizzasTotalPrice.setText(priceString);
@@ -143,7 +148,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
 
     void updatePizzaAdapter()
     {
-        adapter = new PizzaAdapter(CheckoutActivity.this, PizzaFactory.getPizzaFactory().getPizzas());
+        PizzaAdapter adapter = new PizzaAdapter(CheckoutActivity.this, PizzaFactory.getPizzaFactory().getPizzas());
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(new PizzaAdapter.ItemClickListener() {
             @Override

@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class PizzaDetailsActivity extends AppCompatActivity
 {
     private Pizza pizza;

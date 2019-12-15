@@ -5,8 +5,12 @@ import android.widget.ImageView;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-public class PizzzUtils {
+/**
+ * A class which includes useful functions.
+ */
+class PizzzUtils {
 
     /**
      * Sets the visibility of the given list of ImageView objects (which
@@ -27,12 +31,9 @@ public class PizzzUtils {
         List<PizzaExtra> list = pizza.getExtras();
         if (list.size() > 0) {
             for (PizzaExtra pizzaExtra : list) {
-                extras.get(pizzaExtra).setVisibility(View.VISIBLE);
+                Objects.requireNonNull(extras.get(pizzaExtra)).setVisibility(View.VISIBLE);
             }
         }
     }
 
-
 }
-
-
