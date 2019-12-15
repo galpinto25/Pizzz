@@ -4,32 +4,36 @@ import android.util.Pair;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * todo complete doc
+ * Creates, holds and manages the pizzas list.
  */
-public class PizzaFactory
+class PizzaFactory
 {
-    final static private int maxPizzasCanOrder = 3;
+    final static private int maxPizzaTypesLimit = 3;
 
     // class private variables declaration:
     private static PizzaFactory pizzaFactorySingletonObject = null;
     private ArrayList<Pizza> pizzas;
     private int currentPizzaIndex;
-    private int pizzaThatWasEditedNowIndex;
+    private int lastEditedPizzaIndex;
 
     /**
-     * private constructor because factory is singleton
+     * private constructor, makes the factory a kind of singleton.
      */
     private PizzaFactory()
     {
         currentPizzaIndex = 0;
-        pizzaThatWasEditedNowIndex = 0;
+        lastEditedPizzaIndex = 0;
         pizzas = new ArrayList<>();
         Pizza pizza = new Pizza();
         pizzas.add(pizza);
     }
 
+    /**
+     * @return the instance of the factory. If needed, construct it and than returns it.
+     */
     static PizzaFactory getPizzaFactory()
     {
         if (pizzaFactorySingletonObject == null)
@@ -40,34 +44,52 @@ public class PizzaFactory
         return pizzaFactorySingletonObject;
     }
 
+    /**
+     * @return the pizza who pointed by currentPizzaIndex.
+     */
     Pizza getCurrentPizza()
     {
         Pizza pizza =  pizzas.get(currentPizzaIndex);
-        pizzaThatWasEditedNowIndex = currentPizzaIndex;
+        lastEditedPizzaIndex = currentPizzaIndex;
         return copyPizza(pizza);
     }
 
+    /**
+     * Sets a new pizza to the list in the index specified by pizzaToAdd.
+     * @param pizzaToAdd - index in list to set the pizza into it.
+     */
     void setNewPizza(Pizza pizzaToAdd)
     {
-        pizzas.set(pizzaThatWasEditedNowIndex, pizzaToAdd);
-        pizzaThatWasEditedNowIndex = currentPizzaIndex;
+        pizzas.set(lastEditedPizzaIndex, pizzaToAdd);
+        lastEditedPizzaIndex = currentPizzaIndex;
     }
 
+    /**
+     * Sets currentPizzaIndex to the given pizza.
+     * @param newCurrentPizza - pizza to set as current.
+     */
     void setCurrentPizzaIndex(int newCurrentPizza)
     {
         currentPizzaIndex = newCurrentPizza;
     }
 
+    /**
+     * @return index of the current edited pizza.
+     */
     int getCurrentPizzaIndex()
     {
         return currentPizzaIndex;
     }
 
+    /**
+     * Creates a new pizza, and handle the relevant pointers and indices with respect to the change.
+     */
     void createNewPizza()
     {
         currentPizzaIndex++;
-        pizzaThatWasEditedNowIndex++;
-        if ((currentPizzaIndex <= maxPizzasCanOrder - 1) && (currentPizzaIndex >= 0))
+        lastEditedPizzaIndex++;
+        // Check whether there are pizzas in list and the order doesn't surpass the limitation
+        if ((currentPizzaIndex <= maxPizzaTypesLimit - 1) && (currentPizzaIndex >= 0))
         {
             Pizza pizza = new Pizza();
             pizzas.add(pizza);
@@ -75,7 +97,7 @@ public class PizzaFactory
     }
 
     /**
-     * Creates the default pizza, used when re-order is pressed in order-types activity
+     * Creates the default pizza, used when re-order is pressed in order-types activity.
      */
     void createDefaultPizza() {
         Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
@@ -87,27 +109,40 @@ public class PizzaFactory
         PizzaFactory.getPizzaFactory().setNewPizza(pizza);
     }
 
+    /**
+     * @param index - index of the wanted pizza.
+     * @return the pizza specified by the given index.
+     */
     Pizza getPizzaByIndex(int index)
     {
-        if ((index >= 0) && (index <= maxPizzasCanOrder) && pizzas.get(index) != null)
+        if ((index >= 0) && (index <= maxPizzaTypesLimit) && pizzas.get(index) != null)
         {
             Pizza pizza =  pizzas.get(index);
-            pizzaThatWasEditedNowIndex = index;
+            lastEditedPizzaIndex = index;
             return copyPizza(pizza);
         }
         return null;
     }
 
+    /**
+     * @return true if the current pizza is the last one in the pizzas list, false otherwise.
+     */
     boolean isMaxPizzas()
     {
-        return (currentPizzaIndex >= maxPizzasCanOrder - 1);
+        return (currentPizzaIndex >= maxPizzaTypesLimit - 1);
     }
 
+    /**
+     * @return the pizzas arrayList
+     */
     ArrayList<Pizza> getPizzas()
     {
         return pizzas;
     }
 
+    /**
+     * @return total price of all the pizzas in the pizzas list.
+     */
     private int getTotalPizzasPrice()
     {
         int totalPrice = 0;
@@ -118,17 +153,26 @@ public class PizzaFactory
         return totalPrice;
     }
 
+    /**
+     * @return the number of pizzas in the pizza list.
+     */
     int getPizzasNumber()
     {
         return currentPizzaIndex + 1;
     }
 
+    /**
+     * @return string that describes the total price of all the pizzas.
+     */
     String getTotalPizzasPriceDescription()
     {
         return this.getTotalPizzasPrice() + " NIS";
     }
 
-    public void reset()
+    /**
+     * Handles the cleaning of the pizza list and the adding of a new pizza.
+     */
+    void reset()
     {
         currentPizzaIndex = 0;
         pizzas = new ArrayList<>();
@@ -136,6 +180,10 @@ public class PizzaFactory
         pizzas.add(pizza);
     }
 
+    /**
+     * @param oldPizza - pizza to copy.
+     * @return a copy of the pizza specified by the given pizza.
+     */
     private Pizza copyPizza(Pizza oldPizza)
     {
         Pizza newPizza = new Pizza();
@@ -146,15 +194,19 @@ public class PizzaFactory
         List<PizzaExtra> extras = oldPizza.getExtras();
         for (PizzaExtra pizzaExtra: extras)
         {
-            if(newPizza.getExtrasForCopy().get(pizzaExtra).second != null)
+            if(Objects.requireNonNull(newPizza.getExtrasForCopy().get(pizzaExtra)).second != null)
             {
-                int extraPrice = newPizza.getExtrasForCopy().get(pizzaExtra).second;
-                newPizza.getExtrasForCopy().put(pizzaExtra,  new Pair<Boolean, Integer>(true, extraPrice));
+                int extraPrice = Objects.requireNonNull(newPizza.getExtrasForCopy().get(pizzaExtra)).second;
+                newPizza.getExtrasForCopy().put(pizzaExtra,  new Pair<>(true, extraPrice));
             }
         }
         return newPizza;
     }
 
+    /**
+     * Increments the number of pizzas of the type specified by the given position.
+     * @param position - index of the type of pizza to increment it's quantity.
+     */
     void incPizzaQuantity(int position)
     {
         Pizza pizza = getPizzaByIndex(position);
@@ -162,6 +214,10 @@ public class PizzaFactory
         setNewPizza(pizza);
     }
 
+    /**
+     * Decrements the number of pizzas of the type specified by the given position.
+     * @param position - index of the type of pizza to decrement it's quantity.
+     */
     void decPizzaQuantity(int position)
     {
         Pizza pizza = getPizzaByIndex(position);
