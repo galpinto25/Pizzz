@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+//import static android.example.pizzz.PizzzUtils.setExtras;
+
 /**
  * A class which represents the confirmation activity.
  */
@@ -28,19 +30,9 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirmed_order);
         setExtrasImages();
-        setExtras();
+        PizzzUtils.setExtras(extras, PizzaFactory.getPizzaFactory().getPizzaByIndex(0));
     }
 
-    /**
-     * Sets the visibility of the given list of ImageView objects (which
-     * represents the extras of a pizza) to invisible.
-     * @param imageViewArrayList a given list of ImageView objects.
-     */
-    private void setInvisible(ImageView[] imageViewArrayList) {
-        for (ImageView imageView : imageViewArrayList) {
-            imageView.setVisibility(View.INVISIBLE);
-        }
-    }
 
     /**
      * Sets the list of the ImageView objects (which represents the extras of a pizza), and sets
@@ -59,21 +51,8 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
         extras.put(PizzaExtra.OLIVES, oliveImage);
         extras.put(PizzaExtra.BASIL, basilImage);
         extras.put(PizzaExtra.EXTRA_CHEESE, extraCheeseImage);
-        setInvisible(new ImageView[]{mushroomsImage, onionImage, pepperoniImage, basilImage,
+        PizzzUtils.setInvisible(new ImageView[]{mushroomsImage, onionImage, pepperoniImage, basilImage,
                 extraCheeseImage, oliveImage});
-    }
-
-    /**
-     * Sets the visibility of the ImageView objects which represents the included extras of the
-     * first pizza, to visible.
-     */
-    private void setExtras() {
-        List<PizzaExtra> list = PizzaFactory.getPizzaFactory().getPizzaByIndex(0).getExtras();
-        if (list.size() > 0) {
-            for (PizzaExtra pizzaExtra : list) {
-                Objects.requireNonNull(extras.get(pizzaExtra)).setVisibility(View.VISIBLE);
-            }
-        }
     }
 
     /**
