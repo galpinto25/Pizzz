@@ -3,10 +3,15 @@ package android.example.pizzz;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class PizzzUtils {
+
+
+    static List<PizzaExtra> pizzaExtras = new ArrayList<>(Arrays.asList(PizzaExtra.MUSHROOMS,PizzaExtra.PEPPERONI,PizzaExtra.ONION, PizzaExtra.OLIVES,PizzaExtra.BASIL,PizzaExtra.EXTRA_CHEESE));
 
     /**
      * Sets the visibility of the given list of ImageView objects (which
@@ -32,7 +37,11 @@ public class PizzzUtils {
         }
     }
 
-
+    static void setNASAffk(Map<PizzaExtra, ImageView> extras, List<ImageView> list2){
+        for (int i = 0; i < pizzaExtras.size(); i++) {
+            extras.put(pizzaExtras.get(i),list2.get(i));
+        }
+    }
 }
 
 

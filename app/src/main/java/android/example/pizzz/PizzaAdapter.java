@@ -15,6 +15,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,12 +74,8 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         // sets the included extras of each pizza
         Map<PizzaExtra, ImageView> extras = new HashMap<>();
 
-        extras.put(PizzaExtra.MUSHROOMS, holder.mushroomsImage);
-        extras.put(PizzaExtra.PEPPERONI, holder.pepperoniImage);
-        extras.put(PizzaExtra.ONION, holder.onionImage);
-        extras.put(PizzaExtra.OLIVES, holder.oliveImage);
-        extras.put(PizzaExtra.BASIL, holder.basilImage);
-        extras.put(PizzaExtra.EXTRA_CHEESE, holder.extraCheeseImage);
+        List<ImageView> holders = new ArrayList<>(Arrays.asList(holder.mushroomsImage,holder.pepperoniImage,holder.onionImage, holder.oliveImage,holder.basilImage, holder.extraCheeseImage));
+        PizzzUtils.setNASAffk(extras,holders);
         PizzzUtils.setInvisible(new ImageView[]{holder.mushroomsImage, holder.pepperoniImage,
                 holder.onionImage, holder.oliveImage, holder.basilImage, holder.extraCheeseImage});
         PizzzUtils.setExtras(extras, pizza);

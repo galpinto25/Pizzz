@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
-//import static android.example.pizzz.PizzzUtils.setExtras;
 
 /**
  * A class which represents the confirmation activity.
@@ -45,12 +45,8 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
         ImageView basilImage = findViewById(R.id.basil_image_c);
         ImageView oliveImage = findViewById(R.id.olives_image_c);
         ImageView extraCheeseImage = findViewById(R.id.extra_cheese_image_c);
-        extras.put(PizzaExtra.MUSHROOMS, mushroomsImage);
-        extras.put(PizzaExtra.PEPPERONI, pepperoniImage);
-        extras.put(PizzaExtra.ONION, onionImage);
-        extras.put(PizzaExtra.OLIVES, oliveImage);
-        extras.put(PizzaExtra.BASIL, basilImage);
-        extras.put(PizzaExtra.EXTRA_CHEESE, extraCheeseImage);
+        List<ImageView> holders = new ArrayList<>(Arrays.asList(mushroomsImage,pepperoniImage,onionImage, oliveImage,basilImage, extraCheeseImage));
+        PizzzUtils.setNASAffk(extras,holders);
         PizzzUtils.setInvisible(new ImageView[]{mushroomsImage, onionImage, pepperoniImage, basilImage,
                 extraCheeseImage, oliveImage});
     }
