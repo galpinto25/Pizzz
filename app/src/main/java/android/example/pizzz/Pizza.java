@@ -21,7 +21,7 @@ class Pizza {
     private PizzaSize size;
     private int sizePrice = 0;
     private int extrasPrice = 0;
-    private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
+    private final Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
     private int quantity = 1;
 
     /**

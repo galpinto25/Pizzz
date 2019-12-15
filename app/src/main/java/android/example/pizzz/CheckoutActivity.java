@@ -43,7 +43,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
     /**
      * Updates the total price to the checkout activity screen.
      */
-    void updateTotalPrice() {
+    private void updateTotalPrice() {
         TextView pizzasTotalPrice = findViewById(R.id.pizzas_total_price);
         SpannableString priceString = new SpannableString(PizzaFactory.getPizzaFactory().
                 getTotalPizzasPriceDescription());
@@ -184,7 +184,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
     /**
      * Updates the pizza adapter, and sets the OnClickListener functions.
      */
-    void updatePizzaAdapter()
+    private void updatePizzaAdapter()
     {
         PizzaAdapter adapter = new PizzaAdapter(CheckoutActivity.this,
                 PizzaFactory.getPizzaFactory().getPizzas());

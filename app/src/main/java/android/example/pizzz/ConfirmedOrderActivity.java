@@ -18,7 +18,7 @@ import java.util.Map;
 public class ConfirmedOrderActivity extends AppCompatActivity {
 
     // class private variables declaration:
-    private Map<PizzaExtra, ImageView> extras = new HashMap<>();
+    private final Map<PizzaExtra, ImageView> extras = new HashMap<>();
 
     /**
      *

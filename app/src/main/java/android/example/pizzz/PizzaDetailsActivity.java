@@ -31,7 +31,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
     private ImageButton sbutton, mbutton, lbutton, onionbutton, mushroomsbutton, pepperoniButton, basilButton, oliveButton, extraCheeseButton,checkoutButton;
     private ImageView mushroomsImage, onionImage, pepperoniImage, basilImage, oliveImage, extraCheeseImage;
     private TextView totalPrice;
-    ImageView[] extrasImages;
     private static final String currency = " NIS";
 
     /**
@@ -69,8 +68,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
         basilImage = findViewById(R.id.basil_image);
         oliveImage = findViewById(R.id.olives_image);
         extraCheeseImage = findViewById(R.id.extra_cheese_image);
-        extrasImages = new ImageView[]{mushroomsImage, onionImage, pepperoniImage, basilImage,
-                extraCheeseImage, oliveImage};
+        ImageView[] extrasImages = new ImageView[]{mushroomsImage, onionImage, pepperoniImage,
+                basilImage, extraCheeseImage, oliveImage};
         Bundle bundle = getIntent().getExtras();
         PizzzUtils.setInvisible(extrasImages);
 
@@ -94,7 +93,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
             pizzaFactory.reset();
         }
         else if (bundle.getInt("delete_pizza_pressed") == 1) {
-            // case of deleting the first pizza when theres only one
+            // case of deleting the first pizza when there's only one
             pizzaFactory.reset();
             Intent intent = new Intent(this, OrderTypesActivity.class);
             startActivity(intent);
@@ -153,7 +152,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
      * not pressed.
      * @param pizzaSize - the size of the pizza after the change
      */
-    protected void changePizzaSize(PizzaSize pizzaSize)
+    private void changePizzaSize(PizzaSize pizzaSize)
     {
         // updates the small button
         if (pizzaSize == PizzaSize.SMALL)
@@ -427,7 +426,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
      * Makes the size buttons flash as a sign for the user to choose the pizza size.
      * Uses a timer which changes the color of pizza size buttons after a period of time.
      */
-    public void flashSML() {
+    private void flashSML() {
         sbutton.setImageResource(R.drawable.ic_small_black);
         mbutton.setImageResource(R.drawable.ic_medium_black);
         lbutton.setImageResource(R.drawable.ic_large_black);

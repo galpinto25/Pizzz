@@ -31,8 +31,8 @@ import java.util.Map;
 public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> {
 
     // class private variables declaration:
-    private List<Pizza> data;
-    private LayoutInflater inflater;
+    private final List<Pizza> data;
+    private final LayoutInflater inflater;
     private ItemClickListener clickListener;
 
     // data is passed into the constructor
@@ -93,10 +93,20 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
      */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // todo check if 'pizzaSize' is needed with Efrat
-        TextView pizzaNumber, pizzaSize, pizzaExtras, pizzaQuantity, pizzaPrice;
-        ImageView mushroomsImage, pepperoniImage, onionImage, basilImage, oliveImage,
-                extraCheeseImage;
-        ImageButton deleteButton, plusButton, minusButton;
+        final TextView pizzaNumber;
+        TextView pizzaSize;
+        final TextView pizzaExtras;
+        final TextView pizzaQuantity;
+        final TextView pizzaPrice;
+        final ImageView mushroomsImage;
+        final ImageView pepperoniImage;
+        final ImageView onionImage;
+        final ImageView basilImage;
+        final ImageView oliveImage;
+        final ImageView extraCheeseImage;
+        final ImageButton deleteButton;
+        final ImageButton plusButton;
+        final ImageButton minusButton;
 
         ViewHolder(View itemView) {
             super(itemView);
