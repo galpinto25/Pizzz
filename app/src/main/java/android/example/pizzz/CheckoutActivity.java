@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.RelativeSizeSpan;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +23,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
     private RecyclerView recyclerView;
 
     /**
-     * Sets up the RecycleView on the screen
+     * Sets up the checkout activity on the screen
      */
     @SuppressLint("SetTextI18n")
     @Override
@@ -38,23 +37,32 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         recyclerView.setLayoutManager(layoutManager);
         // specifies a PizzaAdapter
         updatePizzaAdapter();
-
-        setTotalPrice();
+        updateTotalPrice();
     }
 
-    void setTotalPrice() {
+    /**
+     * Updates the total price to the checkout activity screen.
+     */
+    void updateTotalPrice() {
         TextView pizzasTotalPrice = findViewById(R.id.pizzas_total_price);
-        SpannableString priceString = new SpannableString(PizzaFactory.getPizzaFactory().getTotalPizzasPriceDescription());
-        priceString.setSpan(new RelativeSizeSpan(0.8f), priceString.length() - 3, priceString.length(), 0);
+        SpannableString priceString = new SpannableString(PizzaFactory.getPizzaFactory().
+                getTotalPizzasPriceDescription());
+        priceString.setSpan(new RelativeSizeSpan(0.8f), priceString.length() - 3,
+                priceString.length(), 0);
         pizzasTotalPrice.setText(priceString);
     }
 
+    /**
+     * When the user back pressed, if 're-order' was pressed go to previous screen (which is
+     * order types activity), otherwise toasts 'cannot_back_toast' message to the screen.
+     */
     @Override
     public void onBackPressed()
     {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
         {
+            // checks if we came to this activity by pressing 're-order'
             if (bundle.getInt("reorder_pressed") == 1)
             {
                 super.onBackPressed();
@@ -62,51 +70,62 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         }
         else
         {
-            Toast toast = Toast.makeText(this, R.string.cannot_back_toast, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.cannot_back_toast,
+                    Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
+    /**
+     * When this activity is resumed, updates the pizza adapter.
+     */
     @Override
     protected void onResume() {
         super.onResume();
         updatePizzaAdapter();
     }
 
+    /**
+     * When confirm button is pressed, go to confirmed order activity.
+     */
     public void clickConfirm(View view) {
-        Intent intent = new Intent(CheckoutActivity.this, ConfirmedOrderActivity.class);
+        Intent intent = new Intent(CheckoutActivity.this,
+                ConfirmedOrderActivity.class);
         startActivity(intent);
     }
 
-    //newFunctions:
-
     /**
-     * add new Pizza
-     * @param view
-     * @throws Exception if there are maximum of pizzas (3)
+     * Adds new pizza when the '+' button is pressed. If no more pizzas can be added, toasts
+     * 'max_pizzas_order' message to the screen.
      */
     public void clickAddNewPizza(View view)
     {
         if (!PizzaFactory.getPizzaFactory().isMaxPizzas())
         {
             PizzaFactory.getPizzaFactory().createNewPizza();
-            Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
+            Intent intent = new Intent(CheckoutActivity.this,
+                    PizzaDetailsActivity.class);
             startActivity(intent);
         }
         else
         {
-            Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message,
+                    Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
+    /**
+     * Deletes a pizza when the 'x' button is pressed.
+     * @param position the pizza position in the list.
+     */
     @Override
     public void onPizzaDeleteClick(View view, int position)
     {
         PizzaFactory.getPizzaFactory().getPizzas().remove(position);
         PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(PizzaFactory.getPizzaFactory().getCurrentPizzaIndex() - 1);
         updatePizzaAdapter();
-        setTotalPrice();
+        updateTotalPrice();
         if (PizzaFactory.getPizzaFactory().getPizzasNumber() == 0)
         {
             PizzaFactory.getPizzaFactory().reset();
@@ -122,7 +141,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         {
             PizzaFactory.getPizzaFactory().incPizzaQuantity(position);
             updatePizzaAdapter();
-            setTotalPrice();
+            updateTotalPrice();
         }
         else
         {
@@ -137,7 +156,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         {
             PizzaFactory.getPizzaFactory().decPizzaQuantity(position);
             updatePizzaAdapter();
-            setTotalPrice();
+            updateTotalPrice();
         }
         else
         {
