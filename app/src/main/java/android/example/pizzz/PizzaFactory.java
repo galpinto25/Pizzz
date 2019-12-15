@@ -7,16 +7,19 @@ import java.util.List;
 
 public class PizzaFactory
 {
-    private static PizzaFactory pizzaFactory = null;
+    private static PizzaFactory pizzaFactorySingletonObject = null;
     private ArrayList<Pizza> pizzas;
-    private int currentPizza;
-    final static private int maxPizzas = 3;
-    private int indexOfPizzaThatEditedNow;
+    private int currentPizzaIndex;
+    final static private int maxPizzasCanOrder = 3;
+    private int pizzaThatEditedNowIndex;
 
+    /**
+     * private constructor because factory is singleton
+     */
     private PizzaFactory()
     {
-        currentPizza = 0;
-        indexOfPizzaThatEditedNow = 0;
+        currentPizzaIndex = 0;
+        pizzaThatEditedNowIndex = 0;
         pizzas = new ArrayList<>();
         Pizza pizza = new Pizza();
         pizzas.add(pizza);
@@ -24,43 +27,42 @@ public class PizzaFactory
 
     static PizzaFactory getPizzaFactory()
     {
-        if (pizzaFactory == null)
+        if (pizzaFactorySingletonObject == null)
         {
-            pizzaFactory = new PizzaFactory();
-            return pizzaFactory;
+            pizzaFactorySingletonObject = new PizzaFactory();
+            return pizzaFactorySingletonObject;
         }
-        return pizzaFactory;
+        return pizzaFactorySingletonObject;
     }
 
     Pizza getCurrentPizza()
     {
-        Pizza pizza =  pizzas.get(currentPizza);
-        indexOfPizzaThatEditedNow = currentPizza;
+        Pizza pizza =  pizzas.get(currentPizzaIndex);
+        pizzaThatEditedNowIndex = currentPizzaIndex;
         return copyPizza(pizza);
     }
 
     void setNewPizza(Pizza pizzaToAdd)
     {
-        //change the current pizza to be the new one with changes
-        pizzas.set(indexOfPizzaThatEditedNow, pizzaToAdd);
-        indexOfPizzaThatEditedNow = currentPizza;
+        pizzas.set(pizzaThatEditedNowIndex, pizzaToAdd);
+        pizzaThatEditedNowIndex = currentPizzaIndex;
     }
 
     void setCurrentPizzaIndex(int newCurrentPizza)
     {
-        currentPizza = newCurrentPizza;
+        currentPizzaIndex = newCurrentPizza;
     }
 
     int getCurrentPizzaIndex()
     {
-        return currentPizza;
+        return currentPizzaIndex;
     }
 
     void createNewPizza()
     {
-        currentPizza++;
-        indexOfPizzaThatEditedNow++;
-        if ((currentPizza <= maxPizzas - 1) && (currentPizza >= 0))
+        currentPizzaIndex++;
+        pizzaThatEditedNowIndex++;
+        if ((currentPizzaIndex <= maxPizzasCanOrder - 1) && (currentPizzaIndex >= 0))
         {
             Pizza pizza = new Pizza();
             pizzas.add(pizza);
@@ -69,17 +71,18 @@ public class PizzaFactory
 
     Pizza getPizzaByIndex(int index)
     {
-        if ((index >= 0) && (index <= maxPizzas) && pizzas.get(index) != null)
+        if ((index >= 0) && (index <= maxPizzasCanOrder) && pizzas.get(index) != null)
         {
             Pizza pizza =  pizzas.get(index);
-            indexOfPizzaThatEditedNow = index;
+            pizzaThatEditedNowIndex = index;
             return copyPizza(pizza);
         }
         return null;
     }
 
-    boolean isMaxPizzas() {
-        return (currentPizza >= maxPizzas - 1);
+    boolean isMaxPizzas()
+    {
+        return (currentPizzaIndex >= maxPizzasCanOrder - 1);
     }
 
     ArrayList<Pizza> getPizzas()
@@ -87,25 +90,29 @@ public class PizzaFactory
         return pizzas;
     }
 
-    private int getTotalPizzasPrice() {
+    private int getTotalPizzasPrice()
+    {
         int totalPrice = 0;
-        for (Pizza pizza: pizzas) {
+        for (Pizza pizza: pizzas)
+        {
             totalPrice += pizza.getTotalPrice();
         }
         return totalPrice;
     }
 
-    int getPizzasNumber() {
-        return currentPizza + 1;
+    int getPizzasNumber()
+    {
+        return currentPizzaIndex + 1;
     }
 
-    String getTotalPizzasPriceDescription() {
+    String getTotalPizzasPriceDescription()
+    {
         return this.getTotalPizzasPrice() + " NIS";
     }
 
     public void reset()
     {
-        currentPizza = 0;
+        currentPizzaIndex = 0;
         pizzas = new ArrayList<>();
         Pizza pizza = new Pizza();
         pizzas.add(pizza);
