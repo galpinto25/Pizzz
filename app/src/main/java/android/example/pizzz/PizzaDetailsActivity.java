@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -36,7 +37,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
     /**
      * Create a pizza instance, and set all the button in the activity in their default state
      * (visible or invisible).
-     * @param savedInstanceState
      */
     @SuppressLint("SetTextI18n")
     @Override
@@ -80,6 +80,9 @@ public class PizzaDetailsActivity extends AppCompatActivity
         updatePriceTag();
     }
 
+    /**
+     * handles the previous activity launching
+     */
     @Override
     public void onBackPressed()
     {
@@ -90,14 +93,16 @@ public class PizzaDetailsActivity extends AppCompatActivity
             pizzaFactory.reset();
         }
         else if (bundle.getInt("delete_pizza_pressed") == 1) {
+            // case of deleting the first pizza when theres only one
             pizzaFactory.reset();
             Intent intent = new Intent(this, OrderTypesActivity.class);
             startActivity(intent);
-//            Toast toast = Toast.makeText(this, "sorry, you must choose your pizzz", Toast.LENGTH_SHORT);
-//            toast.show();
         }
     }
 
+    /**
+     * handles the resuming activity launching
+     */
     @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
@@ -110,17 +115,13 @@ public class PizzaDetailsActivity extends AppCompatActivity
             this.changePizzaSize(pizza.getSize());
             List<PizzaExtra> pizzaExtras = pizza.getExtras();
             Map<PizzaExtra, ImageView> extras = new HashMap<>();
-            extras.put(PizzaExtra.MUSHROOMS, mushroomsImage);
-            extras.put(PizzaExtra.PEPPERONI, pepperoniImage);
-            extras.put(PizzaExtra.ONION, onionImage);
-            extras.put(PizzaExtra.OLIVES, oliveImage);
-            extras.put(PizzaExtra.BASIL, basilImage);
-            extras.put(PizzaExtra.EXTRA_CHEESE, extraCheeseImage);
+            List<ImageView> holders = new ArrayList<>(Arrays.asList(mushroomsImage,pepperoniImage,onionImage, oliveImage,basilImage, extraCheeseImage));
+            PizzzUtils.setMap(extras,holders);
             if (pizzaExtras.size() > 0)
             {
                 for (PizzaExtra pizzaExtra : pizzaExtras)
                 {
-                    extras.get(pizzaExtra).setVisibility(View.VISIBLE);
+                    Objects.requireNonNull(extras.get(pizzaExtra)).setVisibility(View.VISIBLE);
                     addExtras(pizzaExtra);
                 }
             }
@@ -328,7 +329,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
 
     /**
      * Change the pizza size to small and update the price with respect to the new size
-     * @param view
      */
     public void ClickSmall(View view)
     {
@@ -337,7 +337,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
 
     /**
      * Change the pizza size to medium and update the price with respect to the new size
-     * @param view
      */
     public void ClickMedium(View view)
     {
@@ -346,7 +345,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
 
     /**
      * Change the pizza size to large and update the price according to the new size
-     * @param view
      */
     public void ClickLarge(View view)
     {
@@ -356,7 +354,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
     /**
      * Add the onion extra if it wasn't pressed, else remove the onion. Update the price according
      * to the change.
-     * @param view
      */
     public void ClickOnion(View view)
     {
@@ -373,7 +370,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
     /**
      * Add the mushrooms extra if it wasn't pressed, else remove the mushrooms. Update the price
      * according to the change.
-     * @param view
      */
     public void ClickMushrooms(View view)
     {
@@ -390,7 +386,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
     /**
      * Add the pepperoni extra if it wasn't pressed, else remove the pepperoni. Update the price
      * according to the change.
-     * @param view
      */
     public void ClickPepperoni(View view) {
         if (!pizza.isPepperoni())
@@ -403,10 +398,11 @@ public class PizzaDetailsActivity extends AppCompatActivity
         }
     }
 
+
+
     /**
      * Add the basil extra if it wasn't pressed, else remove the basil. Update the price according
      * to the change.
-     * @param view
      */
     public void ClickBasil(View view)
     {
@@ -419,7 +415,10 @@ public class PizzaDetailsActivity extends AppCompatActivity
         }
     }
 
-
+    /**
+     * Add the extra cheese if it wasn't pressed, else remove the extra cheese . Update the price according
+     * to the change.
+     */
     public void ClickExtraCheese(View view)
     {
         if (!pizza.isExtraCheese())
@@ -431,6 +430,10 @@ public class PizzaDetailsActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Add the olives  extra if it wasn't pressed, else remove the olives. Update the price according
+     * to the change.
+     */
     public void ClickOlives(View view)
     {
         if (!pizza.isOlives())
@@ -442,6 +445,9 @@ public class PizzaDetailsActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * makes the size buttons flash as a sign for the user to choose the pizza size
+     */
     public void flashSML() {
         sbutton.setImageResource(R.drawable.ic_small_black);
         mbutton.setImageResource(R.drawable.ic_medium_black);
@@ -452,7 +458,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
     /**
      * Finish the order and replace the activity to the CheckoutActivity
-     * @param view
      */
     public void ClickCheckout(View view) throws InterruptedException {
         if (pizza.getSize() == PizzaSize.NONE)
