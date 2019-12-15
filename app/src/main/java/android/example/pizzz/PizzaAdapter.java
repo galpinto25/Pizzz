@@ -77,9 +77,9 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         extras.put(PizzaExtra.OLIVES, holder.oliveImage);
         extras.put(PizzaExtra.BASIL, holder.basilImage);
         extras.put(PizzaExtra.EXTRA_CHEESE, holder.extraCheeseImage);
-        setInvisible(new ImageView[]{holder.mushroomsImage, holder.pepperoniImage,
+        PizzzUtils.setInvisible(new ImageView[]{holder.mushroomsImage, holder.pepperoniImage,
                 holder.onionImage, holder.oliveImage, holder.basilImage, holder.extraCheeseImage});
-        setExtras(extras, pizza);
+        PizzzUtils.setExtras(extras, pizza);
     }
 
     /**
@@ -172,30 +172,6 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         void onPizzaDeleteClick(View view, int position);
         void incPizzaQuantity(View view, int position);
         void decPizzaQuantity(View view, int position);
-    }
-
-    /***
-     *
-     * @param imageViewArrayList
-     */
-    private void setInvisible(ImageView[] imageViewArrayList) {
-        for (ImageView imageView : imageViewArrayList) {
-            imageView.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    /**
-     *
-     * @param extras
-     * @param pizza
-     */
-    private void setExtras(Map<PizzaExtra, ImageView> extras, Pizza pizza) {
-        List<PizzaExtra> list = pizza.getExtras();
-        if (list.size() > 0) {
-            for (PizzaExtra pizzaExtra : list) {
-                extras.get(pizzaExtra).setVisibility(View.VISIBLE);
-            }
-        }
     }
 
 }
