@@ -95,8 +95,8 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
     }
 
     /**
-     * Adds new pizza when the '+' button is pressed. If no more pizzas can be added, toasts
-     * 'max_pizzas_order' message to the screen.
+     * Adds new pizza when the circled red '+' button is pressed. If no more pizzas can be added,
+     * toasts 'max_pizzas_order' message to the screen.
      */
     public void clickAddNewPizza(View view)
     {
@@ -123,18 +123,27 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
     public void onPizzaDeleteClick(View view, int position)
     {
         PizzaFactory.getPizzaFactory().getPizzas().remove(position);
-        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(PizzaFactory.getPizzaFactory().getCurrentPizzaIndex() - 1);
+        PizzaFactory.getPizzaFactory().setCurrentPizzaIndex(PizzaFactory.getPizzaFactory().
+                getCurrentPizzaIndex() - 1);
         updatePizzaAdapter();
         updateTotalPrice();
+        // if the first pizza is deleted, go to the pizza details activity, and marks that it
+        // came from delete pizza as 'delete_pizza_pressed'.
         if (PizzaFactory.getPizzaFactory().getPizzasNumber() == 0)
         {
             PizzaFactory.getPizzaFactory().reset();
-            Intent intent = new Intent(CheckoutActivity.this, PizzaDetailsActivity.class);
+            Intent intent = new Intent(CheckoutActivity.this,
+                    PizzaDetailsActivity.class);
             intent.putExtra("delete_pizza_pressed",1);
             startActivity(intent);
         }
     }
 
+    /**
+     * Increment the pizza quantity when the '+' button is pressed. If the number of pizza types
+     * is the maximum than can be ordered, toasts a 'max_pizzas_order' message to the screen.
+     * @param position the pizza position in the list.
+     */
     @Override
     public void incPizzaQuantity(View view, int position) {
         if (PizzaFactory.getPizzaFactory().getPizzaByIndex(position).getQuantity() < 3)
@@ -145,11 +154,17 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         }
         else
         {
-            Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.max_pizzas_order_message,
+                    Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
+    /**
+     * Decrement the pizza quantity when the '-' button is pressed.  If the number of pizza types
+     * is the minimum than can be ordered, toasts a 'min_pizzas_order' message to the screen.
+     * @param position the pizza position in the list.
+     */
     @Override
     public void decPizzaQuantity(View view, int position) {
         if (PizzaFactory.getPizzaFactory().getPizzaByIndex(position).getQuantity() > 1)
@@ -160,14 +175,19 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         }
         else
         {
-            Toast toast = Toast.makeText(this, R.string.min_pizzas_order_message, Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, R.string.min_pizzas_order_message,
+                    Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
+    /**
+     * Updates the pizza adapter, and sets the OnClickListener functions.
+     */
     void updatePizzaAdapter()
     {
-        PizzaAdapter adapter = new PizzaAdapter(CheckoutActivity.this, PizzaFactory.getPizzaFactory().getPizzas());
+        PizzaAdapter adapter = new PizzaAdapter(CheckoutActivity.this,
+                PizzaFactory.getPizzaFactory().getPizzas());
         recyclerView.setAdapter(adapter);
         adapter.setClickListener(new PizzaAdapter.ItemClickListener() {
             @Override
