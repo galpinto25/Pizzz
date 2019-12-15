@@ -7,39 +7,54 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+/**
+ * This class is responsible on the activity of the order types menu. In this activity the user
+ * should choose between new order and re-order.
+ */
 public class OrderTypesActivity extends AppCompatActivity
 {
-    private ImageButton mNewOrder, mReOrder;
+    // Image button declaration
+    private ImageButton newOrder, reOrder;
 
+    /**
+     * Sets up the menu on the screen
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_types);
-        mNewOrder = findViewById(R.id.new_order);
-        mReOrder = findViewById(R.id.re_order);
+        newOrder = findViewById(R.id.new_order);
+        reOrder = findViewById(R.id.re_order);
         Log.d("debug", "onCreate");
     }
 
+    /**
+     * Resets the existing pizza list, because getting back to this activity means that the user
+     * wants start over the order.
+     */
     @Override
     protected void onResume()
     {
         super.onResume();
-        mReOrder.setImageResource(R.drawable.ic_re_order_white);
-        mNewOrder.setImageResource(R.drawable.ic_neworder_white);
+        reOrder.setImageResource(R.drawable.ic_re_order_white);
+        newOrder.setImageResource(R.drawable.ic_neworder_white);
         if (PizzaFactory.getPizzaFactory().getPizzasNumber() != 0)
         {
             PizzaFactory.getPizzaFactory().reset();
         }
     }
 
-    public void click_re_order(View view) throws Exception
+    /**
+     * Sets the pizza list to have the re-ordered pizza and launch the checkout activity.
+     */
+    public void click_re_order(View view)
     {
-        mReOrder.setImageResource(R.drawable.ic_re_order_black);
-        mNewOrder.setImageResource(R.drawable.ic_neworder_white);
+        // Feedback for a click - colors the re-order button in black
+        reOrder.setImageResource(R.drawable.ic_re_order_black);
+        newOrder.setImageResource(R.drawable.ic_neworder_white);
 
-        // todo maybe needs to move the price logic to the Pizza object
-        // Sets the default re-ordered pizza
+        // Creates the default re-ordered pizza
         Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
         pizza.setSize(PizzaSize.MEDIUM);
         pizza.setSizePrice(Pizza.MEDIUM_PRICE);
@@ -48,18 +63,23 @@ public class OrderTypesActivity extends AppCompatActivity
         pizza.setExtrasPrice(Pizza.MUSHROOMS_PRICE + Pizza.BASIL_PRICE);
         PizzaFactory.getPizzaFactory().setNewPizza(pizza);
 
+        // Launch the checkout activity with the current order (re-ordered pizza)
         Intent intent = new Intent(this, CheckoutActivity.class);
         intent.putExtra("reorder_pressed",1);
         startActivity(intent);
     }
 
+    /**
+     *
+     */
     public void click_new(View view)
     {
-        mNewOrder.setImageResource(R.drawable.ic_new_order_black);
-        mReOrder.setImageResource(R.drawable.ic_re_order_white);
+        // Feedback for a click - colors the new-order button in black
+        newOrder.setImageResource(R.drawable.ic_new_order_black);
+        reOrder.setImageResource(R.drawable.ic_re_order_white);
 
+        // Launch the pizza-details activity
         Intent intent = new Intent(this, PizzaDetailsActivity.class);
         startActivity(intent);
     }
-
 }
