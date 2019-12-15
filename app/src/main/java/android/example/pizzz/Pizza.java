@@ -24,7 +24,9 @@ class Pizza {
     private Map<PizzaExtra, Pair<Boolean, Integer>> extras = new HashMap<>();
     private int quantity = 1;
 
-    // package-private constructor used by the pizza factory.
+    /**
+     * package-private constructor, used by the pizza factory.
+     */
     Pizza() {
         size = PizzaSize.NONE;
         this.initializeExtrasHashMap();

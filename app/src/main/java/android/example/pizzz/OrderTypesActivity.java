@@ -3,7 +3,6 @@ package android.example.pizzz;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -23,10 +22,9 @@ public class OrderTypesActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order_types);
+         setContentView(R.layout.activity_order_types);
         newOrder = findViewById(R.id.new_order);
         reOrder = findViewById(R.id.re_order);
-        Log.d("debug", "onCreate");
     }
 
     /**
@@ -52,16 +50,9 @@ public class OrderTypesActivity extends AppCompatActivity
     {
         // Feedback for a click - colors the re-order button in black
         reOrder.setImageResource(R.drawable.ic_re_order_black);
-        newOrder.setImageResource(R.drawable.ic_neworder_white);
 
-        // Creates the default re-ordered pizza
-        Pizza pizza = PizzaFactory.getPizzaFactory().getCurrentPizza();
-        pizza.setSize(PizzaSize.MEDIUM);
-        pizza.setSizePrice(Pizza.MEDIUM_PRICE);
-        pizza.setMushrooms(true);
-        pizza.setBasil(true);
-        pizza.setExtrasPrice(Pizza.MUSHROOMS_PRICE + Pizza.BASIL_PRICE);
-        PizzaFactory.getPizzaFactory().setNewPizza(pizza);
+        // Creates a default re-order pizza before Launching the checkout activity
+        PizzaFactory.getPizzaFactory().createDefaultPizza();
 
         // Launch the checkout activity with the current order (re-ordered pizza)
         Intent intent = new Intent(this, CheckoutActivity.class);
@@ -70,13 +61,12 @@ public class OrderTypesActivity extends AppCompatActivity
     }
 
     /**
-     *
+     * onClick function for the newOrder button, launch new activity of pizza-details
      */
     public void click_new(View view)
     {
         // Feedback for a click - colors the new-order button in black
         newOrder.setImageResource(R.drawable.ic_new_order_black);
-        reOrder.setImageResource(R.drawable.ic_re_order_white);
 
         // Launch the pizza-details activity
         Intent intent = new Intent(this, PizzaDetailsActivity.class);
