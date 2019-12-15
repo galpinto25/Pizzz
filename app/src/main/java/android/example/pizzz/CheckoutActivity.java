@@ -70,7 +70,7 @@ public class CheckoutActivity extends AppCompatActivity implements PizzaAdapter.
         }
         else
         {
-            Toast toast = Toast.makeText(this, R.string.cannot_back_toast,
+            Toast toast = Toast.makeText(this, R.string.cannot_back_message,
                     Toast.LENGTH_SHORT);
             toast.show();
         }

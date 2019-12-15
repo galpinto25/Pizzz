@@ -14,7 +14,7 @@ import java.util.Objects;
  */
 class PizzzUtils {
 
-
+    // class private variables declaration:
     private static List<PizzaExtra> pizzaExtras = new ArrayList<>(Arrays.asList(
             PizzaExtra.MUSHROOMS, PizzaExtra.PEPPERONI,PizzaExtra.ONION,
             PizzaExtra.OLIVES,PizzaExtra.BASIL,PizzaExtra.EXTRA_CHEESE));

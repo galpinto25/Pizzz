@@ -182,7 +182,7 @@
             android:layout_marginStart="41dp"
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/roboto"
-            android:text="@string/_1_x"
+            android:text="@string/initial_quantity"
             android:textColor="@color/olives_background"
             android:textSize="36sp"
             android:textStyle="bold"

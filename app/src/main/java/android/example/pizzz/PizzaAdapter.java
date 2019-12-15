@@ -1,5 +1,5 @@
 package android.example.pizzz;
-/*******************imports*******************************/
+//******************imports*******************************/
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*******************pizza adapter*******************************/
+//******************pizza adapter*******************************/
 
 
 /**

@@ -2,22 +2,19 @@
     <string name="app_name">Pizzz</string>
     <string name="pizza_details">Pizzz Details</string>
     <string name="total_price">Your Pizzz</string>
-    <string name="price_button">Button</string>
     <string name="app_intro">your pizzz is\njust a swipe away</string>
     <string name="checkout_title">Your Receipt</string>
     <string name="hey_user">Hi, Coral</string>
     <string name="copyright_symbol">©</string>
-    <string name="pizza_description">Pizza Size:\nExtras:\nPrice:</string>
     <string name="default_count">1</string>
     <string name="choose">Choose your Pizzz</string>
     <string name="confirm_screen_onback_message">why going back?\nyour pizzz is on its way!</string>
     <string name="max_pizzas_order_message">sorry, we can\'t deliver\nmore than 3 types of\npizzz in one order</string>
     <string name="min_pizzas_order_message">stop being negative!</string>
-    <string name="cannot_back_toast">sorry, no regrets, YOLO!!</string>
-    <string name="delivery_conf_message">Your Order\nis it!</string>
+    <string name="cannot_back_message">sorry, no regrets, YOLO!</string>
+    <string name="delivery_conf_message">Your Order\nis on its way!</string>
     <string name="initial_price">0 NIS</string>
-    <string name="checkout_button_message">Pizzz it!</string>
     <string name="default_price">34 NIS</string>
-    <string name="_1_x">1</string>
+    <string name="initial_quantity">1</string>
     <string name="choose_size_title">choose\nyour size</string>
 </resources>
