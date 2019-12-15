@@ -132,7 +132,6 @@
             android:layout_marginStart="4dp"
             android:layout_marginBottom="4dp"
             android:background="@android:color/transparent"
-            android:onClick="clickPlusCount"
             android:src="@drawable/ic_plus"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/pizza_quantity" />
@@ -144,7 +143,6 @@
             android:layout_marginStart="8dp"
             android:layout_marginBottom="12dp"
             android:background="@android:color/transparent"
-            android:onClick="clickMinusCount"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_minus" />
@@ -182,7 +180,7 @@
             android:layout_marginStart="41dp"
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/roboto"
-            android:text="@string/_1_x"
+            android:text="@string/initial_quantity"
             android:textColor="@color/olives_background"
             android:textSize="36sp"
             android:textStyle="bold"
