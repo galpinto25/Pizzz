@@ -3,7 +3,6 @@ package android.example.pizzz;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * A class which represents the confirmation activity.
@@ -46,7 +44,7 @@ public class ConfirmedOrderActivity extends AppCompatActivity {
         ImageView oliveImage = findViewById(R.id.olives_image_c);
         ImageView extraCheeseImage = findViewById(R.id.extra_cheese_image_c);
         List<ImageView> holders = new ArrayList<>(Arrays.asList(mushroomsImage,pepperoniImage,onionImage, oliveImage,basilImage, extraCheeseImage));
-        PizzzUtils.setNASAffk(extras,holders);
+        PizzzUtils.setMap(extras,holders);
         PizzzUtils.setInvisible(new ImageView[]{mushroomsImage, onionImage, pepperoniImage, basilImage,
                 extraCheeseImage, oliveImage});
     }

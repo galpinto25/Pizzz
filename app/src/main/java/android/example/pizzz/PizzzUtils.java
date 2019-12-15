@@ -15,7 +15,9 @@ import java.util.Objects;
 class PizzzUtils {
 
 
-    static List<PizzaExtra> pizzaExtras = new ArrayList<>(Arrays.asList(PizzaExtra.MUSHROOMS,PizzaExtra.PEPPERONI,PizzaExtra.ONION, PizzaExtra.OLIVES,PizzaExtra.BASIL,PizzaExtra.EXTRA_CHEESE));
+    private static List<PizzaExtra> pizzaExtras = new ArrayList<>(Arrays.asList(
+            PizzaExtra.MUSHROOMS, PizzaExtra.PEPPERONI,PizzaExtra.ONION,
+            PizzaExtra.OLIVES,PizzaExtra.BASIL,PizzaExtra.EXTRA_CHEESE));
 
     /**
      * Sets the visibility of the given list of ImageView objects (which
@@ -41,9 +43,14 @@ class PizzzUtils {
         }
     }
 
-    static void setNASAffk(Map<PizzaExtra, ImageView> extras, List<ImageView> list2){
+    /**
+     * Sets the given map with keys from pizzaExtras, and values from given list
+     * @param map the given map
+     * @param values given list
+     */
+    static void setMap(Map<PizzaExtra, ImageView> map, List<ImageView> values){
         for (int i = 0; i < pizzaExtras.size(); i++) {
-            extras.put(pizzaExtras.get(i),list2.get(i));
+            map.put(pizzaExtras.get(i),values.get(i));
         }
     }
 }
