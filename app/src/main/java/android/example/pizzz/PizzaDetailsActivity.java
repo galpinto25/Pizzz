@@ -4,16 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.RelativeSizeSpan;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,18 +19,23 @@ import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * This class responsible on the activity of choosing the pizza size and extras.
+ */
 public class PizzaDetailsActivity extends AppCompatActivity
 {
+
+    // class private variables declaration:
     private Pizza pizza;
     private PizzaFactory pizzaFactory;
     private ImageButton sbutton, mbutton, lbutton, onionbutton, mushroomsbutton, pepperoniButton, basilButton, oliveButton, extraCheeseButton,checkoutButton;
     private ImageView mushroomsImage, onionImage, pepperoniImage, basilImage, oliveImage, extraCheeseImage;
     private TextView totalPrice;
-    ArrayList<ImageView> extrasImages = new ArrayList<>();
+    ImageView[] extrasImages;
     private static final String currency = " NIS";
 
     /**
-     * Create a pizza instance, and set all the button in the activity in their default state
+     * Creates a pizza instance, and set all the button in the activity in their default state
      * (visible or invisible).
      */
     @SuppressLint("SetTextI18n")
@@ -45,11 +45,11 @@ public class PizzaDetailsActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pizza_details);
 
-        //pizza setting
+        // Pizza setting
         pizzaFactory = PizzaFactory.getPizzaFactory();
         pizza = pizzaFactory.getCurrentPizza();
 
-        //buttons setting
+        // Buttons setting
         sbutton = findViewById(R.id.small_button);
         mbutton = findViewById(R.id.medium_button);
         lbutton = findViewById(R.id.large_button);
@@ -61,7 +61,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
         basilButton = findViewById(R.id.button_basil);
         checkoutButton = findViewById(R.id.checkout_button);
 
-        //textView setting
+        // TextView setting
         totalPrice = findViewById(R.id.total_price);
         mushroomsImage = findViewById(R.id.mushrooms_image);
         pepperoniImage = findViewById(R.id.pepperoni_image);
@@ -69,19 +69,20 @@ public class PizzaDetailsActivity extends AppCompatActivity
         basilImage = findViewById(R.id.basil_image);
         oliveImage = findViewById(R.id.olives_image);
         extraCheeseImage = findViewById(R.id.extra_cheese_image);
-        extrasImages = new ArrayList<>(Arrays.asList(mushroomsImage, onionImage, pepperoniImage, basilImage, extraCheeseImage, oliveImage));
+        extrasImages = new ImageView[]{mushroomsImage, onionImage, pepperoniImage, basilImage,
+                extraCheeseImage, oliveImage};
         Bundle bundle = getIntent().getExtras();
-        setInvisible(extrasImages);
+        PizzzUtils.setInvisible(extrasImages);
 
         if (bundle == null) {
             pizza.reset();
-//            changePizzaSize(PizzaSize.NONE);
         }
+
         updatePriceTag();
     }
 
     /**
-     * handles the previous activity launching
+     * Handles the previous activity launching.
      */
     @Override
     public void onBackPressed()
@@ -101,13 +102,14 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * handles the resuming activity launching
+     * Handles the resuming activity launching.
      */
     @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
         super.onResume();
         Bundle bundle = getIntent().getExtras();
+        // if we came from the checkout screen (edit the pizza which was pressed):
         if (bundle != null)
         {
             pizza = pizzaFactory.getPizzaByIndex(bundle.getInt("pizza_number"));
@@ -115,7 +117,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
             this.changePizzaSize(pizza.getSize());
             List<PizzaExtra> pizzaExtras = pizza.getExtras();
             Map<PizzaExtra, ImageView> extras = new HashMap<>();
-            List<ImageView> holders = new ArrayList<>(Arrays.asList(mushroomsImage,pepperoniImage,onionImage, oliveImage,basilImage, extraCheeseImage));
+            List<ImageView> holders = new ArrayList<>(Arrays.asList(mushroomsImage, pepperoniImage,
+                    onionImage, oliveImage, basilImage, extraCheeseImage));
             PizzzUtils.setMap(extras,holders);
             if (pizzaExtras.size() > 0)
             {
@@ -125,9 +128,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
                     addExtras(pizzaExtra);
                 }
             }
-//            Toast toast = Toast.makeText(this, pizza.getTitle(), Toast.LENGTH_SHORT);
-//            toast.show();
         } else {
+            // if new pizza button pressed:
             pizza = pizzaFactory.getCurrentPizza();
             checkoutButton.setImageResource(R.drawable.ic_continue);
             if (pizza.getSize() == PizzaSize.NONE) {
@@ -142,37 +144,30 @@ public class PizzaDetailsActivity extends AppCompatActivity
     @SuppressLint("SetTextI18n")
     private void updatePriceTag()
     {
-//        // sets the price string as the total price of the pizza
-//        SpannableString priceString = new SpannableString(pizza.getTotalPrice() + currency);
-//        // doubles the price text size
-//        int priceLen = Integer.toString(pizza.getTotalPrice()).length();
-//        priceString.setSpan(new RelativeSizeSpan(2f), 0, priceLen, 0);
         totalPrice.setText(pizza.getTotalPrice() + currency);
     }
 
     /**
-     * Change the size of the pizza to the size that the user chose, and update the price with
+     * Changes the size of the pizza to the size that the user chose, and update the price with
      * respect to it. The function set the button of pizzaSize pressed and the other button of size
      * not pressed.
      * @param pizzaSize - the size of the pizza after the change
      */
     protected void changePizzaSize(PizzaSize pizzaSize)
     {
-        // update the small button
+        // updates the small button
         if (pizzaSize == PizzaSize.SMALL)
         {
             sbutton.setImageResource(R.drawable.ic_small_black);
             pizza.setSize(PizzaSize.SMALL);
             pizza.setSizePrice(Pizza.SMALL_PRICE);
             checkoutButton.setImageResource(R.drawable.ic_continue);
-
-
         }
         else
         {
             sbutton.setImageResource(R.drawable.ic_small_white);
         }
-        // update the medium button
+        // updates the medium button
         if (pizzaSize == PizzaSize.MEDIUM)
         {
             mbutton.setImageResource(R.drawable.ic_medium_black);
@@ -185,14 +180,13 @@ public class PizzaDetailsActivity extends AppCompatActivity
         {
             mbutton.setImageResource(R.drawable.ic_medium_white);
         }
-        // update the large button
+        // updates the large button
         if (pizzaSize == PizzaSize.LARGE)
         {
             lbutton.setImageResource(R.drawable.ic_large_black);
             pizza.setSize(PizzaSize.LARGE);
             pizza.setSizePrice(Pizza.LARGE_PRICE);
             checkoutButton.setImageResource(R.drawable.ic_continue);
-
         }
         else
         {
@@ -203,7 +197,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Add the chosen extra to the pizza, and update the price respectively.
+     * Adds the chosen extra to the pizza, and update the price respectively.
      * @param pizzaExtra - enum, represents the extra to add
      */
     private void addExtras(PizzaExtra pizzaExtra)
@@ -261,7 +255,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Remove the chosen extra from the pizza, and update the price respectively.
+     * Removes the chosen extra from the pizza, and update the price respectively.
      * @param pizzaExtra - enum, represents the extra to remove
      */
     private void removeExtras(PizzaExtra pizzaExtra)
@@ -274,7 +268,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
             onionbutton.setImageResource(R.drawable.ic_onion_white);
             onionImage.setVisibility(View.INVISIBLE);
         }
-
         else if (pizzaExtra == PizzaExtra.MUSHROOMS)
         {
             pizza.setMushrooms(false);
@@ -282,7 +275,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
             mushroomsbutton.setImageResource(R.drawable.ic_mushrooms_white);
             mushroomsImage.setVisibility(View.INVISIBLE);
         }
-
         else if (pizzaExtra == PizzaExtra.PEPPERONI)
         {
             pizza.setPepperoni(false);
@@ -290,7 +282,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
             pepperoniButton.setImageResource(R.drawable.ic_pepperoni_white);
             pepperoniImage.setVisibility(View.INVISIBLE);
         }
-
         else if (pizzaExtra == PizzaExtra.BASIL)
         {
             pizza.setBasil(false);
@@ -298,7 +289,6 @@ public class PizzaDetailsActivity extends AppCompatActivity
             basilButton.setImageResource(R.drawable.ic_basil_white);
             basilImage.setVisibility(View.INVISIBLE);
         }
-
         else if (pizzaExtra == PizzaExtra.OLIVES)
         {
             pizza.setOlives(false);
@@ -318,17 +308,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * todo complete the documentation
-     * @param imageViewArrayList
-     */
-    private void setInvisible(ArrayList<ImageView> imageViewArrayList) {
-        for (ImageView imageView : imageViewArrayList) {
-            imageView.setVisibility(View.INVISIBLE);
-        }
-    }
-
-    /**
-     * Change the pizza size to small and update the price with respect to the new size
+     * Changes the pizza size to small and update the price with respect to the new size
      */
     public void ClickSmall(View view)
     {
@@ -336,7 +316,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Change the pizza size to medium and update the price with respect to the new size
+     * Changes the pizza size to medium and update the price with respect to the new size
      */
     public void ClickMedium(View view)
     {
@@ -344,7 +324,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Change the pizza size to large and update the price according to the new size
+     * Changes the pizza size to large and update the price according to the new size
      */
     public void ClickLarge(View view)
     {
@@ -352,7 +332,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Add the onion extra if it wasn't pressed, else remove the onion. Update the price according
+     * Adds the onion extra if it wasn't pressed, else remove the onion. Update the price according
      * to the change.
      */
     public void ClickOnion(View view)
@@ -368,7 +348,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Add the mushrooms extra if it wasn't pressed, else remove the mushrooms. Update the price
+     * Adds the mushrooms extra if it wasn't pressed, else remove the mushrooms. Update the price
      * according to the change.
      */
     public void ClickMushrooms(View view)
@@ -384,7 +364,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Add the pepperoni extra if it wasn't pressed, else remove the pepperoni. Update the price
+     * Adds the pepperoni extra if it wasn't pressed, else remove the pepperoni. Update the price
      * according to the change.
      */
     public void ClickPepperoni(View view) {
@@ -398,10 +378,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
         }
     }
 
-
-
     /**
-     * Add the basil extra if it wasn't pressed, else remove the basil. Update the price according
+     * Adds the basil extra if it wasn't pressed, else remove the basil. Update the price according
      * to the change.
      */
     public void ClickBasil(View view)
@@ -416,7 +394,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Add the extra cheese if it wasn't pressed, else remove the extra cheese . Update the price according
+     * Adds the extra cheese if it wasn't pressed, else remove the extra cheese . Update the price according
      * to the change.
      */
     public void ClickExtraCheese(View view)
@@ -431,7 +409,7 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * Add the olives  extra if it wasn't pressed, else remove the olives. Update the price according
+     * Adds the olives  extra if it wasn't pressed, else remove the olives. Update the price according
      * to the change.
      */
     public void ClickOlives(View view)
@@ -446,7 +424,8 @@ public class PizzaDetailsActivity extends AppCompatActivity
     }
 
     /**
-     * makes the size buttons flash as a sign for the user to choose the pizza size
+     * Makes the size buttons flash as a sign for the user to choose the pizza size.
+     * Uses a timer which changes the color of pizza size buttons after a period of time.
      */
     public void flashSML() {
         sbutton.setImageResource(R.drawable.ic_small_black);
@@ -457,9 +436,9 @@ public class PizzaDetailsActivity extends AppCompatActivity
         timer.schedule(task, 250);
     }
     /**
-     * Finish the order and replace the activity to the CheckoutActivity
+     * Finishes the order and go the checkout activity.
      */
-    public void ClickCheckout(View view) throws InterruptedException {
+    public void ClickCheckout(View view) {
         if (pizza.getSize() == PizzaSize.NONE)
         {
             flashSML();
@@ -474,6 +453,9 @@ public class PizzaDetailsActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * An helper class for the timer (which changes the color of pizza size buttons).
+     */
     class Helper extends TimerTask
     {
         public void run()
