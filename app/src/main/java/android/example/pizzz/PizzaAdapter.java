@@ -61,8 +61,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         // sets the pizza attributes of each pizza
         Pizza pizza = data.get(position);
         holder.pizzaNumber.setText("Pizza" + (position + 1));
-        // todo check if needed with Efrat
-//        holder.pizzaSize.setText(pizza.getSizeDescription().substring(0, 1));
+        holder.pizzaSize.setText(pizza.getSizeDescription().substring(0, 1));
         holder.pizzaExtras.setText(pizza.getExtrasDescription());
         holder.pizzaQuantity.setText(pizza.getQuantityDescription());
         SpannableString pizzaPriceString = new SpannableString(pizza.getTotalPriceDescription());
@@ -73,7 +72,9 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
         // sets the included extras of each pizza
         Map<PizzaExtra, ImageView> extras = new HashMap<>();
 
-        List<ImageView> holders = new ArrayList<>(Arrays.asList(holder.mushroomsImage,holder.pepperoniImage,holder.onionImage, holder.oliveImage,holder.basilImage, holder.extraCheeseImage));
+        List<ImageView> holders = new ArrayList<>(Arrays.asList(holder.mushroomsImage,
+                holder.pepperoniImage, holder.onionImage, holder.oliveImage, holder.basilImage,
+                holder.extraCheeseImage));
         PizzzUtils.setMap(extras,holders);
         PizzzUtils.setInvisible(new ImageView[]{holder.mushroomsImage, holder.pepperoniImage,
                 holder.onionImage, holder.oliveImage, holder.basilImage, holder.extraCheeseImage});
@@ -92,7 +93,6 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
      * Stores and recycles views as they are scrolled off screen.
      */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        // todo check if 'pizzaSize' is needed with Efrat
         final TextView pizzaNumber;
         TextView pizzaSize;
         final TextView pizzaExtras;
@@ -113,8 +113,7 @@ public class PizzaAdapter extends RecyclerView.Adapter<PizzaAdapter.ViewHolder> 
 
             // finds ids of TextView objects
             pizzaNumber = itemView.findViewById(R.id.pizza_num);
-            // todo check if 'pizzaSize' is needed with Efrat
-//            pizzaSize = itemView.findViewById(R.id.pizza_size);
+            pizzaSize = itemView.findViewById(R.id.pizza_size);
             pizzaExtras = itemView.findViewById(R.id.pizza_extras);
             pizzaQuantity = itemView.findViewById(R.id.pizza_quantity);
             pizzaPrice = itemView.findViewById(R.id.pizza_price);

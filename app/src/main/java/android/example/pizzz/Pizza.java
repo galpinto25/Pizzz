@@ -289,7 +289,6 @@ class Pizza {
     }
 
     /**
-     * todo check if needed with Efrat
      * @return string represents the size of the pizza.
      */
     String getSizeDescription() {
